@@ -72,11 +72,12 @@ Esta aplicación esta pensada para que los alumnos puedan crear fácilmente sus 
 
 
 
-			nhr = numero horas x reporte
+			ndr = numero dias x reporte
+			nsd = numero sábados y domingos
 			df 	= días festivos
 				Previamente guardados
 
-			nhr = (fp - ip) - 	df
+			ndr = (fp - ip) - df - nsd
 		
 
 	* Columnas

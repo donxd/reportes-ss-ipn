@@ -1,0 +1,7 @@
+--Registro de actividades--
+28-09-2014 07:26:49->Prueba--------	periodo_mes (2014-09-28, pm)
+28-09-2014 07:27:03->Prueba--------	periodo_mes (2014-09-28, mm)
+28-09-2014 07:27:52->Prueba--------	periodo_mes (pm, 2014-09-28)
+28-09-2014 07:27:56->Prueba--------	periodo_mes (mm, 2014-09-28)
+28-09-2014 07:28:23->Prueba--------	periodo_mes (pm, 2014-09-28)
+28-09-2014 07:28:24->Prueba--------	periodo_mes (mm, 2014-09-28)
