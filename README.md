@@ -110,3 +110,24 @@ Esta aplicación esta pensada para que los alumnos puedan crear fácilmente sus 
 
 http://joedicastro.com/pages/markdown.html#mark7
 https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+
+***
+
+## Ajustes
+
+#### Cambio en el tipo de reporte
+
+	principio mes -> mover calendario
+
+***
+
+## Conflictos
+
+#### Selectores
+
+	selectores jquery vs. selector js 
+		jquery 	-> objetos
+		js 		-> array objetos
+
+		función jquery attr()

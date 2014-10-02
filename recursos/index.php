@@ -8,9 +8,18 @@
 		require_once("funciones.php");
 		$funciones = new funciones();
 
-		//echo "periodo mes ($tipo_reporte, $fecha_inicio) : ".$funciones->periodo_mes($tipo_reporte, $fecha_inicio);
-		echo "periodo reporte ($tipo_reporte, $fecha_inicio) : ";
-			print_r( $funciones->periodo_reporte($tipo_reporte, $fecha_inicio) );
+		$mes = $funciones->periodo_mes($tipo_reporte, $fecha_inicio);
+		$periodo = $funciones->periodo_reporte($tipo_reporte, $fecha_inicio);
+		$fecha_cierre = $periodo[1];
+		$periodo = $funciones->periodo_to_string( $periodo );
+		$numero_dias_reporte = $funciones->numero_dias_reporte($tipo_reporte, $fecha_inicio, $fecha_cierre);
+
+		$salida = '{ '.
+			'"mes" : "'.$mes.'", '.
+			'"periodo" : ['.$periodo.'], '.
+			'"numero_dias_reporte" : '.$numero_dias_reporte.' '.
+		'}';
+		echo $salida;
 	} else {
 		echo 'Error 500';
 	}

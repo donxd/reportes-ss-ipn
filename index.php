@@ -9,7 +9,7 @@
 			<tr>
 				<td>Fecha de inicio</td>
 				<td>
-					<input type="date" id="fecha"/>
+					<input type="date" id="fecha_inicio"/>
 				</td>
 			</tr>
 			<tr>
@@ -20,6 +20,12 @@
 					<br/>
 					<input type="radio" name="tipo_reporte" id="mitad_mes" value="mm"/>
 					<label for="mitad_mes">Mitad del mes</label>
+				</td>
+			</tr>
+			<tr>
+				<td>Fecha de cierre</td>
+				<td>
+					<input type="date" id="fecha_cierre"/>
 				</td>
 			</tr>
 			<tr>
