@@ -39,9 +39,33 @@ Esta aplicación esta pensada para que los alumnos puedan crear fácilmente sus 
 * `Fecha de inicio < Fecha de termino`
 * `Horas x día > 0` 
 
-***
+### BD
 
-## Procesos de cualcular...
+Almacenamiento de las fechas para días festivos.
+
+\# | columna
+--- | ---
+1 | id 
+2 | fecha
+
+** Control administrador de las fechas **
+
+* Calendario (tipo agenda), opciones (mes, año)
+* Seleccionar fechas e ir agregando a un listado
+* Revisar y fijar fechas
+* Habilitar modo edición (quitar fechas, agregar)
+
+http://calendariolaboral.com.mx/calendario-de-mexico.html
+
+1.	**1 de enero**			: Año Nuevo (Miércoles)
+1.	**3 de febrero**		: Día de la Constitución que se conmemora el 5. (Lunes y Puente)
+1.	**17 de marzo**			: Natalicio de Benito Juárez que se celebra el 21. (Lunes y puente)
+1.	**1 de mayo**			: Día del Trabajo (jueves)
+1.	**16 de septiembre**	: Día de la Independencia (martes)
+1.	**17 de noviembre**		: Revolución Mexicana que se conmemora el 20. (Lunes y puente)
+1.	**25 de diciembre**		: Navidad (Jueves)
+
+## Procesos para cualcular...
 
 1. #### Periodo del reporte (mes)
 
@@ -131,3 +155,9 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 		js 		-> array objetos
 
 		función jquery attr()
+
+***
+
+## Dudas, ideas
+
+* Días servicio : [entre semana, fines de semana]
