@@ -24,7 +24,10 @@ $(document).ready(function(){
 		$("input[name='tipo_reporte']")[tipo].setAttribute("checked","checked");
 		// $("input[name='tipo_reporte']")[tipo].attr("checked","checked");
 
-		datos = { fecha : fecha.getDate()+"-"+(fecha.getMonth()+1)+"-"+fecha.getFullYear(), tipo_reporte : $("input[name='tipo_reporte']:checked").val() };
+		datos = { 
+			fecha : fecha.getDate()+"-"+(fecha.getMonth()+1)+"-"+fecha.getFullYear(), 
+			tipo_reporte : $("input[name='tipo_reporte']:checked").val() 
+		};
 
 		// datos.fecha = fecha;
 		// datos.tipo_reporte = tipo;
@@ -45,7 +48,7 @@ $(document).ready(function(){
 			$.ajax({
 				type : "POST",
 				url  : "recursos/",
-				data : { fecha_inicio : datos.fecha, tipo_reporte : datos.tipo_reporte },
+				data : { fecha_inicio : datos.fecha, tipo_reporte : datos.tipo_reporte, tipo_dias : $("input[name='tipo_dias']:checked").val() },
 			}).done( function(respuesta){
 				console.log("RES : "+respuesta);
 
@@ -74,4 +77,5 @@ $(document).ready(function(){
 		} //if
 	});
 	$("#fecha_inicio").focus();
+	$("input[name='tipo_dias']")[0].setAttribute("checked","checked");
 }); //ready

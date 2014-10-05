@@ -65,6 +65,13 @@ http://calendariolaboral.com.mx/calendario-de-mexico.html
 1.	**17 de noviembre**		: Revolución Mexicana que se conmemora el 20. (Lunes y puente)
 1.	**25 de diciembre**		: Navidad (Jueves)
 
+** Implementación de usuarios **
+
+A partir de la sesión:
+
+* Alumnos -	usuario - r
+* Admin   -	root 	- rw
+
 ## Procesos para cualcular...
 
 1. #### Periodo del reporte (mes)

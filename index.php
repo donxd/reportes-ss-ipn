@@ -7,12 +7,6 @@
 		<h3>Generador de reporte mensual</h3>
 		<table>
 			<tr>
-				<td>Fecha de inicio</td>
-				<td>
-					<input type="date" id="fecha_inicio"/>
-				</td>
-			</tr>
-			<tr>
 				<td>Tipo reporte</td>
 				<td>
 					<input type="radio" name="tipo_reporte" id="principio_mes" value="pm"/>
@@ -23,9 +17,25 @@
 				</td>
 			</tr>
 			<tr>
+				<td>Fecha de inicio</td>
+				<td>
+					<input type="date" id="fecha_inicio"/>
+				</td>
+			</tr>
+			<tr>
 				<td>Fecha de cierre</td>
 				<td>
 					<input type="date" id="fecha_cierre"/>
+				</td>
+			</tr>
+			<tr>
+				<td>Días</td>
+				<td>
+					<input type="radio" name="tipo_dias" id="entre_semana" value="es"/>
+					<label for="principio_mes">Lunes a Viernes</label>
+					<br/>
+					<input type="radio" name="tipo_dias" id="fines_semana" value="fs"/>
+					<label for="mitad_mes">Sábado y Domingo</label>
 				</td>
 			</tr>
 			<tr>
