@@ -1,4 +1,5 @@
 var datos;
+var datos_reporte;
 $(document).ready(function(){
 	//inicializacion
 	$("#fecha_inicio").change( function (){
@@ -52,14 +53,15 @@ $(document).ready(function(){
 			}).done( function(respuesta){
 				console.log("RES : "+respuesta);
 
-				respuesta = JSON.parse(respuesta);
+				datos_reporte = JSON.parse(respuesta);
+				generaReporte();
 
 				// console.log("fc : "+respuesta.periodo[1].replace(/-/g,"\/") );
 
 				try {
 					// $("#fecha_cierre").setAttribute("value", respuesta.periodo[1].replace(/-/g,"\/") );
 					// $("#fecha_cierre").val( respuesta.periodo[1].replace(/-/g,"\/") );
-					$("#fecha_cierre").val( respuesta.periodo[1] );
+					$("#fecha_cierre").val( datos_reporte.periodo[1] );
 					// $("#fecha_cierre").setAttribute("value", respuesta.periodo[1] );
 				} catch (error) {
 					console.log("Error ingresando fecha de cierre");
@@ -76,6 +78,62 @@ $(document).ready(function(){
 			console.log("Construyendo la tabla...");	
 		} //if
 	});
+	$("#periodo_inicio, #periodo_cierre, #periodo_mes").click( function (){
+		$(this).select();
+	});
 	$("#fecha_inicio").focus();
 	$("input[name='tipo_dias']")[0].setAttribute("checked","checked");
 }); //ready
+
+function generaReporte (){
+
+	var encabezados = ['No.', 'Fecha', 'Hora de entrada', 'Hora de salida', 'Horas por día'];
+
+	//ingresando la información
+
+	$("#periodo_inicio").val( datos_reporte.periodo[0]);
+	$("#periodo_cierre").val( datos_reporte.periodo[1]);
+	$("#periodo_mes").val( datos_reporte.mes);
+
+	$("#reporte").html("<table></table>");
+	var reporte = $("#reporte table").get(0);
+	
+	var hora_entrada = $("#entrada").val();
+	var horas_dia = $("#horas_dia").val();
+	
+	var hora_salida = "";
+	if (hora_entrada.length > 0 && horas_dia.length > 0){
+		horas_dia = parseInt( $("#horas_dia").val() );
+
+		hora_salida = hora_entrada.split(":");
+		horas_dia = parseInt(hora_salida[0])+horas_dia;
+		horas_dia = horas_dia.toString();
+		hora_salida = ( (horas_dia.length < 2) ? "0"+horas_dia : horas_dia )+":"+hora_salida[1];
+		
+		horas_dia = $("#horas_dia").val();
+	}
+
+	reporte.insertRow(0);
+	for (var i = 0; i < encabezados.length; i++){
+		reporte.rows[0].insertCell(i);
+		reporte.rows[0].cells[i].innerHTML = encabezados[i];
+	}
+	for (var i = 0; i < datos_reporte.numero_dias_reporte; i++){
+		reporte.insertRow(i+1);
+		for (var j = 0; j < encabezados.length; j++){
+			reporte.rows[i+1].insertCell(j);
+		}
+		reporte.rows[i+1].cells[0].innerHTML = i+1;
+		reporte.rows[i+1].cells[1].innerHTML = datos_reporte.dias[i][0];
+		if (datos_reporte.dias[i][1]){
+			reporte.rows[i+1].cells[2].setAttribute("colspan","3");
+			reporte.rows[i+1].cells[2].innerHTML = "DIA FESTIVO";
+			reporte.rows[i+1].cells[3].setAttribute("class","oculto");
+			reporte.rows[i+1].cells[4].setAttribute("class","oculto");
+		} else {
+			reporte.rows[i+1].cells[2].innerHTML = (hora_entrada.length > 0) ? hora_entrada : "";
+			reporte.rows[i+1].cells[3].innerHTML = (hora_salida.length > 0) ? hora_salida : "";
+			reporte.rows[i+1].cells[4].innerHTML = (horas_dia.length > 0) ? horas_dia : "";
+		}
+	}
+}  //generaReporte

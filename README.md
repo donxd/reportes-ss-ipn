@@ -161,10 +161,18 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 		jquery 	-> objetos
 		js 		-> array objetos
 
-		función jquery attr()
+		función jquery 
+			attr()
+			selector -> get()
+
 
 ***
 
 ## Dudas, ideas
 
 * Días servicio : [entre semana, fines de semana]
+* Cambios en la hora de entrada con intervalos de 30 min
+* Hora de entrada (min. y máx.)
+* Mes periodo depende del rango de fechas, no únicamente del tipo de reporte
+* Agregar eventos en la columna fecha para cambiar el estado ha [DIA FESTIVO, etc.]
+* Personalizar el formato de las salidas (sección especial)

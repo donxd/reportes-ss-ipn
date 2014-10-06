@@ -1,3 +1,27 @@
-table tr td:first-child {
+table#informacion tr td:first-child {
 	text-align: right;
+}
+
+#reporte table tr:first-child {
+	font-weight: bold;
+}
+
+#reporte table td {
+	text-align: center;	
+}
+
+input {
+	text-align: center;
+}
+
+#contenido {
+	float: left;
+}
+
+#reporte {
+	float: right;
+}
+
+.oculto {
+	display: none;
 }
