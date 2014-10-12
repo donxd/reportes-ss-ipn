@@ -5,16 +5,16 @@
 	</head>
 	<body>
 		<div id="contenido">
-			<h3>Generador de reporte mensual</h3>
+			<h3>Generador de contenido para el reporte mensual</h3>
 			<table id="informacion">
 				<tr>
-					<td>Tipo reporte</td>
+					<td>Día de inicio del reporte</td>
 					<td>
 						<input type="radio" name="tipo_reporte" id="principio_mes" value="pm"/>
-						<label for="principio_mes">Principio del mes</label>
+						<label for="principio_mes">01 - Principio del mes</label>
 						<br/>
 						<input type="radio" name="tipo_reporte" id="mitad_mes" value="mm"/>
-						<label for="mitad_mes">Mitad del mes</label>
+						<label for="mitad_mes">16 - Mitad del mes</label>
 					</td>
 				</tr>
 				<tr>
@@ -30,7 +30,7 @@
 					</td>
 				</tr>
 				<tr>
-					<td>Días</td>
+					<td>Días del servicio</td>
 					<td>
 						<input type="radio" name="tipo_dias" id="entre_semana" value="es"/>
 						<label for="principio_mes">Lunes a Viernes</label>

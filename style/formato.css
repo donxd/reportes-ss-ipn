@@ -21,7 +21,17 @@ input {
 #reporte {
 	float: right;
 }
+#reporte table {
+	border-collapse: collapse;
+}
 
 .oculto {
 	display: none;
+}
+
+#reporte td {
+	padding: 2 10 2 10;
+}
+#reporte tr:nth-child(2n) td {
+	background-color: #C0C0C0;
 }

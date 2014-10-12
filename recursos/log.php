@@ -9,13 +9,13 @@ class log {
 		$tipo;
 		switch($categoria){
 			case 0:
-				$tipo = "->Error---------\t";
+				$tipo = "\t[-Error-------]\t";
 				break;
 			case 1:
-				$tipo = "->Prueba--------\t";
+				$tipo = "\t[-Prueba------]\t";
 				break;
 			case 2:
-				$tipo = "->Advertencia---\t";
+				$tipo = "\t[-Advertencia-]\t";
 				break;
 		}
 		@fwrite($enlace, "\n".date("d-m-Y H:i:s").$tipo.$mensaje);

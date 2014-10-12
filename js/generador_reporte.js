@@ -1,16 +1,15 @@
-var datos;
+var datos = {};
 var datos_reporte;
-$(document).ready(function(){
+$(document).ready( function(){
 	//inicializacion
-	$("#fecha_inicio").change( function (){
+	$("#fecha_inicio").change( function(){
 		// console.log("Inicializando periodo...");
 		var fecha = $("#fecha_inicio").val();
 		fecha = fecha.split("-");
 		//constructor yyyy, mm, dd, hh , MM, ss, ms
 		// console.log("fecha-texto : "+JSON.stringify(fecha));
 		fecha = new Date( fecha[0], fecha[1]-1, fecha[2]);
-
-		// console.log("cuadro : "+$("#fecha_inicio").val()+" fecha : "+fecha.toString());
+		console.log("cuadro : "+$("#fecha_inicio").val()+" fecha : "+fecha.toString());
 
 		var tipo = (fecha.getDate() > 15) ? 1 : 0;
 		// console.log("cuadro : "+$("#fecha_inicio").val()+" dia : "+fecha.getDate()+" tipo : "+tipo);
@@ -25,15 +24,23 @@ $(document).ready(function(){
 		$("input[name='tipo_reporte']")[tipo].setAttribute("checked","checked");
 		// $("input[name='tipo_reporte']")[tipo].attr("checked","checked");
 
-		datos = { 
-			fecha : fecha.getDate()+"-"+(fecha.getMonth()+1)+"-"+fecha.getFullYear(), 
-			tipo_reporte : $("input[name='tipo_reporte']:checked").val() 
-		};
+		// if (datos.fecha_inicio == undefined){
+			datos.fecha_inicio = fecha.getDate()+"-"+(fecha.getMonth()+1)+"-"+fecha.getFullYear();
+			datos.tipo_reporte = $("input[name='tipo_reporte']:checked").val();
+		// }
 
 		// datos.fecha = fecha;
 		// datos.tipo_reporte = tipo;
 	});
-	$(":input").change( function (){
+	$("#fecha_cierre").change( function(){
+		var fecha = $("#fecha_cierre").val();
+		fecha = fecha.split("-");
+		fecha = new Date( fecha[0], fecha[1]-1, fecha[2]);
+		// if (datos.fecha_cierre == undefined){
+			datos.fecha_cierre = fecha.getDate()+"-"+(fecha.getMonth()+1)+"-"+fecha.getFullYear();
+		// }
+	});
+	$("#fecha_inicio, #fecha_cierre, input[name='tipo_dias']").change( function(){
 		//calculo de dias
 		// var fecha = $("#fecha_inicio").val();
 		// var tipo_reporte = $("input[name='tipo_reporte']:checked");
@@ -41,44 +48,41 @@ $(document).ready(function(){
 		// console.log("--->"+JSON.stringify(datos));
 		// console.log("Calculando los dias...\nEnviando (0) : " +datos.fecha+ " (1) : "+datos.tipo_reporte );
 
-		if ( datos.fecha != "" && datos.tipo_reporte != null && 
-				datos.fecha.length > 0 ){
-			// fecha
+		var parametros = {};
+		parametros.fecha_inicio = (datos.fecha_inicio != undefined) ? datos.fecha_inicio : "";
+		parametros.fecha_cierre = (datos.fecha_cierre != undefined) ? datos.fecha_cierre : "";
+		parametros.tipo_reporte = (datos.tipo_reporte != undefined) ? datos.tipo_reporte : "";
+
+		if ( parametros.fecha_inicio != "" && parametros.tipo_reporte != "" ){
+			// fecha_inicio
 			// tipo_reporte
+			// fecha_cierre - opcional
+
+			console.log("parametros :\n"+JSON.stringify({ fecha_inicio : parametros.fecha_inicio, fecha_cierre : parametros.fecha_cierre, tipo_reporte : parametros.tipo_reporte, tipo_dias : $("input[name='tipo_dias']:checked").val() }));
 			
 			$.ajax({
 				type : "POST",
 				url  : "recursos/",
-				data : { fecha_inicio : datos.fecha, tipo_reporte : datos.tipo_reporte, tipo_dias : $("input[name='tipo_dias']:checked").val() },
+				data : { fecha_inicio : parametros.fecha_inicio, fecha_cierre : parametros.fecha_cierre, tipo_reporte : parametros.tipo_reporte, tipo_dias : $("input[name='tipo_dias']:checked").val() },
 			}).done( function(respuesta){
 				console.log("RES : "+respuesta);
 
 				datos_reporte = JSON.parse(respuesta);
 				generaReporte();
 
-				// console.log("fc : "+respuesta.periodo[1].replace(/-/g,"\/") );
-
-				try {
-					// $("#fecha_cierre").setAttribute("value", respuesta.periodo[1].replace(/-/g,"\/") );
-					// $("#fecha_cierre").val( respuesta.periodo[1].replace(/-/g,"\/") );
-					$("#fecha_cierre").val( datos_reporte.periodo[1] );
-					// $("#fecha_cierre").setAttribute("value", respuesta.periodo[1] );
-				} catch (error) {
-					console.log("Error ingresando fecha de cierre");
+				//agregando los valores obtenidos en los campos vacios
+				// console.log("---------------------\n"+parametros.fecha_cierre+" : "+datos_reporte.periodo[1]+"\n---------------------\n")
+				if (parametros.fecha_cierre.length < 1){
+					//revisar el formato que acepta el input[date]
+					$("#fecha_cierre").val( cambiaFormatoFecha('Y-m-d', datos_reporte.periodo[1] ) );
 				}
-
-				//datos = JSON.parse(respuesta);
 			});
 		} //if
-		//construccion de la tabla
-		if ( $("#entrada").val().length > 0 && 
-				$("#horas_dia").val().length > 0){
-			// entrada
-			// horas_dia
-			console.log("Construyendo la tabla...");	
-		} //if
 	});
-	$("#periodo_inicio, #periodo_cierre, #periodo_mes").click( function (){
+	$("#entrada, #horas_dia").change( function(){
+		generaReporte();
+	});
+	$("#periodo_inicio, #periodo_cierre, #periodo_mes").click( function(){
 		$(this).select();
 	});
 	$("#fecha_inicio").focus();
@@ -137,3 +141,16 @@ function generaReporte (){
 		}
 	}
 }  //generaReporte
+
+function cambiaFormatoFecha (formato_salida, fecha){
+	var fecha_salida = fecha.split("-");
+	fecha_salida = new Date( fecha_salida[2], fecha_salida[1]-1, fecha_salida[0]);
+
+	switch (formato_salida){
+		case "Y-m-d":
+			fecha_salida = fecha_salida.getFullYear()+"-"+(fecha_salida.getMonth()+1)+"-"+fecha_salida.getDate();
+			break;
+	}
+	// console.log("entrada : "+fecha+"\nsalida : "+fecha_salida);
+	return fecha_salida;
+}

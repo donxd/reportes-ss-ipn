@@ -176,3 +176,4 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 * Mes periodo depende del rango de fechas, no únicamente del tipo de reporte
 * Agregar eventos en la columna fecha para cambiar el estado ha [DIA FESTIVO, etc.]
 * Personalizar el formato de las salidas (sección especial)
+* Control de horas del tipo range?

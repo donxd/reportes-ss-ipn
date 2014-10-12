@@ -1,7 +1,1842 @@
 --Registro de actividades--
-28-09-2014 07:26:49->Prueba--------	periodo_mes (2014-09-28, pm)
-28-09-2014 07:27:03->Prueba--------	periodo_mes (2014-09-28, mm)
-28-09-2014 07:27:52->Prueba--------	periodo_mes (pm, 2014-09-28)
-28-09-2014 07:27:56->Prueba--------	periodo_mes (mm, 2014-09-28)
-28-09-2014 07:28:23->Prueba--------	periodo_mes (pm, 2014-09-28)
-28-09-2014 07:28:24->Prueba--------	periodo_mes (mm, 2014-09-28)
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:44:31	[-Prueba------]			mes 10 -> 11
+12-10-2014 04:44:31	[-Prueba------]			año 2014 -> 2014
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 04:44:31	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:44:31	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:44:31	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 04:44:31	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 04:44:31	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 04:44:31	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 04:44:31	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 04:44:31	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 04:44:31	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 04:44:31	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 04:44:31	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:44:31	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:44:31	[-Prueba------]	dias_periodo (es, 16-10-2014, 01-01-1970)
+12-10-2014 04:44:31	[-Prueba------]	valores ??? dia_limite : 1 - 15 = -14
+12-10-2014 04:44:31	[-Prueba------]	dias_periodo : dias [0]
+12-10-2014 04:44:31	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 04:44:31	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 04:44:31	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 04:44:31	[-Prueba------]	dias_reporte : dias [10]
+12-10-2014 04:44:31	[-Prueba------]	dias_reporte_to_string [10]
+12-10-2014 04:44:31	[-Prueba------]	dias_reporte_to_string : cadena -> [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:47:24	[-Prueba------]			mes 10 -> 11
+12-10-2014 04:47:24	[-Prueba------]			año 2014 -> 2014
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 04:47:24	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:47:24	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:47:24	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 04:47:24	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 04:47:24	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 04:47:24	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 04:47:24	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 04:47:24	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 04:47:24	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 04:47:24	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 04:47:24	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:47:24	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:47:24	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 04:47:24	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 04:47:24	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 04:47:24	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 04:47:24	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 04:47:24	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 04:47:24	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 04:47:24	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 04:47:24	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:52:56	[-Prueba------]			mes 10 -> 11
+12-10-2014 04:52:56	[-Prueba------]			año 2014 -> 2014
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 04:52:56	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:52:56	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:52:56	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 04:52:56	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 04:52:56	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 04:52:56	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 04:52:56	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 04:52:56	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 04:52:56	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 04:52:56	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 04:52:56	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:52:56	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:52:56	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 04:52:56	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 04:52:56	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 04:52:56	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 04:52:56	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 04:52:56	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 04:52:56	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 04:52:56	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 04:52:56	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:53:23	[-Prueba------]			mes 10 -> 11
+12-10-2014 04:53:23	[-Prueba------]			año 2014 -> 2014
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 04:53:23	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:53:23	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:53:23	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 04:53:23	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 04:53:23	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 04:53:23	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 04:53:23	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 04:53:23	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 04:53:23	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 04:53:23	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 04:53:23	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:53:23	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:53:23	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 04:53:23	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 04:53:23	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 04:53:23	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 04:53:23	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 04:53:23	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 04:53:23	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 04:53:23	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 04:53:23	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:11	[-Prueba------]			mes 10 -> 11
+12-10-2014 04:59:11	[-Prueba------]			año 2014 -> 2014
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 04:59:11	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:59:11	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:59:11	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 04:59:11	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 04:59:11	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 04:59:11	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 04:59:11	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 04:59:11	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 04:59:11	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 04:59:11	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 04:59:11	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:11	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:59:11	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 04:59:11	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 04:59:11	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 04:59:11	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 04:59:11	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 04:59:11	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 04:59:11	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 04:59:11	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 04:59:11	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte (mm, 16-10-2013, 01-01-1970)
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2013
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:40	[-Prueba------]			mes 10 -> 11
+12-10-2014 04:59:40	[-Prueba------]			año 2013 -> 2013
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2013-11-15
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2013
+12-10-2014 04:59:40	[-Prueba------]	periodo_mes (mm, 16-10-2013, 15-11-2013)
+12-10-2014 04:59:40	[-Prueba------]	numero_dias_reporte (mm, 16-10-2013, 15-11-2013)
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte (pm, 16-10-2013, 01-01-1970)
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2013
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2013
+12-10-2014 04:59:40	[-Prueba------]	numero_dias_reporte (pm, 16-10-2013, 31-10-2013)
+12-10-2014 04:59:40	[-Advertencia-]	numero_dias_reporte [31-10-2013] date['d', 31] int[31]
+12-10-2014 04:59:40	[-Prueba------]	numero_dias_reporte (pm, 01-11-2013, 15-11-2013)
+12-10-2014 04:59:40	[-Advertencia-]	numero_dias_reporte [15-11-2013] date['d', 15] int[15]
+12-10-2014 04:59:40	[-Prueba------]	
+*********
+[16-10-2013 , 31-10-2013]
+[01-11-2013 , 15-11-2013]
+res : 23
+*********
+12-10-2014 04:59:40	[-Prueba------]	dias_reporte (mm, es, 16-10-2013, 15-11-2013, 23)
+12-10-2014 04:59:40	[-Prueba------]	get_dias_festivos (16-10-2013, 15-11-2013)
+12-10-2014 04:59:40	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2013-10-16' AND '2013-11-15' 
+12-10-2014 04:59:40	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte (pm, 16-10-2013, 01-01-1970)
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2013
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:40	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2013
+12-10-2014 04:59:40	[-Prueba------]	dias_periodo (es, 16-10-2013, 31-10-2013)
+12-10-2014 04:59:40	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 04:59:40	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 04:59:40	[-Prueba------]	dias_periodo (es, 01-11-2013, 15-11-2013)
+12-10-2014 04:59:40	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 04:59:40	[-Prueba------]	dias_periodo : dias [11]
+12-10-2014 04:59:40	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 04:59:40	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 04:59:40	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2013", 0 ], [ "17-10-2013", 0 ], [ "18-10-2013", 0 ], [ "21-10-2013", 0 ], [ "22-10-2013", 0 ], [ "23-10-2013", 0 ], [ "24-10-2013", 0 ], [ "25-10-2013", 0 ], [ "28-10-2013", 0 ], [ "29-10-2013", 0 ], [ "30-10-2013", 0 ], [ "31-10-2013", 0 ], [ "01-11-2013", 0 ], [ "04-11-2013", 0 ], [ "05-11-2013", 0 ], [ "06-11-2013", 0 ], [ "07-11-2013", 0 ], [ "08-11-2013", 0 ], [ "11-11-2013", 0 ], [ "12-11-2013", 0 ], [ "13-11-2013", 0 ], [ "14-11-2013", 0 ], [ "15-11-2013", 0 ]
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:41	[-Prueba------]			mes 10 -> 11
+12-10-2014 04:59:41	[-Prueba------]			año 2014 -> 2014
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 04:59:41	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:59:41	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:59:41	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 04:59:41	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 04:59:41	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 04:59:41	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 04:59:41	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 04:59:41	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 04:59:41	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 04:59:41	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 04:59:41	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 04:59:41	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 04:59:41	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 04:59:41	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 04:59:41	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 04:59:41	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 04:59:41	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 04:59:41	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 04:59:41	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 04:59:41	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 04:59:41	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:09:56	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:09:56	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:09:56	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:09:56	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:09:56	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:09:56	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:09:56	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:09:56	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:09:56	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:09:56	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:09:56	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:09:56	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:09:56	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:09:56	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:09:56	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:09:56	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:09:56	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:09:56	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:09:56	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:09:56	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:09:56	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:09:56	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:09:56	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:10:40	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:10:40	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:10:40	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:10:40	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:10:40	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:10:40	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:10:40	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:10:40	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:10:40	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:10:40	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:10:40	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:10:40	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:10:40	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:10:40	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:10:40	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:10:40	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:10:40	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:10:40	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:10:40	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:10:40	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:10:40	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:10:40	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:10:40	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:12:14	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:12:14	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:12:14	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:12:14	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:12:14	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:12:14	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:12:14	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:12:14	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:12:14	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:12:14	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:12:14	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:12:14	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:12:14	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:12:14	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:12:14	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:12:14	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:12:14	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:12:14	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:12:14	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:12:14	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:12:14	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:12:14	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:12:14	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:12:35	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:12:35	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:12:35	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:12:35	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:12:35	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:12:35	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:12:35	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:12:35	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:12:35	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:12:35	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:12:35	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:12:35	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:12:35	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:12:35	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:12:35	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:12:35	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:12:35	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:12:35	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:12:35	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:12:35	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:12:35	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:12:35	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:12:35	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:13:08	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:13:08	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:13:08	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:13:08	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:13:08	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:13:08	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:13:08	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:13:08	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:13:08	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:13:08	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:13:08	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:13:08	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:13:08	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:13:08	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:13:08	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:13:08	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:13:08	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:13:08	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:13:08	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:13:08	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:13:08	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:13:08	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:13:08	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:13:24	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:13:24	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:13:24	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:13:24	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:13:24	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:13:24	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:13:24	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:13:24	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:13:24	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:13:24	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:13:24	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:13:24	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:13:24	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:13:24	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:13:24	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:13:24	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:13:24	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:13:24	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:13:24	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:13:24	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:13:24	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:13:24	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:13:24	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:14:04	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:14:04	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:14:04	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:14:04	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:14:04	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:14:04	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:14:04	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:14:04	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:14:04	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:14:04	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:14:04	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:14:04	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:14:04	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:14:04	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:14:04	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:14:04	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:14:04	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:14:04	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:14:04	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:14:04	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:14:04	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:14:04	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:14:04	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte (mm, 17-11-2014, 01-01-1970)
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> periodo inicio : 17-11-2014
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:14:10	[-Prueba------]			mes 11 -> 12
+12-10-2014 05:14:10	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-12-15
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> periodo cierre : 15-12-2014
+12-10-2014 05:14:10	[-Prueba------]	periodo_mes (mm, 17-11-2014, 15-12-2014)
+12-10-2014 05:14:10	[-Prueba------]	numero_dias_reporte (mm, 17-11-2014, 15-12-2014)
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte (pm, 17-11-2014, 01-01-1970)
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> periodo inicio : 17-11-2014
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:14:10	[-Prueba------]	numero_dias_reporte (pm, 17-11-2014, 30-11-2014)
+12-10-2014 05:14:10	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:14:10	[-Prueba------]	numero_dias_reporte (pm, 01-12-2014, 15-12-2014)
+12-10-2014 05:14:10	[-Advertencia-]	numero_dias_reporte [15-12-2014] date['d', 15] int[15]
+12-10-2014 05:14:10	[-Prueba------]	
+*********
+[17-11-2014 , 30-11-2014]
+[01-12-2014 , 15-12-2014]
+res : 21
+*********
+12-10-2014 05:14:10	[-Prueba------]	dias_reporte (mm, es, 17-11-2014, 15-12-2014, 21)
+12-10-2014 05:14:10	[-Prueba------]	get_dias_festivos (17-11-2014, 15-12-2014)
+12-10-2014 05:14:10	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-17' AND '2014-12-15' 
+12-10-2014 05:14:10	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte (pm, 17-11-2014, 01-01-1970)
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> periodo inicio : 17-11-2014
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:14:10	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:14:10	[-Prueba------]	dias_periodo (es, 17-11-2014, 30-11-2014)
+12-10-2014 05:14:10	[-Prueba------]	valores ??? dia_limite : 30 - 16 = 14
+12-10-2014 05:14:10	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:14:10	[-Prueba------]	dias_periodo (es, 01-12-2014, 15-12-2014)
+12-10-2014 05:14:10	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:14:10	[-Prueba------]	dias_periodo : dias [11]
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 1
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 2
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 3
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 4
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 5
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 8
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 9
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:14:10	[-Prueba------]	comparando festivos : 17 - 15
+12-10-2014 05:14:10	[-Prueba------]	dias_reporte : dias [21]
+12-10-2014 05:14:10	[-Prueba------]	dias_reporte_to_string [21]
+12-10-2014 05:14:10	[-Prueba------]	dias_reporte_to_string : cadena -> [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ], [ "01-12-2014", 0 ], [ "02-12-2014", 0 ], [ "03-12-2014", 0 ], [ "04-12-2014", 0 ], [ "05-12-2014", 0 ], [ "08-12-2014", 0 ], [ "09-12-2014", 0 ], [ "10-12-2014", 0 ], [ "11-12-2014", 0 ], [ "12-12-2014", 0 ], [ "15-12-2014", 0 ]
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte (mm, 16-11-2014, 01-01-1970)
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> periodo inicio : 16-11-2014
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:16:51	[-Prueba------]			mes 11 -> 12
+12-10-2014 05:16:51	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-12-15
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> periodo cierre : 15-12-2014
+12-10-2014 05:16:51	[-Prueba------]	periodo_mes (mm, 16-11-2014, 15-12-2014)
+12-10-2014 05:16:51	[-Prueba------]	numero_dias_reporte (mm, 16-11-2014, 15-12-2014)
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte (pm, 16-11-2014, 01-01-1970)
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> periodo inicio : 16-11-2014
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:16:51	[-Prueba------]	numero_dias_reporte (pm, 16-11-2014, 30-11-2014)
+12-10-2014 05:16:51	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:16:51	[-Prueba------]	numero_dias_reporte (pm, 01-12-2014, 15-12-2014)
+12-10-2014 05:16:51	[-Advertencia-]	numero_dias_reporte [15-12-2014] date['d', 15] int[15]
+12-10-2014 05:16:51	[-Prueba------]	
+*********
+[16-11-2014 , 30-11-2014]
+[01-12-2014 , 15-12-2014]
+res : 21
+*********
+12-10-2014 05:16:51	[-Prueba------]	dias_reporte (mm, es, 16-11-2014, 15-12-2014, 21)
+12-10-2014 05:16:51	[-Prueba------]	get_dias_festivos (16-11-2014, 15-12-2014)
+12-10-2014 05:16:51	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-16' AND '2014-12-15' 
+12-10-2014 05:16:51	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte (pm, 16-11-2014, 01-01-1970)
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> periodo inicio : 16-11-2014
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:16:51	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:16:51	[-Prueba------]	dias_periodo (es, 16-11-2014, 30-11-2014)
+12-10-2014 05:16:51	[-Prueba------]	valores ??? dia_limite : 30 - 15 = 15
+12-10-2014 05:16:51	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:16:51	[-Prueba------]	dias_periodo (es, 01-12-2014, 15-12-2014)
+12-10-2014 05:16:51	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:16:51	[-Prueba------]	dias_periodo : dias [11]
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 1
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 2
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 3
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 4
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 5
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 8
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 9
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:16:51	[-Prueba------]	comparando festivos : 17 - 15
+12-10-2014 05:16:51	[-Prueba------]	dias_reporte : dias [21]
+12-10-2014 05:16:51	[-Prueba------]	dias_reporte_to_string [21]
+12-10-2014 05:16:51	[-Prueba------]	dias_reporte_to_string : cadena -> [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ], [ "01-12-2014", 0 ], [ "02-12-2014", 0 ], [ "03-12-2014", 0 ], [ "04-12-2014", 0 ], [ "05-12-2014", 0 ], [ "08-12-2014", 0 ], [ "09-12-2014", 0 ], [ "10-12-2014", 0 ], [ "11-12-2014", 0 ], [ "12-12-2014", 0 ], [ "15-12-2014", 0 ]
+12-10-2014 05:16:56	[-Prueba------]	periodo_reporte (pm, 01-11-2014, 01-01-1970)
+12-10-2014 05:16:56	[-Prueba------]	periodo_reporte >> periodo inicio : 01-11-2014
+12-10-2014 05:16:56	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:16:56	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:16:56	[-Prueba------]	periodo_mes (pm, 01-11-2014, 30-11-2014)
+12-10-2014 05:16:56	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 30-11-2014)
+12-10-2014 05:16:56	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:16:56	[-Prueba------]	dias_reporte (pm, es, 01-11-2014, 30-11-2014, 20)
+12-10-2014 05:16:56	[-Prueba------]	get_dias_festivos (01-11-2014, 30-11-2014)
+12-10-2014 05:16:56	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-01' AND '2014-11-30' 
+12-10-2014 05:16:56	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:16:56	[-Prueba------]	dias_periodo (es, 01-11-2014, 30-11-2014)
+12-10-2014 05:16:56	[-Prueba------]	valores ??? dia_limite : 30 - 0 = 30
+12-10-2014 05:16:56	[-Prueba------]	dias_periodo : dias [20]
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 3
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 4
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 5
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 6
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 7
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:16:56	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:16:56	[-Prueba------]	dias_reporte : dias [20]
+12-10-2014 05:16:56	[-Prueba------]	dias_reporte_to_string [20]
+12-10-2014 05:16:56	[-Prueba------]	dias_reporte_to_string : cadena -> [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte (pm, 02-11-2014, 01-01-1970)
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> periodo inicio : 02-11-2014
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:07	[-Prueba------]	periodo_mes (pm, 02-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	numero_dias_reporte (pm, 02-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte (pm, es, 02-11-2014, 30-11-2014, 20)
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos (02-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-02' AND '2014-11-30' 
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:07	[-Prueba------]	dias_periodo (es, 02-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	valores ??? dia_limite : 30 - 1 = 29
+12-10-2014 05:17:07	[-Prueba------]	dias_periodo : dias [20]
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 3
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 4
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 5
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 6
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 7
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte : dias [20]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte_to_string [20]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte_to_string : cadena -> [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte (pm, 03-11-2014, 01-01-1970)
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> periodo inicio : 03-11-2014
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:07	[-Prueba------]	periodo_mes (pm, 03-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	numero_dias_reporte (pm, 03-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte (pm, es, 03-11-2014, 30-11-2014, 20)
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos (03-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-03' AND '2014-11-30' 
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:07	[-Prueba------]	dias_periodo (es, 03-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	valores ??? dia_limite : 30 - 2 = 28
+12-10-2014 05:17:07	[-Prueba------]	dias_periodo : dias [20]
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 3
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 4
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 5
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 6
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 7
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte : dias [20]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte_to_string [20]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte_to_string : cadena -> [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte (pm, 04-11-2014, 01-01-1970)
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> periodo inicio : 04-11-2014
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:07	[-Prueba------]	periodo_mes (pm, 04-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	numero_dias_reporte (pm, 04-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte (pm, es, 04-11-2014, 30-11-2014, 19)
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos (04-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-04' AND '2014-11-30' 
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:07	[-Prueba------]	dias_periodo (es, 04-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	valores ??? dia_limite : 30 - 3 = 27
+12-10-2014 05:17:07	[-Prueba------]	dias_periodo : dias [19]
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 4
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 5
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 6
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 7
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte : dias [19]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte_to_string [19]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte_to_string : cadena -> [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte (pm, 05-11-2014, 01-01-1970)
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> periodo inicio : 05-11-2014
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:07	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:07	[-Prueba------]	periodo_mes (pm, 05-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	numero_dias_reporte (pm, 05-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte (pm, es, 05-11-2014, 30-11-2014, 18)
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos (05-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-05' AND '2014-11-30' 
+12-10-2014 05:17:07	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:07	[-Prueba------]	dias_periodo (es, 05-11-2014, 30-11-2014)
+12-10-2014 05:17:07	[-Prueba------]	valores ??? dia_limite : 30 - 4 = 26
+12-10-2014 05:17:07	[-Prueba------]	dias_periodo : dias [18]
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 5
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 6
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 7
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:07	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte : dias [18]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte_to_string [18]
+12-10-2014 05:17:07	[-Prueba------]	dias_reporte_to_string : cadena -> [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte (pm, 06-11-2014, 01-01-1970)
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> periodo inicio : 06-11-2014
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:08	[-Prueba------]	periodo_mes (pm, 06-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	numero_dias_reporte (pm, 06-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte (pm, es, 06-11-2014, 30-11-2014, 17)
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos (06-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-06' AND '2014-11-30' 
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:08	[-Prueba------]	dias_periodo (es, 06-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	valores ??? dia_limite : 30 - 5 = 25
+12-10-2014 05:17:08	[-Prueba------]	dias_periodo : dias [17]
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 6
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 7
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte : dias [17]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte_to_string [17]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte_to_string : cadena -> [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte (pm, 07-11-2014, 01-01-1970)
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> periodo inicio : 07-11-2014
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:08	[-Prueba------]	periodo_mes (pm, 07-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	numero_dias_reporte (pm, 07-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte (pm, es, 07-11-2014, 30-11-2014, 16)
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos (07-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-07' AND '2014-11-30' 
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:08	[-Prueba------]	dias_periodo (es, 07-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	valores ??? dia_limite : 30 - 6 = 24
+12-10-2014 05:17:08	[-Prueba------]	dias_periodo : dias [16]
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 7
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte : dias [16]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte_to_string [16]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte_to_string : cadena -> [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 01-01-1970)
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:08	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:08	[-Prueba------]	periodo_mes (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 30-11-2014, 15)
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos (08-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-30' 
+12-10-2014 05:17:08	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:08	[-Prueba------]	dias_periodo (es, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:08	[-Prueba------]	valores ??? dia_limite : 30 - 7 = 23
+12-10-2014 05:17:08	[-Prueba------]	dias_periodo : dias [15]
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:08	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte : dias [15]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte_to_string [15]
+12-10-2014 05:17:08	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 01-01-1970)
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:10	[-Prueba------]	periodo_mes (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:10	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 30-11-2014, 15)
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos (08-11-2014, 30-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-30' 
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:10	[-Prueba------]	dias_periodo (es, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	valores ??? dia_limite : 30 - 7 = 23
+12-10-2014 05:17:10	[-Prueba------]	dias_periodo : dias [15]
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:10	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte : dias [15]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte_to_string [15]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 01-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> periodo cierre : 01-11-2014
+12-10-2014 05:17:10	[-Prueba------]	periodo_mes (pm, 08-11-2014, 01-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 01-11-2014)
+12-10-2014 05:17:10	[-Advertencia-]	numero_dias_reporte [01-11-2014] date['d', 01] int[1]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 01-11-2014, -6)
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos (08-11-2014, 01-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-01' 
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:17:10	[-Prueba------]	dias_periodo (es, 08-11-2014, 01-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	valores ??? dia_limite : 1 - 7 = -6
+12-10-2014 05:17:10	[-Prueba------]	dias_periodo : dias [0]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte : dias [0]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte_to_string [0]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte_to_string : cadena -> 
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 02-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:10	[-Prueba------]	periodo_reporte >> periodo cierre : 02-11-2014
+12-10-2014 05:17:10	[-Prueba------]	periodo_mes (pm, 08-11-2014, 02-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 02-11-2014)
+12-10-2014 05:17:10	[-Advertencia-]	numero_dias_reporte [02-11-2014] date['d', 02] int[2]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 02-11-2014, -5)
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos (08-11-2014, 02-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-02' 
+12-10-2014 05:17:10	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:17:10	[-Prueba------]	dias_periodo (es, 08-11-2014, 02-11-2014)
+12-10-2014 05:17:10	[-Prueba------]	valores ??? dia_limite : 2 - 7 = -5
+12-10-2014 05:17:10	[-Prueba------]	dias_periodo : dias [0]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte : dias [0]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte_to_string [0]
+12-10-2014 05:17:10	[-Prueba------]	dias_reporte_to_string : cadena -> 
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 01-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> periodo cierre : 01-11-2014
+12-10-2014 05:17:11	[-Prueba------]	periodo_mes (pm, 08-11-2014, 01-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 01-11-2014)
+12-10-2014 05:17:11	[-Advertencia-]	numero_dias_reporte [01-11-2014] date['d', 01] int[1]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 01-11-2014, -6)
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos (08-11-2014, 01-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-01' 
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:17:11	[-Prueba------]	dias_periodo (es, 08-11-2014, 01-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	valores ??? dia_limite : 1 - 7 = -6
+12-10-2014 05:17:11	[-Prueba------]	dias_periodo : dias [0]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte : dias [0]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte_to_string [0]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte_to_string : cadena -> 
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 01-01-1970)
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:11	[-Prueba------]	periodo_mes (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 30-11-2014, 15)
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos (08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-30' 
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:11	[-Prueba------]	dias_periodo (es, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	valores ??? dia_limite : 30 - 7 = 23
+12-10-2014 05:17:11	[-Prueba------]	dias_periodo : dias [15]
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte : dias [15]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte_to_string [15]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:11	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:17:11	[-Prueba------]	periodo_mes (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 30-11-2014, 15)
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos (08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-30' 
+12-10-2014 05:17:11	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:11	[-Prueba------]	dias_periodo (es, 08-11-2014, 30-11-2014)
+12-10-2014 05:17:11	[-Prueba------]	valores ??? dia_limite : 30 - 7 = 23
+12-10-2014 05:17:11	[-Prueba------]	dias_periodo : dias [15]
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:11	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte : dias [15]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte_to_string [15]
+12-10-2014 05:17:11	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 29-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> periodo cierre : 29-11-2014
+12-10-2014 05:17:12	[-Prueba------]	periodo_mes (pm, 08-11-2014, 29-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 29-11-2014)
+12-10-2014 05:17:12	[-Advertencia-]	numero_dias_reporte [29-11-2014] date['d', 29] int[29]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 29-11-2014, 15)
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos (08-11-2014, 29-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-29' 
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:12	[-Prueba------]	dias_periodo (es, 08-11-2014, 29-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	valores ??? dia_limite : 29 - 7 = 22
+12-10-2014 05:17:12	[-Prueba------]	dias_periodo : dias [15]
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte : dias [15]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte_to_string [15]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 28-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> periodo cierre : 28-11-2014
+12-10-2014 05:17:12	[-Prueba------]	periodo_mes (pm, 08-11-2014, 28-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 28-11-2014)
+12-10-2014 05:17:12	[-Advertencia-]	numero_dias_reporte [28-11-2014] date['d', 28] int[28]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 28-11-2014, 15)
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos (08-11-2014, 28-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-28' 
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:12	[-Prueba------]	dias_periodo (es, 08-11-2014, 28-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	valores ??? dia_limite : 28 - 7 = 21
+12-10-2014 05:17:12	[-Prueba------]	dias_periodo : dias [15]
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte : dias [15]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte_to_string [15]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 27-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:12	[-Prueba------]	periodo_reporte >> periodo cierre : 27-11-2014
+12-10-2014 05:17:12	[-Prueba------]	periodo_mes (pm, 08-11-2014, 27-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 27-11-2014)
+12-10-2014 05:17:12	[-Advertencia-]	numero_dias_reporte [27-11-2014] date['d', 27] int[27]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 27-11-2014, 14)
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos (08-11-2014, 27-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-27' 
+12-10-2014 05:17:12	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:12	[-Prueba------]	dias_periodo (es, 08-11-2014, 27-11-2014)
+12-10-2014 05:17:12	[-Prueba------]	valores ??? dia_limite : 27 - 7 = 20
+12-10-2014 05:17:12	[-Prueba------]	dias_periodo : dias [14]
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:12	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte : dias [14]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte_to_string [14]
+12-10-2014 05:17:12	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ]
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 26-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> periodo cierre : 26-11-2014
+12-10-2014 05:17:13	[-Prueba------]	periodo_mes (pm, 08-11-2014, 26-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 26-11-2014)
+12-10-2014 05:17:13	[-Advertencia-]	numero_dias_reporte [26-11-2014] date['d', 26] int[26]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 26-11-2014, 13)
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos (08-11-2014, 26-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-26' 
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:13	[-Prueba------]	dias_periodo (es, 08-11-2014, 26-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	valores ??? dia_limite : 26 - 7 = 19
+12-10-2014 05:17:13	[-Prueba------]	dias_periodo : dias [13]
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte : dias [13]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte_to_string [13]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ]
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 25-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> periodo cierre : 25-11-2014
+12-10-2014 05:17:13	[-Prueba------]	periodo_mes (pm, 08-11-2014, 25-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 25-11-2014)
+12-10-2014 05:17:13	[-Advertencia-]	numero_dias_reporte [25-11-2014] date['d', 25] int[25]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 25-11-2014, 12)
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos (08-11-2014, 25-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-25' 
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:13	[-Prueba------]	dias_periodo (es, 08-11-2014, 25-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	valores ??? dia_limite : 25 - 7 = 18
+12-10-2014 05:17:13	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte : dias [12]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte_to_string [12]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ]
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 24-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> periodo cierre : 24-11-2014
+12-10-2014 05:17:13	[-Prueba------]	periodo_mes (pm, 08-11-2014, 24-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 24-11-2014)
+12-10-2014 05:17:13	[-Advertencia-]	numero_dias_reporte [24-11-2014] date['d', 24] int[24]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 24-11-2014, 11)
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos (08-11-2014, 24-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-24' 
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:13	[-Prueba------]	dias_periodo (es, 08-11-2014, 24-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	valores ??? dia_limite : 24 - 7 = 17
+12-10-2014 05:17:13	[-Prueba------]	dias_periodo : dias [11]
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte : dias [11]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte_to_string [11]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ]
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 23-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:13	[-Prueba------]	periodo_reporte >> periodo cierre : 23-11-2014
+12-10-2014 05:17:13	[-Prueba------]	periodo_mes (pm, 08-11-2014, 23-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 23-11-2014)
+12-10-2014 05:17:13	[-Advertencia-]	numero_dias_reporte [23-11-2014] date['d', 23] int[23]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 23-11-2014, 10)
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos (08-11-2014, 23-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-23' 
+12-10-2014 05:17:13	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:13	[-Prueba------]	dias_periodo (es, 08-11-2014, 23-11-2014)
+12-10-2014 05:17:13	[-Prueba------]	valores ??? dia_limite : 23 - 7 = 16
+12-10-2014 05:17:13	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:13	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte : dias [10]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte_to_string [10]
+12-10-2014 05:17:13	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ]
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 22-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> periodo cierre : 22-11-2014
+12-10-2014 05:17:14	[-Prueba------]	periodo_mes (pm, 08-11-2014, 22-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 22-11-2014)
+12-10-2014 05:17:14	[-Advertencia-]	numero_dias_reporte [22-11-2014] date['d', 22] int[22]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 22-11-2014, 10)
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos (08-11-2014, 22-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-22' 
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:14	[-Prueba------]	dias_periodo (es, 08-11-2014, 22-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	valores ??? dia_limite : 22 - 7 = 15
+12-10-2014 05:17:14	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte : dias [10]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte_to_string [10]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ]
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 21-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> periodo cierre : 21-11-2014
+12-10-2014 05:17:14	[-Prueba------]	periodo_mes (pm, 08-11-2014, 21-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 21-11-2014)
+12-10-2014 05:17:14	[-Advertencia-]	numero_dias_reporte [21-11-2014] date['d', 21] int[21]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 21-11-2014, 10)
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos (08-11-2014, 21-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-21' 
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:14	[-Prueba------]	dias_periodo (es, 08-11-2014, 21-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	valores ??? dia_limite : 21 - 7 = 14
+12-10-2014 05:17:14	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte : dias [10]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte_to_string [10]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ]
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 20-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:14	[-Prueba------]	periodo_reporte >> periodo cierre : 20-11-2014
+12-10-2014 05:17:14	[-Prueba------]	periodo_mes (pm, 08-11-2014, 20-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 20-11-2014)
+12-10-2014 05:17:14	[-Advertencia-]	numero_dias_reporte [20-11-2014] date['d', 20] int[20]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 20-11-2014, 9)
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos (08-11-2014, 20-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-20' 
+12-10-2014 05:17:14	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:14	[-Prueba------]	dias_periodo (es, 08-11-2014, 20-11-2014)
+12-10-2014 05:17:14	[-Prueba------]	valores ??? dia_limite : 20 - 7 = 13
+12-10-2014 05:17:14	[-Prueba------]	dias_periodo : dias [9]
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:14	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte : dias [9]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte_to_string [9]
+12-10-2014 05:17:14	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ]
+12-10-2014 05:17:15	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 21-11-2014)
+12-10-2014 05:17:15	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:15	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:15	[-Prueba------]	periodo_reporte >> periodo cierre : 21-11-2014
+12-10-2014 05:17:15	[-Prueba------]	periodo_mes (pm, 08-11-2014, 21-11-2014)
+12-10-2014 05:17:15	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 21-11-2014)
+12-10-2014 05:17:15	[-Advertencia-]	numero_dias_reporte [21-11-2014] date['d', 21] int[21]
+12-10-2014 05:17:15	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 21-11-2014, 10)
+12-10-2014 05:17:15	[-Prueba------]	get_dias_festivos (08-11-2014, 21-11-2014)
+12-10-2014 05:17:15	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-21' 
+12-10-2014 05:17:15	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:15	[-Prueba------]	dias_periodo (es, 08-11-2014, 21-11-2014)
+12-10-2014 05:17:15	[-Prueba------]	valores ??? dia_limite : 21 - 7 = 14
+12-10-2014 05:17:15	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:15	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:17:15	[-Prueba------]	dias_reporte : dias [10]
+12-10-2014 05:17:15	[-Prueba------]	dias_reporte_to_string [10]
+12-10-2014 05:17:15	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ]
+12-10-2014 05:17:16	[-Prueba------]	periodo_reporte (pm, 08-11-2014, 20-11-2014)
+12-10-2014 05:17:16	[-Prueba------]	periodo_reporte >> periodo inicio : 08-11-2014
+12-10-2014 05:17:16	[-Prueba------]	periodo_reporte >> tipo periodo cierre : integer [true] 
+12-10-2014 05:17:16	[-Prueba------]	periodo_reporte >> periodo cierre : 20-11-2014
+12-10-2014 05:17:16	[-Prueba------]	periodo_mes (pm, 08-11-2014, 20-11-2014)
+12-10-2014 05:17:16	[-Prueba------]	numero_dias_reporte (pm, 08-11-2014, 20-11-2014)
+12-10-2014 05:17:16	[-Advertencia-]	numero_dias_reporte [20-11-2014] date['d', 20] int[20]
+12-10-2014 05:17:16	[-Prueba------]	dias_reporte (pm, es, 08-11-2014, 20-11-2014, 9)
+12-10-2014 05:17:16	[-Prueba------]	get_dias_festivos (08-11-2014, 20-11-2014)
+12-10-2014 05:17:16	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-08' AND '2014-11-20' 
+12-10-2014 05:17:16	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:17:16	[-Prueba------]	dias_periodo (es, 08-11-2014, 20-11-2014)
+12-10-2014 05:17:16	[-Prueba------]	valores ??? dia_limite : 20 - 7 = 13
+12-10-2014 05:17:16	[-Prueba------]	dias_periodo : dias [9]
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:17:16	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:17:16	[-Prueba------]	dias_reporte : dias [9]
+12-10-2014 05:17:16	[-Prueba------]	dias_reporte_to_string [9]
+12-10-2014 05:17:16	[-Prueba------]	dias_reporte_to_string : cadena -> [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ]
+12-10-2014 05:19:33	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:19:33	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:19:33	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:19:33	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:19:33	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:19:33	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:19:33	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:19:33	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:19:33	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:19:33	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:19:33	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:19:33	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:19:33	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:19:33	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:19:33	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:19:33	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:19:33	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:22:35	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:22:35	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:22:35	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:22:35	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:22:35	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:22:35	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:22:35	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:22:35	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:22:35	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:22:35	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:22:35	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:22:35	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:22:35	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:22:35	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:22:35	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:22:35	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:22:35	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:22:43	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:22:43	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:22:43	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:22:43	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:22:43	[-Prueba------]	periodo_mes (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:22:43	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:22:43	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:22:43	[-Prueba------]	dias_reporte (pm, es, 16-10-2014, 31-10-2014, 12)
+12-10-2014 05:22:43	[-Prueba------]	get_dias_festivos (16-10-2014, 31-10-2014)
+12-10-2014 05:22:43	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-10-31' 
+12-10-2014 05:22:43	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:22:43	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:22:43	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:22:43	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:22:43	[-Prueba------]	dias_reporte : dias [12]
+12-10-2014 05:22:43	[-Prueba------]	dias_reporte_to_string [12]
+12-10-2014 05:22:43	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:22:59	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:22:59	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:22:59	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:22:59	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:22:59	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:22:59	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:22:59	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:22:59	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:22:59	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:22:59	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:22:59	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:22:59	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:22:59	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:22:59	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:22:59	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:22:59	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:22:59	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:22:59	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:22:59	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:22:59	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:22:59	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:22:59	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:22:59	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:23:07	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:23:07	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:23:07	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:23:07	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:23:07	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:23:07	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:23:07	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:23:07	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:23:07	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:23:07	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:23:07	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:23:07	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:23:07	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:23:07	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:23:07	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:23:07	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:23:07	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte (mm, 16-10-2014, 01-01-1970)
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:23:11	[-Prueba------]			mes 10 -> 11
+12-10-2014 05:23:11	[-Prueba------]			año 2014 -> 2014
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> periodo cierre TEXTO : 2014-11-15
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> periodo cierre : 15-11-2014
+12-10-2014 05:23:11	[-Prueba------]	periodo_mes (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:23:11	[-Prueba------]	numero_dias_reporte (mm, 16-10-2014, 15-11-2014)
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:23:11	[-Prueba------]	numero_dias_reporte (pm, 16-10-2014, 31-10-2014)
+12-10-2014 05:23:11	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:23:11	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 15-11-2014)
+12-10-2014 05:23:11	[-Advertencia-]	numero_dias_reporte [15-11-2014] date['d', 15] int[15]
+12-10-2014 05:23:11	[-Prueba------]	
+*********
+[16-10-2014 , 31-10-2014]
+[01-11-2014 , 15-11-2014]
+res : 22
+*********
+12-10-2014 05:23:11	[-Prueba------]	dias_reporte (mm, es, 16-10-2014, 15-11-2014, 22)
+12-10-2014 05:23:11	[-Prueba------]	get_dias_festivos (16-10-2014, 15-11-2014)
+12-10-2014 05:23:11	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-16' AND '2014-11-15' 
+12-10-2014 05:23:11	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte (pm, 16-10-2014, 01-01-1970)
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> periodo inicio : 16-10-2014
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:23:11	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:23:11	[-Prueba------]	dias_periodo (es, 16-10-2014, 31-10-2014)
+12-10-2014 05:23:11	[-Prueba------]	valores ??? dia_limite : 31 - 15 = 16
+12-10-2014 05:23:11	[-Prueba------]	dias_periodo : dias [12]
+12-10-2014 05:23:11	[-Prueba------]	dias_periodo (es, 01-11-2014, 15-11-2014)
+12-10-2014 05:23:11	[-Prueba------]	valores ??? dia_limite : 15 - 0 = 15
+12-10-2014 05:23:11	[-Prueba------]	dias_periodo : dias [10]
+12-10-2014 05:23:11	[-Prueba------]	dias_reporte : dias [22]
+12-10-2014 05:23:11	[-Prueba------]	dias_reporte_to_string [22]
+12-10-2014 05:23:11	[-Prueba------]	dias_reporte_to_string : cadena -> [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ], [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ]
+12-10-2014 05:26:19	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:26:19	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:26:19	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:26:19	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:26:19	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:26:19	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:26:19	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:26:19	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:26:19	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:26:19	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:26:19	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:26:19	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:26:19	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:26:19	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:26:19	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:26:19	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:26:19	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:26:34	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:26:34	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:26:34	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:26:34	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:26:34	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:26:34	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:26:34	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:26:34	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:26:34	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:26:34	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:26:34	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:26:34	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:26:34	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:26:34	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:26:34	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:26:34	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:26:34	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:27:35	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:27:35	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:27:35	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:27:35	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:27:35	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:27:35	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:27:35	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:27:35	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:27:35	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:27:35	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:27:35	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:27:35	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:27:35	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:27:35	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:27:35	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:27:35	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:27:35	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:27:51	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:27:51	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:27:51	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:27:51	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:27:51	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:27:51	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:27:51	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:27:51	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:27:51	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:27:51	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:27:51	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:27:51	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:27:51	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:27:51	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:27:51	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:27:51	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:27:51	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:28:08	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:28:08	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:28:08	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:28:08	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:28:08	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:28:08	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:28:08	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:28:08	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:28:08	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:28:08	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:28:08	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:28:08	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:28:08	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:28:08	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:28:08	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:28:08	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:28:08	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:28:29	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:28:29	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:28:29	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:28:29	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:28:29	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:28:29	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:28:29	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:28:29	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:28:29	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:28:29	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:28:29	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:28:29	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:28:29	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:28:29	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:28:29	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:28:29	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:28:29	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:31:19	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:31:19	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:31:19	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:31:19	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:31:19	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:31:19	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:31:19	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:31:19	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:31:19	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:31:19	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:31:19	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:31:19	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:31:19	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:31:19	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:31:19	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:31:19	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:31:19	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:31:44	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:31:44	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:31:44	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:31:44	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:31:44	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:31:44	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:31:44	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:31:44	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:31:44	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:31:44	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:31:44	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:31:44	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:31:44	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:31:44	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:31:44	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:31:44	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:31:44	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:32:19	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:32:19	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:32:19	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:32:19	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:32:19	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:32:19	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:32:19	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:32:19	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:32:19	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:32:19	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:32:19	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:32:19	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:32:19	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:32:19	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:32:19	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:32:19	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:32:19	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:32:34	[-Prueba------]	periodo_reporte (pm, 01-11-2014, 01-01-1970)
+12-10-2014 05:32:34	[-Prueba------]	periodo_reporte >> periodo inicio : 01-11-2014
+12-10-2014 05:32:34	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:32:34	[-Prueba------]	periodo_reporte >> periodo cierre : 30-11-2014
+12-10-2014 05:32:34	[-Prueba------]	periodo_mes (pm, 01-11-2014, 30-11-2014)
+12-10-2014 05:32:34	[-Prueba------]	numero_dias_reporte (pm, 01-11-2014, 30-11-2014)
+12-10-2014 05:32:34	[-Advertencia-]	numero_dias_reporte [30-11-2014] date['d', 30] int[30]
+12-10-2014 05:32:34	[-Prueba------]	dias_reporte (pm, es, 01-11-2014, 30-11-2014, 20)
+12-10-2014 05:32:34	[-Prueba------]	get_dias_festivos (01-11-2014, 30-11-2014)
+12-10-2014 05:32:34	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-11-01' AND '2014-11-30' 
+12-10-2014 05:32:34	[-Prueba------]	get_dias_festivos : datos [1]
+12-10-2014 05:32:34	[-Prueba------]	dias_periodo (es, 01-11-2014, 30-11-2014)
+12-10-2014 05:32:34	[-Prueba------]	valores ??? dia_limite : 30 - 0 = 30
+12-10-2014 05:32:34	[-Prueba------]	dias_periodo : dias [20]
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 3
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 4
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 5
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 6
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 7
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 10
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 11
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 12
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 13
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 14
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 17
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 18
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 19
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 20
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 21
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 24
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 25
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 26
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 27
+12-10-2014 05:32:34	[-Prueba------]	comparando festivos : 17 - 28
+12-10-2014 05:32:34	[-Prueba------]	dias_reporte : dias [20]
+12-10-2014 05:32:34	[-Prueba------]	dias_reporte_to_string [20]
+12-10-2014 05:32:34	[-Prueba------]	dias_reporte_to_string : cadena -> [ "03-11-2014", 0 ], [ "04-11-2014", 0 ], [ "05-11-2014", 0 ], [ "06-11-2014", 0 ], [ "07-11-2014", 0 ], [ "10-11-2014", 0 ], [ "11-11-2014", 0 ], [ "12-11-2014", 0 ], [ "13-11-2014", 0 ], [ "14-11-2014", 0 ], [ "17-11-2014", 1 ], [ "18-11-2014", 0 ], [ "19-11-2014", 0 ], [ "20-11-2014", 0 ], [ "21-11-2014", 0 ], [ "24-11-2014", 0 ], [ "25-11-2014", 0 ], [ "26-11-2014", 0 ], [ "27-11-2014", 0 ], [ "28-11-2014", 0 ]
+12-10-2014 05:33:22	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:33:22	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:33:22	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:33:22	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:33:22	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:22	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:22	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:33:22	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:33:22	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:33:22	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:33:22	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:33:22	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:22	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:33:22	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:33:22	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:33:22	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:33:22	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:33:37	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:33:37	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:33:37	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:33:37	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:33:37	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:37	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:37	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:33:37	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:33:37	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:33:37	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:33:37	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:33:37	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:37	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:33:37	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:33:37	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:33:37	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:33:37	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
+12-10-2014 05:33:46	[-Prueba------]	periodo_reporte (pm, 01-10-2014, 01-01-1970)
+12-10-2014 05:33:46	[-Prueba------]	periodo_reporte >> periodo inicio : 01-10-2014
+12-10-2014 05:33:46	[-Prueba------]	periodo_reporte >> tipo periodo cierre : boolean [false] 
+12-10-2014 05:33:46	[-Prueba------]	periodo_reporte >> periodo cierre : 31-10-2014
+12-10-2014 05:33:46	[-Prueba------]	periodo_mes (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:46	[-Prueba------]	numero_dias_reporte (pm, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:46	[-Advertencia-]	numero_dias_reporte [31-10-2014] date['d', 31] int[31]
+12-10-2014 05:33:46	[-Prueba------]	dias_reporte (pm, es, 01-10-2014, 31-10-2014, 23)
+12-10-2014 05:33:46	[-Prueba------]	get_dias_festivos (01-10-2014, 31-10-2014)
+12-10-2014 05:33:46	[-Prueba------]	get_dias_festivos -> consulta : SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '2014-10-01' AND '2014-10-31' 
+12-10-2014 05:33:46	[-Prueba------]	get_dias_festivos : datos [0]
+12-10-2014 05:33:46	[-Prueba------]	dias_periodo (es, 01-10-2014, 31-10-2014)
+12-10-2014 05:33:46	[-Prueba------]	valores ??? dia_limite : 31 - 0 = 31
+12-10-2014 05:33:46	[-Prueba------]	dias_periodo : dias [23]
+12-10-2014 05:33:46	[-Prueba------]	dias_reporte : dias [23]
+12-10-2014 05:33:46	[-Prueba------]	dias_reporte_to_string [23]
+12-10-2014 05:33:46	[-Prueba------]	dias_reporte_to_string : cadena -> [ "01-10-2014", 0 ], [ "02-10-2014", 0 ], [ "03-10-2014", 0 ], [ "06-10-2014", 0 ], [ "07-10-2014", 0 ], [ "08-10-2014", 0 ], [ "09-10-2014", 0 ], [ "10-10-2014", 0 ], [ "13-10-2014", 0 ], [ "14-10-2014", 0 ], [ "15-10-2014", 0 ], [ "16-10-2014", 0 ], [ "17-10-2014", 0 ], [ "20-10-2014", 0 ], [ "21-10-2014", 0 ], [ "22-10-2014", 0 ], [ "23-10-2014", 0 ], [ "24-10-2014", 0 ], [ "27-10-2014", 0 ], [ "28-10-2014", 0 ], [ "29-10-2014", 0 ], [ "30-10-2014", 0 ], [ "31-10-2014", 0 ]
