@@ -79,7 +79,11 @@ $(document).ready( function(){
 			});
 		} //if
 	});
-	$("#entrada, #horas_dia").change( function(){
+	$("#entrada_rango").change( function (){
+		var rango = parseInt($(this).val());
+		generaHoraEntrada(rango);
+	});
+	$("#entrada_rango, #horas_dia").change( function(){
 		generaReporte();
 	});
 	$("#periodo_inicio, #periodo_cierre, #periodo_mes").click( function(){
@@ -88,6 +92,22 @@ $(document).ready( function(){
 	$("#fecha_inicio").focus();
 	$("input[name='tipo_dias']")[0].setAttribute("checked","checked");
 }); //ready
+
+function generaHoraEntrada (rango){
+	// console.log("generaHoraEntrada : "+rango);
+	var entrada = parseInt(rango/2).toString();
+	//console.log("1 ->"+entrada);
+	entrada = (entrada.length < 2) ? "0"+entrada : entrada;
+	//console.log("2 ->"+entrada);
+	if (rango%2	!= 0){
+		//parametros
+		entrada += ":30";
+	} else {
+		entrada += ":00";
+	}
+	// console.log("hora_entrada ("+rango+")->"+entrada);
+	$("#entrada").html(entrada);
+} //generaHoraEntrada
 
 function generaReporte (){
 
@@ -102,7 +122,7 @@ function generaReporte (){
 	$("#reporte").html("<table></table>");
 	var reporte = $("#reporte table").get(0);
 	
-	var hora_entrada = $("#entrada").val();
+	var hora_entrada = $("#entrada").html();
 	var horas_dia = $("#horas_dia").val();
 	
 	var hora_salida = "";

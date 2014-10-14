@@ -41,8 +41,22 @@
 				</tr>
 				<tr>
 					<td>Hora de entrada</td>
-					<td>
-						<input type="time" id="entrada" step="1800"/>
+					<td id="celda_hora_entrada">
+						<div>
+							<div>
+								<input type="range" id="entrada_rango" min="0" max="47" step="1" list="horas"/>
+								<datalist id="horas">
+									<option>0</option>
+									<option>12</option>
+									<option>24</option>
+									<option>36</option>
+									<option>47</option>
+								</datalist>
+							</div>
+							<div>
+								<span id="entrada"></span>
+							</div>
+						</div>
 					</td>
 				</tr>
 				<tr>

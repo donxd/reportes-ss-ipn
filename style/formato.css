@@ -35,3 +35,12 @@ input {
 #reporte tr:nth-child(2n) td {
 	background-color: #C0C0C0;
 }
+
+#celda_hora_entrada > div {
+	display: table;
+}
+
+#celda_hora_entrada > div > div {
+	display: table-cell;
+	vertical-align: middle;
+}

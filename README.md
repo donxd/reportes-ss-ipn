@@ -165,6 +165,8 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 			attr()
 			selector -> get()
 
+	datalist no funciona en mac
+
 
 ***
 
