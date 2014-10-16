@@ -151,6 +151,8 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 	principio mes -> mover calendario
 
+### Total horas del periodo
+
 ***
 
 ## Conflictos
@@ -165,7 +167,7 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 			attr()
 			selector -> get()
 
-	datalist no funciona en mac
+### Datalist no funciona en safari
 
 
 ***
@@ -173,9 +175,12 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 ## Dudas, ideas
 
 * Días servicio : [entre semana, fines de semana]
-* Cambios en la hora de entrada con intervalos de 30 min
 * Hora de entrada (min. y máx.)
-* Mes periodo depende del rango de fechas, no únicamente del tipo de reporte
 * Agregar eventos en la columna fecha para cambiar el estado ha [DIA FESTIVO, etc.]
 * Personalizar el formato de las salidas (sección especial)
+
+## OK
+
 * Control de horas del tipo range?
+* Cambios en la hora de entrada con intervalos de 30 min
+* Mes periodo depende del rango de fechas, no únicamente del tipo de reporte

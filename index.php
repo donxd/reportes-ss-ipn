@@ -87,6 +87,12 @@
 						<input type="text" id="periodo_mes" readonly/>
 					</td>
 				</tr>
+				<tr>
+					<td>Total de horas del periodo</td>
+					<td>
+						<input type="text" id="periodo_horas" readonly/>
+					</td>
+				</tr>
 			</table>
 		</div>
 		<div id="reporte"></div>

@@ -71,9 +71,11 @@ $(document).ready( function(){
 				generaReporte();
 
 				//agregando los valores obtenidos en los campos vacios
-				// console.log("---------------------\n"+parametros.fecha_cierre+" : "+datos_reporte.periodo[1]+"\n---------------------\n")
-				if (parametros.fecha_cierre.length < 1){
+				console.log("---------------------\n"+datos.fecha_cierre+" : "+datos_reporte.periodo[1]+"\n---------------------\n")
+				// if (parametros.fecha_cierre == "" || parametros.fecha_cierre.length < 1){
+				if (typeof datos.fecha_cierre == "undefined"){
 					//revisar el formato que acepta el input[date]
+					// console.log("---> no habia fecha cierre")
 					$("#fecha_cierre").val( cambiaFormatoFecha('Y-m-d', datos_reporte.periodo[1] ) );
 				}
 			});
@@ -95,10 +97,7 @@ $(document).ready( function(){
 
 function generaHoraEntrada (rango){
 	// console.log("generaHoraEntrada : "+rango);
-	var entrada = parseInt(rango/2).toString();
-	//console.log("1 ->"+entrada);
-	entrada = (entrada.length < 2) ? "0"+entrada : entrada;
-	//console.log("2 ->"+entrada);
+	var entrada = agregaCeros( parseInt(rango/2).toString() );
 	if (rango%2	!= 0){
 		//parametros
 		entrada += ":30";
@@ -132,7 +131,7 @@ function generaReporte (){
 		hora_salida = hora_entrada.split(":");
 		horas_dia = parseInt(hora_salida[0])+horas_dia;
 		horas_dia = horas_dia.toString();
-		hora_salida = ( (horas_dia.length < 2) ? "0"+horas_dia : horas_dia )+":"+hora_salida[1];
+		hora_salida = agregaCeros(horas_dia)+":"+hora_salida[1];
 		
 		horas_dia = $("#horas_dia").val();
 	}
@@ -168,9 +167,21 @@ function cambiaFormatoFecha (formato_salida, fecha){
 
 	switch (formato_salida){
 		case "Y-m-d":
-			fecha_salida = fecha_salida.getFullYear()+"-"+(fecha_salida.getMonth()+1)+"-"+fecha_salida.getDate();
+			fecha_salida = fecha_salida.getFullYear()+"-"+agregaCeros( fecha_salida.getMonth()+1 )+"-"+agregaCeros( fecha_salida.getDate() );
 			break;
 	}
 	// console.log("entrada : "+fecha+"\nsalida : "+fecha_salida);
 	return fecha_salida;
-}
+} //cambiaFormatoFecha
+
+function agregaCeros (numero){
+	switch (typeof numero){
+		case "number":
+			numero = (numero < 10) ? "0"+numero : numero;
+			break;
+		case "string":
+			numero = (numero.length < 2) ? "0"+numero : numero;
+			break;
+	}	
+	return numero;
+} //agregaCeros

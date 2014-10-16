@@ -84,6 +84,7 @@ class funciones {
 	} //periodo_reporte
 
 	function periodo_to_string ($periodo){
+		// /**/ $this->log->registrar(1, sprintf("periodo_to_string\n\t\t\t %s , %s", date("d-m-Y", $periodo[0]), date("d-m-Y", $periodo[1]) ) );
 		$cadena = '"'.date("d-m-Y", $periodo[0]).'" , "'.date("d-m-Y", $periodo[1]).'"';
 		return $cadena;
 	} //periodo_to_string
