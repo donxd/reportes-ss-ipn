@@ -1,3 +1,8 @@
+<?
+	require_once("recursos/funciones.php");
+	$funciones = new funciones();
+	$informacion = $funciones->informacion_mes();
+?>
 <html>
 	<head>
 		<meta charset="UTF-8">
@@ -8,12 +13,27 @@
 			<h3>Generador de contenido para el reporte mensual</h3>
 			<table id="informacion">
 				<tr>
+					<td colspan="2">
+						<div id="instrucciones">
+							<strong>Instrucciones :</strong>
+							<ol>
+								<li>Ingrese la fecha de inicio del período del reporte.</li>
+								<li>Ingrese la fecha de cierre del período del reporte.</li>
+								<li>Seleccione los días que va a registrar.</li>
+								<li>Ingrese la hora de entrada.</li>
+								<li>Ingrese las horas de servicio.</li>
+							</ol>
+						</div>
+						<hr/>
+					</td>
+				</tr>				
+				<tr>
 					<td>Día de inicio del reporte</td>
 					<td>
-						<input type="radio" name="tipo_reporte" id="principio_mes" value="pm"/>
+						<input type="radio" id="principio_mes" value="pm" name="tipo_reporte" />
 						<label for="principio_mes">01 - Principio del mes</label>
 						<br/>
-						<input type="radio" name="tipo_reporte" id="mitad_mes" value="mm"/>
+						<input type="radio" id="mitad_mes" value="mm" name="tipo_reporte"/>
 						<label for="mitad_mes">16 - Mitad del mes</label>
 					</td>
 				</tr>
@@ -99,4 +119,5 @@
 	</body>
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="js/generador_reporte.js"></script>
+	<script type="text/javascript"><?= "informacion = ['".$informacion[0]."', '".$informacion[1]."', '".$informacion[2]."'];" ?></script>
 </html>

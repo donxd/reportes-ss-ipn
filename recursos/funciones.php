@@ -46,8 +46,8 @@ class funciones {
 		$separador = '-';
 
 		$periodo[0] = strtotime($anio.$separador.$mes.$separador.$dia);
-		/**/ $this->log->registrar(1, sprintf("periodo_reporte >> periodo inicio : %s", date("d-m-Y", $periodo[0]) ) );
-		/**/ $this->log->registrar(1, sprintf("periodo_reporte >> tipo periodo cierre : %s [%s] ", gettype($fecha_cierre), ($fecha_cierre) ? 'true' : 'false' ) );
+		/**/ $this->log->registrar(1, sprintf("--------->> periodo inicio : %s", date("d-m-Y", $periodo[0]) ) );
+		/**/ $this->log->registrar(1, sprintf("--------->> tipo periodo cierre : %s [%s] ", gettype($fecha_cierre), ($fecha_cierre) ? 'true' : 'false' ) );
 
 		if (!$fecha_cierre){
 			switch ($tipo_reporte){
@@ -56,6 +56,8 @@ class funciones {
 					$periodo[1] = strtotime($anio.$separador.$mes.$separador.$limite_mes);
 					break;
 				case 'mm':
+					$mes_anio = calcula_nuevo_mes($mes, $anio);
+					/*
 					$nuevo_mes;
 					$nuevo_anio;
 					if ($mes < 12){
@@ -65,11 +67,13 @@ class funciones {
 						$nuevo_mes = "01";
 						$nuevo_anio = intval($anio+1);
 					}
-					/**/ $this->log->registrar(1, sprintf("\t\tmes %s -> %s", $mes, $nuevo_mes) );
-					/**/ $this->log->registrar(1, sprintf("\t\taño %s -> %s", $anio, $nuevo_anio) );
+					*/
+					// /**/ $this->log->registrar(1, sprintf("\t\tmes %s -> %s", $mes, $nuevo_mes) );
+					// /**/ $this->log->registrar(1, sprintf("\t\taño %s -> %s", $anio, $nuevo_anio) );
 
-					/**/ $this->log->registrar(1, sprintf("periodo_reporte >> periodo cierre TEXTO : %s", $nuevo_anio.$separador.$nuevo_mes.$separador.'15') );
-					$periodo[1] = strtotime($nuevo_anio.$separador.$nuevo_mes.$separador.'15');
+					// /**/ $this->log->registrar(1, sprintf("periodo_reporte >> periodo cierre TEXTO : %s", $nuevo_anio.$separador.$nuevo_mes.$separador.'15') );
+					// $periodo[1] = strtotime($nuevo_anio.$separador.$nuevo_mes.$separador.'15');
+					$periodo[1] = strtotime($mes_anio[1].$separador.$mes_anio[0].$separador.'15');
 					break;
 			}
 		} else {
@@ -79,7 +83,7 @@ class funciones {
 			$separador = '-';
 			$periodo[1] = strtotime($anio.$separador.$mes.$separador.$dia);
 		}
-		/**/ $this->log->registrar(1, sprintf("periodo_reporte >> periodo cierre : %s", date("d-m-Y", $periodo[1]) ) );
+		/**/ $this->log->registrar(1, sprintf("--------->> periodo cierre : %s", date("d-m-Y", $periodo[1]) ) );
 		return $periodo;
 	} //periodo_reporte
 
@@ -107,7 +111,7 @@ class funciones {
 			$dias_recorrer = date("d", $fecha_inicio) - 1;
 
 			//$this->log->registrar(2,"numero_dias_reporte [$fecha_cierre] date['d', ".date("d", $fecha_cierre)."] int[".intval( date("d", $fecha_cierre) )."]");
-			$this->log->registrar(2, sprintf("numero_dias_reporte [%s] date['d', %s] int[%d]", date("d-m-Y", $fecha_cierre), date("d", $fecha_cierre), intval( date("d", $fecha_cierre) ) ) );
+			$this->log->registrar(2, sprintf("--------->> numero_dias_reporte [%s] date['d', %s] int[%d]", date("d-m-Y", $fecha_cierre), date("d", $fecha_cierre), intval( date("d", $fecha_cierre) ) ) );
 			//$this->log->registrar(2,"numero_dias_reporte [$fecha_cierre] date['d', ".date("d", $fecha_cierre)."] int[".intval( date("d", $fecha_cierre) )."]");
 
 			$numero_dias_reporte = intval( date("d", $fecha_cierre) ) - $dias_recorrer;
@@ -137,7 +141,7 @@ class funciones {
 			$periodo = self::periodo_reporte('pm',$fecha_inicio, false);
 			$numero_dias_reporte =  self::numero_dias_reporte('pm', $fecha_inicio, $periodo[1]);
 			$numero_dias_reporte += self::numero_dias_reporte('pm', strtotime('01'.date("-m-Y", $fecha_cierre)), $fecha_cierre);
-			/**/ $this->log->registrar(1, sprintf("\n*********\n[%s , %s]\n[%s , %s]\nres : %d\n*********", 
+			/**/ $this->log->registrar(1, sprintf("--------->>\n*********\n[%s , %s]\n[%s , %s]\nres : %d\n*********", 
 				date("d-m-Y", $fecha_inicio),
 				date("d-m-Y", $periodo[1]),
 				date("d-m-Y", strtotime('01'.date("-m-Y", $fecha_cierre) ) ),
@@ -154,7 +158,7 @@ class funciones {
 
 		$dias = array();
 		$dia_inicio = intval( date("d", $fecha_inicio) );
-		/**/ $this->log->registrar(1, sprintf("valores ??? dia_limite : %d - %d = %d", intval( date("d", $fecha_cierre) ), ($dia_inicio - 1), ( intval( date("d", $fecha_cierre) )-($dia_inicio - 1) ) ) );
+		/**/ $this->log->registrar(1, sprintf("--------->> valores ??? dia_limite : %d - %d = %d", intval( date("d", $fecha_cierre) ), ($dia_inicio - 1), ( intval( date("d", $fecha_cierre) )-($dia_inicio - 1) ) ) );
 		
 		$numero_dias_periodo = intval( date("d", $fecha_cierre) ) - ($dia_inicio - 1);
 		$dia_semana = intval( date("N", $fecha_inicio) )- 1;
@@ -183,7 +187,7 @@ class funciones {
 				$dia_semana = -1;
 			}
 		} //for
-		/**/ $this->log->registrar(1, sprintf("dias_periodo : dias [%d]", count($dias) ) );
+		/**/ $this->log->registrar(1, sprintf("--------->> dias_periodo : dias [%d]", count($dias) ) );
 		return $dias;
 	} //dias_periodo
 
@@ -208,7 +212,7 @@ class funciones {
 
 		for ($i = 0; $i < count($dias_festivos); $i++){
 			for ($j = 0; $j < count($dias); $j++){
-				/**/ $this->log->registrar(1, sprintf("comparando festivos : %d - %d", $dias_festivos[$i], $dias[$j][0]) );
+				/**/ $this->log->registrar(1, sprintf("--------->> comparando festivos : %d - %d", $dias_festivos[$i], $dias[$j][0]) );
 				if ( !strcmp($dias_festivos[$i], $dias[$j][0]) ){
 					$dias[$j][1] = 1;
 				} //if
@@ -229,7 +233,7 @@ class funciones {
 				$cadena .= ', ';
 			}
 		}
-		/**/ $this->log->registrar(1, sprintf("dias_reporte_to_string : cadena -> %s", $cadena) );
+		/**/ $this->log->registrar(1, sprintf("--------->> dias_reporte_to_string : cadena -> %s", $cadena) );
 		return $cadena;
 	} //dias_reporte_to_string
 
@@ -243,7 +247,7 @@ class funciones {
 		$conexion    = $baseDeDatos->ConectarBD(true); //consulta
 
 		$consulta 	= "SELECT DATE_FORMAT(fecha, '%d-%m-%Y') AS fecha FROM dia_festivo WHERE fecha BETWEEN '".date("Y-m-d", $fecha_inicio)."' AND '".date("Y-m-d", $fecha_cierre)."' ";
-		/**/ $this->log->registrar(1, sprintf("get_dias_festivos -> consulta : %s", $consulta) );
+		/**/ $this->log->registrar(1, sprintf("--------->> get_dias_festivos -> consulta : %s", $consulta) );
 
 		$query = mysql_query($consulta, $conexion);
 		$num   = mysql_num_rows($query);
@@ -254,13 +258,31 @@ class funciones {
 			}
 		}
 		$baseDeDatos->CerrarBD($conexion);
-		/**/ $this->log->registrar(1, sprintf("get_dias_festivos : datos [%d]", count($datos) ) );
+		/**/ $this->log->registrar(1, sprintf("--------->> get_dias_festivos : datos [%d]", count($datos) ) );
 		return $datos;
 	} //get_dias_festivos
 
 	function mensaje_prueba ($mensaje){
 		/**/ $this->log = new log();
 		/**/ $this->log->registrar(1, sprintf("mensaje_prueba (%s)", $mensaje) );
-	}
+	} ///mensaje_prueba
+
+	function informacion_mes (){
+		$informacion_mes = array();
+		$fecha = time();
+
+		array_push($informacion_mes, date("Y-m-", $fecha) );
+		array_push($informacion_mes, date("t", $fecha) ); //limite mes
+
+		$fecha = strtotime( date("Y-m-", $fecha)."01");
+		$fecha = self::calcula_nuevo_mes( date("m", $fecha), date("Y", $fecha) );
+
+		array_push($informacion_mes, sprintf("%s-%s-", $fecha[1], $fecha[0]) );
+		return $informacion_mes;
+	}// informacion_mes
+
+	function calcula_nuevo_mes ($mes, $anio){
+		return ($mes < 12) ? array( sprintf("%02d",$mes+1), $anio ) : array( "01", intval($anio+1) );
+	} //calcula_nuevo_mes
 } //funciones
 ?>

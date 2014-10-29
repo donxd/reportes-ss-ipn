@@ -44,3 +44,7 @@ input {
 	display: table-cell;
 	vertical-align: middle;
 }
+
+#instrucciones {
+	text-align: left;
+}
