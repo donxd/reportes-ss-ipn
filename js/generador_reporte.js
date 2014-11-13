@@ -100,10 +100,18 @@ $(document).ready( function(){
 		var rango = parseInt($(this).val());
 		generaHoraEntrada(rango);
 	});
+	$("#horas_dia").change( function (){
+		var maximo = 47;
+		var horas_dia = $(this).val();
+		if ( horas_dia.length > 0){
+			maximo = 47 - (horas_dia * 2);
+		}
+		$("#entrada_rango").attr("max", maximo);
+	});
 	$("#entrada_rango, #horas_dia").change( function(){
 		generaReporte();
 	});
-	$("#periodo_inicio, #periodo_cierre, #periodo_mes").click( function(){
+	$("#periodo_inicio, #periodo_cierre, #periodo_mes, #periodo_horas").click( function(){
 		$(this).select();
 	});
 	$("#fecha_inicio").focus();
@@ -156,6 +164,7 @@ function generaReporte (){
 		reporte.rows[0].insertCell(i);
 		reporte.rows[0].cells[i].innerHTML = encabezados[i];
 	}
+	datos_reporte.dias_totales = 0;
 	for (var i = 0; i < datos_reporte.numero_dias_reporte; i++){
 		reporte.insertRow(i+1);
 		for (var j = 0; j < encabezados.length; j++){
@@ -172,8 +181,10 @@ function generaReporte (){
 			reporte.rows[i+1].cells[2].innerHTML = (hora_entrada.length > 0) ? hora_entrada : "";
 			reporte.rows[i+1].cells[3].innerHTML = (hora_salida.length > 0) ? hora_salida : "";
 			reporte.rows[i+1].cells[4].innerHTML = (horas_dia.length > 0) ? horas_dia : "";
+			datos_reporte.dias_totales++;
 		}
 	}
+	$("#periodo_horas").val( datos_reporte.dias_totales * parseInt(horas_dia) );
 }  //generaReporte
 
 function cambiaFormatoFecha (formato_salida, fecha){

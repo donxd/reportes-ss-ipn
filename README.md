@@ -151,7 +151,11 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 	principio mes -> mover calendario
 
-### Total horas del periodo
+#### Fecha inicio < fecha cierre
+
+#### Días feriados fin de semana
+
+
 
 ***
 
@@ -184,3 +188,4 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 * Control de horas del tipo range?
 * Cambios en la hora de entrada con intervalos de 30 min
 * Mes periodo depende del rango de fechas, no únicamente del tipo de reporte
+* Total horas del periodo

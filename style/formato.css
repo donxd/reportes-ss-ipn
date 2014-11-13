@@ -1,5 +1,12 @@
+body {
+	background-color: #1A2A3F;
+	color: #FFF;
+}
+
 table#informacion tr td:first-child {
 	text-align: right;
+	font-weight: bold;
+	color: #DADA50;
 }
 
 #reporte table tr:first-child {
@@ -33,7 +40,7 @@ input {
 	padding: 2 10 2 10;
 }
 #reporte tr:nth-child(2n) td {
-	background-color: #C0C0C0;
+	background-color: #203B8F;
 }
 
 #celda_hora_entrada > div {

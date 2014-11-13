@@ -15,14 +15,19 @@
 				<tr>
 					<td colspan="2">
 						<div id="instrucciones">
-							<strong>Instrucciones :</strong>
-							<ol>
-								<li>Ingrese la fecha de inicio del período del reporte.</li>
-								<li>Ingrese la fecha de cierre del período del reporte.</li>
-								<li>Seleccione los días que va a registrar.</li>
-								<li>Ingrese la hora de entrada.</li>
-								<li>Ingrese las horas de servicio.</li>
-							</ol>
+							<!-- <details open> -->
+							<details>
+								<summary>
+									<strong>Instrucciones</strong>
+								</summary>
+								<ol>
+									<li>Ingrese la fecha de inicio del período del reporte.</li>
+									<li>Ingrese la fecha de cierre del período del reporte.</li>
+									<li>Seleccione los días que va a registrar.</li>
+									<li>Ingrese las horas de servicio.</li>
+									<li>Ingrese la hora de entrada.</li>
+								</ol>	
+							</details>
 						</div>
 						<hr/>
 					</td>
@@ -60,6 +65,12 @@
 					</td>
 				</tr>
 				<tr>
+					<td>Horas x día</td>
+					<td>
+						<input type="number" min="1" max="4" id="horas_dia"/>
+					</td>
+				</tr>
+				<tr>
 					<td>Hora de entrada</td>
 					<td id="celda_hora_entrada">
 						<div>
@@ -77,12 +88,6 @@
 								<span id="entrada"></span>
 							</div>
 						</div>
-					</td>
-				</tr>
-				<tr>
-					<td>Horas x día</td>
-					<td>
-						<input type="number" min="1" max="4" id="horas_dia"/>
 					</td>
 				</tr>
 				<tr>
