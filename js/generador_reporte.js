@@ -22,6 +22,14 @@ $(document).ready( function(){
 		datos.tipo_reporte = $(this).val();
 	});
 	$("#fecha_inicio").change( function(){
+		$("#fecha_cierre").get(0).min = $(this).val();
+		obtenerIntFecha ($(this).val());
+	});
+	$("#fecha_cierre").change( function(){
+		$("#fecha_inicio").get(0).max = $(this).val();
+		obtenerIntFecha ($(this).val());
+	});
+	$("#fecha_inicio").change( function(){
 		// console.log("Inicializando periodo...");
 		var fecha = $(this).val();
 		fecha = fecha.split("-");
@@ -118,6 +126,12 @@ $(document).ready( function(){
 	$("input[name='tipo_dias']")[0].setAttribute("checked","checked");
 }); //ready
 
+function obtenerIntFecha (tFecha){
+	var iFecha = parseInt( tFecha.replace(/\-/g,'') );
+	// console.log("fecha ",iFecha);
+	return iFecha;
+}
+
 function generaHoraEntrada (rango){
 	// console.log("generaHoraEntrada : "+rango);
 	var entrada = agregaCeros( parseInt(rango/2).toString() );
@@ -145,7 +159,7 @@ function generaReporte (){
 	var reporte = $("#reporte table").get(0);
 	
 	var hora_entrada = $("#entrada").html();
-	var horas_dia = $("#horas_dia").val();
+	var horas_dia = $("#horas_dia").val().length > 0 ? $("#horas_dia").val() : 0;
 	
 	var hora_salida = "";
 	if (hora_entrada.length > 0 && horas_dia.length > 0){

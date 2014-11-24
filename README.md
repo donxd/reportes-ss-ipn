@@ -151,11 +151,9 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 
 	principio mes -> mover calendario
 
-#### Fecha inicio < fecha cierre
-
 #### Días feriados fin de semana
 
-
+#### Secuencia cambio (+,-) fechas (inicio)*
 
 ***
 
@@ -189,3 +187,15 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 * Cambios en la hora de entrada con intervalos de 30 min
 * Mes periodo depende del rango de fechas, no únicamente del tipo de reporte
 * Total horas del periodo
+* Fecha inicio < fecha cierre
+
+## Bugs
+
+ * Aumento en la fecha de inicio genera, al pasar la mitad del mes repite fechas.
+
+ 	petición con respuesta correcta
+ 			
+		parametros :
+		{"fecha_inicio":"16-11-2014","fecha_cierre":"30-11-2014","tipo_reporte":"pm","tipo_dias":"es"} 
+		{"fecha_inicio":"16-11-2014","fecha_cierre":"30-11-2014","tipo_reporte":"mm","tipo_dias":"es"} <-Error
+			

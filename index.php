@@ -45,13 +45,13 @@
 				<tr>
 					<td>Fecha de inicio</td>
 					<td>
-						<input type="date" id="fecha_inicio"/>
+						<input type="date" id="fecha_inicio" class="elemento"/>
 					</td>
 				</tr>
 				<tr>
 					<td>Fecha de cierre</td>
 					<td>
-						<input type="date" id="fecha_cierre"/>
+						<input type="date" id="fecha_cierre" class="elemento"/>
 					</td>
 				</tr>
 				<tr>
@@ -97,25 +97,25 @@
 				<tr>
 					<td>Periodo inicio</td>
 					<td>
-						<input type="text" id="periodo_inicio" readonly/>
+						<input type="text" id="periodo_inicio" class="elemento" readonly/>
 					</td>
 				</tr>
 				<tr>
 					<td>Periodo cierre</td>
 					<td>
-						<input type="text" id="periodo_cierre" readonly/>
+						<input type="text" id="periodo_cierre" class="elemento" readonly/>
 					</td>
 				</tr>
 				<tr>
 					<td>Mes del periodo</td>
 					<td>
-						<input type="text" id="periodo_mes" readonly/>
+						<input type="text" id="periodo_mes" class="elemento" readonly/>
 					</td>
 				</tr>
 				<tr>
 					<td>Total de horas del periodo</td>
 					<td>
-						<input type="text" id="periodo_horas" readonly/>
+						<input type="text" id="periodo_horas" class="elemento" readonly/>
 					</td>
 				</tr>
 			</table>

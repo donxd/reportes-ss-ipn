@@ -55,3 +55,7 @@ input {
 #instrucciones {
 	text-align: left;
 }
+
+.elemento {
+	width: 155px;
+}
