@@ -1,19 +1,37 @@
 body {
-	background-color: #1A2A3F;
+	background-color: #800000;
+	font-family: 'Raleway', sans-serif;
+	margin: 0px;
+}
+
+.cabecera {
+	background-color : orange;
+	width            : 100%;
+	margin           : 0px;
+	color            : #FFF;
+}
+
+.cabecera h3 {
+	padding: 15px 10px;
+}
+
+.principal {
+	padding: 10px 0px;
+}
+
+table.informacion tr td:first-child {
+	text-align: right;
+	font-weight: bold;
+	padding-right: 20px;
+}
+
+.reporte table tr:first-child {
+	font-weight: bold;
+	background-color: #000;
 	color: #FFF;
 }
 
-table#informacion tr td:first-child {
-	text-align: right;
-	font-weight: bold;
-	color: #DADA50;
-}
-
-#reporte table tr:first-child {
-	font-weight: bold;
-}
-
-#reporte table td {
+.reporte table td {
 	text-align: center;	
 }
 
@@ -21,14 +39,21 @@ input {
 	text-align: center;
 }
 
-#contenido {
-	float: left;
+.contenido {
+	display          : table;
+	background-color : #FFF;
+	padding          : 20px 25px;
+	font-size        : 16px;
+	margin           : 0px auto;
 }
 
-#reporte {
-	float: right;
+.reporte {
+	background : #FFF;
+	display    : table;
+	margin: 0px auto;
 }
-#reporte table {
+
+.reporte table {
 	border-collapse: collapse;
 }
 
@@ -36,26 +61,51 @@ input {
 	display: none;
 }
 
-#reporte td {
+.reporte td {
 	padding: 2 10 2 10;
 }
-#reporte tr:nth-child(2n) td {
-	background-color: #203B8F;
+
+.reporte tr:nth-child(2n) td {
+	background-color : #E7E7E7;
 }
 
-#celda_hora_entrada > div {
-	display: table;
+.celda_hora_entrada > div {
+	display : table;
 }
 
-#celda_hora_entrada > div > div {
-	display: table-cell;
-	vertical-align: middle;
+.celda_hora_entrada > div > div {
+	display        : table-cell;
+	vertical-align : middle;
 }
 
-#instrucciones {
-	text-align: left;
+.instrucciones {
+	text-align : left;
+	font-size  : 14px;
 }
 
 .elemento {
-	width: 155px;
+	width : 155px;
+}
+
+.principal > div {
+	display : table;
+}
+
+.principal > div > div {
+	display        : table-cell;
+	vertical-align : top;
+}
+
+.sombra {
+	-webkit-box-shadow : 0px 0px 22px 7px rgba(0,0,0,0.85);
+	-moz-box-shadow    : 0px 0px 22px 7px rgba(0,0,0,0.85);
+	box-shadow         : 0px 0px 22px 7px rgba(0,0,0,0.85);
+}
+
+.contenedor_reporte {
+	width : 100%;
+}
+
+.contenedor_controles {
+	min-width: 600px;
 }
