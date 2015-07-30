@@ -32,7 +32,8 @@ table.informacion tr td:first-child {
 }
 
 .reporte table td {
-	text-align: center;	
+	text-align : center;	
+	font-size  : 18px;
 }
 
 input {

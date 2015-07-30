@@ -36,12 +36,12 @@
 								<td>Día de inicio del reporte</td>
 								<td>
 									<label>
-										<input type="radio" value="pm" class="principio_mes tipo_reporte" />
+										<input type="radio" name="tipo_reporte" value="pm" class="principio_mes tipo_reporte" />
 										01 - Principio del mes
 									</label>
 									<br/>
 									<label>
-										<input type="radio" value="mm" class="mitad_mes tipo_reporte"/>
+										<input type="radio" name="tipo_reporte" value="mm" class="mitad_mes tipo_reporte"/>
 										16 - Mitad del mes
 									</label>
 								</td>
@@ -62,12 +62,12 @@
 								<td>Días del servicio</td>
 								<td>
 									<label>
-										<input type="radio" class="entre_semana tipo_dias" value="es"/>
+										<input type="radio" name="tipo_dias" class="entre_semana tipo_dias" value="es"/>
 										Lunes a Viernes
 									</label>
 									<br/>
 									<label>
-										<input type="radio" class="fines_semana tipo_dias" value="fs"/>
+										<input type="radio" name="tipo_dias" class="fines_semana tipo_dias" value="fs"/>
 										Sábado y Domingo
 									</label>
 								</td>
