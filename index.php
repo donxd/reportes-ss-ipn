@@ -44,6 +44,11 @@
 										<input type="radio" name="tipo_reporte" value="mm" class="mitad_mes tipo_reporte"/>
 										16 - Mitad del mes
 									</label>
+									<br/>
+									<label>
+										<input type="radio" name="tipo_reporte" value="pp" class="mitad_mes tipo_reporte"/>
+										Personalizado
+									</label>
 								</td>
 							</tr>
 							<tr>

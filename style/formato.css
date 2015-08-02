@@ -25,6 +25,10 @@ table.informacion tr td:first-child {
 	padding-right: 20px;
 }
 
+.reporte table tr:not(:first-child) td:first-child {
+	color : #EA1A1A;
+}
+
 .reporte table tr:first-child {
 	font-weight: bold;
 	background-color: #000;

@@ -160,20 +160,46 @@ function enviar_peticion_dias_asueto_rango (){
 
 function comportamiento_horas_x_dia (){
 	$('.horas_dia').change( function (){
-		var maximo = 47;
-		var horas_dia = $(this).val();
-		if ( horas_dia.length > 0){
-			maximo = 47 - (horas_dia * 2);
-		}
-		$('.entrada_rango').attr('max', maximo);
+		calcula_hora_maxima_entrada( $(this) );
+		verifica_hora_entrada( $(this) );
 	});
+}
+
+function calcula_hora_maxima_entrada ( control_horas_dia ){
+	var tiempo_maximo_entrada = 47;
+	var tiempo_maximo_salida = 48;
+	var horas_dia = control_horas_dia.val();
+	if ( horas_dia.length > 0 ){
+		tiempo_maximo_entrada = tiempo_maximo_salida - (horas_dia * 2);
+	}
+	$('.entrada_rango').attr('max', tiempo_maximo_entrada);
+}
+
+function verifica_hora_entrada ( control_horas_dia ){
+	// console.log( '--- verifica_hora_entrada ---' );
+	var control_hora_entrada = $('.entrada_rango');
+	var horas_dia = parseInt( control_horas_dia.val() );
+	var hora_entrada = parseInt( control_hora_entrada.val() );
+	var tiempo_entrada = hora_entrada + ( horas_dia * 2 );
+	var tiempo_maximo_salida = 48;
+	// console.log( '--- entrada : ', tiempo_entrada );
+	if ( tiempo_entrada >= tiempo_maximo_salida ){
+		var diferencia_tiempo = tiempo_entrada - tiempo_maximo_salida;
+		var ajuste_tiempo = hora_entrada - diferencia_tiempo;
+		control_hora_entrada.val( ajuste_tiempo );
+		calcula_hora_entrada( control_hora_entrada );
+	}
 }
 
 function comportamiento_hora_entrada (){
 	$('.entrada_rango').on( 'input', function (){
-		var rango = parseInt( $(this).val() );
-		genera_hora_entrada(rango);
+		calcula_hora_entrada( $(this) );
 	});
+}
+
+function calcula_hora_entrada ( control_hora_entrada ){
+	var rango = parseInt( control_hora_entrada.val() );
+	genera_hora_entrada(rango);
 }
 
 function comportamiento_descripcion_reporte (){
@@ -215,6 +241,8 @@ function genera_reporte (){
 	var encabezados = ['No.', 'Fecha', 'Hora de entrada', 'Hora de salida', 'Horas por día'];
 
 	//ingresando la información
+	// console.log( '--- generación reporte---');
+	// console.log( ' datos : ', JSON.stringify( window.datos_reporte ) );
 
 	$('.periodo_inicio').val( window.datos_reporte.periodo[0] );
 	$('.periodo_cierre').val( window.datos_reporte.periodo[1] );
