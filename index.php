@@ -46,8 +46,8 @@
 									</label>
 									<br/>
 									<label>
-										<input type="radio" name="tipo_reporte" value="pp" class="mitad_mes tipo_reporte"/>
-										Personalizado
+										<input type="radio" name="tipo_reporte" value="pp" class="periodo_personalizado tipo_reporte"/>
+										Otro
 									</label>
 								</td>
 							</tr>
@@ -149,5 +149,6 @@
 	</body>
 	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
 	<script type="text/javascript" src="js/moment-with-locales.js"></script>
+	<script type="text/javascript" src="js/sprintf.js"></script>
 	<script type="text/javascript" src="js/generador_reporte.js"></script>
 </html>

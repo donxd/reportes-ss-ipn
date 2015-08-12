@@ -35,7 +35,7 @@ class log {
 				"\n%s%s%s"
 				, date('d-m-Y H:i:s')
 				, $tipo
-				, $this->mensaje
+				, str_replace( array( "\n", "\t") , '', $this->mensaje )
 			) 
 		);
 	}
