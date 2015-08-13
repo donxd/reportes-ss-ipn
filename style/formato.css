@@ -8,15 +8,22 @@ body {
 	background-color : orange;
 	width            : 100%;
 	margin           : 0px;
-	color            : #FFF;
 }
 
-.cabecera h3 {
-	padding: 15px 10px;
+.cabecera .titulo {
+	padding     : 15px 10px;
+	color       : #FFF;
+	width       : 100%;
+	font-weight : bold;
+}
+
+.cabecera .contenedor_enlace_descargar {
+	width         : 200px;
+	padding-right : 20px;
 }
 
 .principal {
-	padding: 10px 0px;
+	padding : 20px 0px;
 }
 
 table.informacion tr td:first-child {
@@ -113,4 +120,25 @@ input {
 
 .contenedor_controles {
 	min-width: 600px;
+}
+
+.descargar {
+	-webkit-box-shadow :rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow    :rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow         :rgba(0,0,0,0.2) 0 1px 0 0;
+	color                 : #FFF;
+	background-color      : #525EB2;
+	transition            : background-color 0.5s ease;
+	border-radius         : 5px;
+	-moz-border-radius    : 5px;
+	-webkit-border-radius : 5px;
+	border                : none;
+	font-size             : 16px;
+	font-weight           : 700;
+	height                : 32px;
+	padding               : 4px 16px;
+}
+
+.descargar:hover {
+	background-color : #BA3636;
 }
