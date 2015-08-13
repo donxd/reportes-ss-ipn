@@ -21,6 +21,7 @@ define( 'ERROR_CONEXION'        , 100 );
 define( 'ERROR_CONEXION_CERRAR' , 101 );
 define( 'ERROR_PARAMETROS'      , 200 );
 define( 'ERROR_PERIODO_DIAS'    , 201 );
+define( 'ERROR_ARCHIVO'         , 202 );
 
 define( 'LOG_MENSAJE_ERROR'  , 0 );
 define( 'LOG_MENSAJE_PRUEBA' , 1 );

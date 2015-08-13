@@ -6,7 +6,22 @@
 	</head>
 	<body>
 		<div class="cabecera">
-			<h3> Generador de contenido para el reporte de Servicio Social </h3>
+			<form class="formulario_reporte" action="recursos/generador_reporte.php" method="post" target="_blank">
+				<table>
+					<tr>
+						<td class="titulo">
+							Generador de contenido para el reporte de Servicio Social
+						</td>
+						<td class="contenedor_enlace_descargar oculto">
+							<div>
+								<div>
+									<input type="button" class="descargar" value="Descargar"/>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</form>
 		</div>
 		<div class="principal">
 			<div>

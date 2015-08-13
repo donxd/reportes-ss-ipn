@@ -6,7 +6,6 @@
 	$GLOBALS['log'] = new log();
 
 	procesa_peticion();
-
 	
 	function procesa_peticion (){
 		try {

@@ -10,6 +10,7 @@ $(document).ready( function(){
 	comportamiento_hora_entrada();
 	comportamiento_descripcion_reporte();
 	comportamiento_genera_reporte();
+	comportamiento_descargar_reporte();
 	$('.fecha_inicio').focus();
 });
 
@@ -252,7 +253,7 @@ function comportamiento_hora_entrada (){
 
 function calcula_hora_entrada ( control_hora_entrada ){
 	var rango = parseInt( control_hora_entrada.val() );
-	genera_hora_entrada(rango);
+	genera_hora_entrada( rango );
 }
 
 function comportamiento_descripcion_reporte (){
@@ -285,25 +286,32 @@ function genera_hora_entrada (rango){
 		entrada += ':00';
 	}
 	// console.log('hora_entrada ('+rango+')->'+entrada);
-	$('.entrada').html(entrada);
+	$('.entrada').html( entrada );
 }
 
 function genera_reporte (){
 	asigna_datos_cabecera_reporte();
 	crea_tabla_reporte();
 	muestra_reporte();
+	mostrar_opcion_descargar_reporte();
 }
 
 function asigna_datos_cabecera_reporte (){
+	window.datos_reporte.total_horas_reporte = get_total_horas_reporte();
+	window.datos_reporte.horas_dia = get_horas_dia_reporte();
 	$('.periodo_inicio').val( window.datos_reporte.periodo.fecha_inicio );
 	$('.periodo_cierre').val( window.datos_reporte.periodo.fecha_cierre );
 	$('.periodo_mes').val( window.datos_reporte.mes );
-	$('.periodo_horas').val( get_total_horas_reporte() );
+	$('.periodo_horas').val( window.datos_reporte.total_horas_reporte );
 }
 
 function get_total_horas_reporte (){
-	var horas_dia = $('.horas_dia').val().length > 0 ? $('.horas_dia').val() : 0;
+	var horas_dia = get_horas_dia_reporte();
 	return ( window.datos_reporte.dias.length * parseInt( horas_dia ) );
+}
+
+function get_horas_dia_reporte (){
+	return $('.horas_dia').val().length > 0 ? $('.horas_dia').val() : 0;
 }
 
 function crea_tabla_reporte (){
@@ -385,26 +393,6 @@ function get_registros_tabla_reporte ( columnas_reporte ){
 		window.contador_registro_reporte++;
 		registros.push( sprintf( '<tr> %s </tr>', celdas.join('') ) );
 	}
-	// window.datos_reporte.dias_totales = 0;
-	// for (var i = 0; i < window.datos_reporte.numero_dias_reporte; i++){
-	// 	reporte.insertRow(i+1);
-	// 	for (var j = 0; j < columnas_reporte.length; j++){
-	// 		reporte.rows[i+1].insertCell(j);
-	// 	}
-	// 	reporte.rows[i+1].cells[0].innerHTML = i+1;
-	// 	reporte.rows[i+1].cells[1].innerHTML = window.datos_reporte.dias[i][0];
-	// 	if (window.datos_reporte.dias[i][1]){
-	// 		reporte.rows[i+1].cells[2].setAttribute('colspan','3');
-	// 		reporte.rows[i+1].cells[2].innerHTML = 'DIA FESTIVO';
-	// 		reporte.rows[i+1].cells[3].setAttribute('class','oculto');
-	// 		reporte.rows[i+1].cells[4].setAttribute('class','oculto');
-	// 	} else {
-	// 		reporte.rows[i+1].cells[2].innerHTML = get_reporte_hora_entrada();
-	// 		reporte.rows[i+1].cells[3].innerHTML = get_reporte_hora_salida();
-	// 		reporte.rows[i+1].cells[4].innerHTML = get_reporte_horas_dia();
-	// 		window.datos_reporte.dias_totales++;
-	// 	}
-	// }
 	return registros.join('');
 }
 
@@ -459,6 +447,10 @@ function muestra_reporte (){
 	$('.reporte').removeClass('oculto');
 }
 
+function mostrar_opcion_descargar_reporte (){
+	$('.contenedor_enlace_descargar').removeClass('oculto');
+}
+
 function procesa_respuesta_error ( respuesta ){
 	console.log( sprintf( '--- error_respuesta : %s ', JSON.stringify( respuesta ) ) );
 }
@@ -495,4 +487,51 @@ function get_fecha_anio_mes_dia (){
 function agregaCeros ( numero_parametro ){
 	var numero = parseInt( numero_parametro );
 	return sprintf( '%02d', numero );
+}
+
+function comportamiento_descargar_reporte (){
+	$('.descargar').click( function (){
+		if ( datos_validos_reporte() ){
+			agrega_datos_reporte();
+			$('.formulario_reporte').submit();
+		}
+	});
+}
+
+function datos_validos_reporte (){
+	if ( window.datos_reporte.horas_dia == undefined || window.datos_reporte.horas_dia == null || window.datos_reporte.horas_dia == 0 ){
+		$('.horas_dia').focus();
+		return false;
+	}
+	if ( window.reporte.hora_entrada == undefined || window.reporte.hora_entrada == null || window.reporte.hora_entrada.length == 0 ){
+		$('.entrada_rango').focus();
+		return false;
+	}
+	return true;
+}
+
+function agrega_datos_reporte (){
+	var formulario = $('.formulario_reporte');
+	formulario.append( campo_dato_reporte( 'fecha_inicio', window.datos_reporte.periodo.fecha_inicio ) );
+	formulario.append( campo_dato_reporte( 'fecha_cierre', window.datos_reporte.periodo.fecha_cierre ) );
+	formulario.append( campo_dato_reporte( 'mes', window.datos_reporte.mes ) );
+	formulario.append( campo_dato_reporte( 'total_horas', window.datos_reporte.total_horas_reporte ) );
+	formulario.append( campo_dato_reporte( 'horas_dia', window.datos_reporte.horas_dia ) );
+	formulario.append( campo_dato_reporte( 'hora_entrada', get_reporte_hora_entrada() ) );
+	formulario.append( campo_dato_reporte( 'hora_salida', get_reporte_hora_salida() ) );
+	formulario.append( campo_dato_reporte( 'dias', JSON.stringify( window.datos_reporte.dias ) ) );
+	setTimeout( limpiar_formulario, 2000 );
+}
+
+function campo_dato_reporte ( nombre, valor ){
+	return sprintf( 
+		"<input type='hidden' name='%s' value='%s'/>"
+		, nombre
+		, valor
+	);
+}
+
+function limpiar_formulario (){
+	$('.formulario_reporte input[type=hidden]').remove();
+	console.log( '--- formulario limpio ');
 }
