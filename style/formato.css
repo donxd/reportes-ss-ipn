@@ -1,13 +1,19 @@
 body {
-	background-color: #800000;
+	/*background-color: #74101E;*/
 	font-family: 'Raleway', sans-serif;
 	margin: 0px;
 }
 
 .cabecera {
-	background-color : orange;
-	width            : 100%;
-	margin           : 0px;
+	margin : 0px;
+	background-color : #74101E;
+	width      : 100%;
+	min-height : 60px;
+	max-height : 60px;
+	-webkit-box-shadow : 0px 0px 8px 2px #000000;
+	-moz-box-shadow :    0px 0px 8px 2px #000000;
+	box-shadow :         0px 0px 8px 2px #000000;
+
 }
 
 .cabecera .titulo {
@@ -17,19 +23,15 @@ body {
 	font-weight : bold;
 }
 
-.cabecera .contenedor_enlace_descargar {
-	width         : 200px;
-	padding-right : 20px;
+.informacion {
+	font-size: 18px;
 }
 
-.principal {
-	padding : 20px 0px;
-}
-
-table.informacion tr td:first-child {
-	text-align: right;
-	font-weight: bold;
-	padding-right: 20px;
+.informacion tr td:first-child {
+	text-align     : right;
+	vertical-align : top;
+	padding-right  : 20px;
+	font-weight    : bold;
 }
 
 .reporte table tr:not(:first-child) td:first-child {
@@ -43,8 +45,8 @@ table.informacion tr td:first-child {
 }
 
 .reporte table td {
-	text-align : center;	
-	font-size  : 18px;
+	text-align : center;
+	font-size  : 15px;
 }
 
 input {
@@ -60,9 +62,7 @@ input {
 }
 
 .reporte {
-	background : #FFF;
-	display    : table;
-	margin: 0px auto;
+	background-color: #FFF;
 }
 
 .reporte table {
@@ -91,7 +91,7 @@ input {
 }
 
 .instrucciones {
-	text-align : left;
+	/*text-align : left;*/
 	font-size  : 14px;
 }
 
@@ -100,22 +100,21 @@ input {
 }
 
 .principal > div {
-	display : table;
+	/*display : table;*/
 }
 
 .principal > div > div {
-	display        : table-cell;
-	vertical-align : top;
-}
-
-.sombra {
-	-webkit-box-shadow : 0px 0px 22px 7px rgba(0,0,0,0.85);
-	-moz-box-shadow    : 0px 0px 22px 7px rgba(0,0,0,0.85);
-	box-shadow         : 0px 0px 22px 7px rgba(0,0,0,0.85);
+	/*display        : table-cell;
+	vertical-align : top;*/
 }
 
 .contenedor_reporte {
-	width : 100%;
+	/*width  : 100%;*/
+}
+
+.alto_100p {
+	height : 100%;
+	overflow-y : hidden;
 }
 
 .contenedor_controles {
@@ -141,4 +140,97 @@ input {
 
 .descargar:hover {
 	background-color : #BA3636;
+}
+
+.reporte_datos {
+	display : table;
+	margin  : 0 auto;
+}
+
+.tabla {
+	display : table;
+}
+
+.celda {
+	display : table-cell;
+}
+
+.centrado_margen {
+	margin : 0px auto;
+}
+
+.contenedor_reporte_datos > div {
+	padding: 20px;
+}
+
+.fondo_blanco {
+	background-color : #FFF;
+}
+
+.borde_redondo {
+	border-radius : 4px;
+	border        : 1px solid #000;
+}
+
+.contenedor_enlace_descargar {
+	padding    : 0px 60px;
+	min-height : 100px;
+}
+
+.icono_configurar_reporte {
+	max-height     : 25px;
+	vertical-align : middle;
+	cursor         : pointer ;
+}
+
+.una_linea {
+	white-space : nowrap;
+}
+
+.separador_titulo {
+	min-height: 60px;
+	max-height: 60px;
+}
+
+.no_mostrar_scroll {
+	/*overflow-y : hidden;*/
+}
+
+.ancho_100p{
+	width : 100%;
+}
+
+.separacion_vertical {
+	padding-top : 20px;
+}
+
+.contenedor_tabla_horas_reporte {
+	background-color : #C8C8C8;
+	padding          : 5px 0px;
+	-moz-box-shadow    : inset 0 0 15px #000000;
+	-webkit-box-shadow : inset 0 0 15px #000000;
+	box-shadow         : inset 0 0 15px #000000;
+}
+
+.controles_datos_reporte {
+	padding : 10px 0px;
+}
+
+.invisible {
+	visibility : hidden;
+}
+
+.texto_derecha {
+	text-align : right;
+}
+
+.limpiar {
+	clear : both;
+}
+
+.contenedor_controles hr {
+	max-width : 450px;
+	border : none;
+	border-bottom: 1px solid #000;
+	margin: 0px;
 }

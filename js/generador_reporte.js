@@ -3,14 +3,15 @@ $(document).ready( function(){
 	inicializa_control_tiempo();
 	inicializa_controles();
 	comportamiento_dia_inicio_reporte();
-	comportamiento_fecha_inicio();
-	comportamiento_fecha_cierre();
-	comportamiento_calculo_dias();
+	comportamiento_controles_fechas();
+	comportamiento_peticion_calculo_dias();
+	comportamiento_tipo_dias();
 	comportamiento_horas_x_dia();
 	comportamiento_hora_entrada();
 	comportamiento_descripcion_reporte();
 	comportamiento_genera_reporte();
 	comportamiento_descargar_reporte();
+	comportamiento_redimension_pagina();
 	$('.fecha_inicio').focus();
 });
 
@@ -48,19 +49,21 @@ function comportamiento_dia_inicio_reporte (){
 }
 
 function inicializa_fechas (){
+	var fecha_inicio = $('.fecha_inicio');
+	var fecha_cierre = $('.fecha_cierre');
 	switch ( $('input.tipo_reporte:checked').val() ){
 		case 'pm':
-			$('.fecha_inicio').val( sprintf( '%s%s', window.informacion.periodo_actual, '01' ) );
-			$('.fecha_cierre').val( sprintf( '%s%s', window.informacion.periodo_actual, window.informacion.dias_mes_actual ) );
+			fecha_inicio.val( sprintf( '%s%s', window.informacion.periodo_actual, '01' ) );
+			fecha_cierre.val( sprintf( '%s%s', window.informacion.periodo_actual, window.informacion.dias_mes_actual ) );
 			inicializa_fechas_peticion();
 			break;
 		case 'mm':
-			$('.fecha_inicio').val( sprintf( '%s%s', window.informacion.periodo_actual, '16' ) );
-			$('.fecha_cierre').val( sprintf( '%s%s', window.informacion.periodo_siguiente, '15' ) );
+			fecha_inicio.val( sprintf( '%s%s', window.informacion.periodo_actual, '16' ) );
+			fecha_cierre.val( sprintf( '%s%s', window.informacion.periodo_siguiente, '15' ) );
 			inicializa_fechas_peticion();
 			break;
 		case 'pp':
-			if ( $('.fecha_inicio').val().length > 0 && $('.fecha_cierre').val().length > 0 ){
+			if ( fecha_inicio.val().length > 0 && fecha_cierre.val().length > 0 ){
 				inicializa_fechas_peticion();
 			}
 			break;
@@ -73,7 +76,25 @@ function inicializa_fechas_peticion (){
 	window.datos.tipo_reporte = $('.tipo_reporte').val();
 }
 
-function comportamiento_fecha_inicio (){
+function comportamiento_controles_fechas (){
+	agrega_comportamiento_controles_fechas();
+	agrega_comportamiento_fecha_inicio();
+	agrega_comportamiento_fecha_cierre();
+}
+
+function agrega_comportamiento_controles_fechas (){
+	$('.control_fecha').change( function (){
+		if ( fechas_validas_controles_fecha() ){
+			inicializa_fechas_peticion();
+		}
+	});
+}
+
+function fechas_validas_controles_fecha (){
+	return ( $('.fecha_inicio').val().length > 0 && $('.fecha_cierre').val().length );
+}
+
+function agrega_comportamiento_fecha_inicio (){
 	$('.fecha_inicio').change( function(){
 		inicializa_fecha_minima_cierre( $(this) );
 		// obtener_entero_fecha( $(this).val() );
@@ -96,22 +117,22 @@ function determina_tipo_reporte ( control_fecha_inicio ){
 		//constructor yyyy, mm, dd, hh , MM, ss, ms
 		// console.log("fecha-texto : "+JSON.stringify(fecha));
 		fecha = new Date( fecha[0], fecha[1]-1, fecha[2]);
-		console.log( sprintf(' --- cuadro : %s ', $('.fecha_inicio').val() ) );
+		console.log( sprintf(' --- cuadro : %s ', control_fecha_inicio.val() ) );
 		console.log( sprintf(' --- fecha : %s ', fecha.toString() ) );
 
 		var tipo = (fecha.getDate() > 15) ? 1 : 0;
-		// console.log("cuadro : "+$('.fecha_inicio').val()+" dia : "+fecha.getDate()+" tipo : "+tipo);
+		// console.log("cuadro : "+control_fecha_inicio.val()+" dia : "+fecha.getDate()+" tipo : "+tipo);
 		// console.log("dia : "+fecha.getDate()+" tipo : "+tipo);
 		
 		$( get_selector_tipo_reporte( tipo ) ).attr('checked', true);
 
-		datos.fecha_inicio = sprintf(
+		window.datos.fecha_inicio = sprintf(
 			'%s-%02d-%s'
 			, fecha.getDate()
 			, (fecha.getMonth()+1)
 			, fecha.getFullYear() 
 		);
-		datos.tipo_reporte = $('input.tipo_reporte:checked').val();
+		window.datos.tipo_reporte = $('input.tipo_reporte:checked').val();
 	} else {
 		var indice_tipo_reporte_manual = 2;
 		$( get_selector_tipo_reporte( indice_tipo_reporte_manual ) ).attr('checked', true);		
@@ -125,31 +146,40 @@ function get_selector_tipo_reporte ( tipo_reporte ){
 	);
 }
 
-function comportamiento_fecha_cierre (){
+function agrega_comportamiento_fecha_cierre (){
 	$('.fecha_cierre').change( function(){
-		$('.fecha_inicio').attr( 'max', $(this).val() );
+		inicializa_fecha_maxima_inicio( $(this) );
 		// obtener_entero_fecha( $(this).val() );
 	});
 	$('.fecha_cierre').change( function(){
-		var fecha = $('.fecha_cierre').val();
-		fecha = fecha.split("-");
-		fecha = new Date( fecha[0], fecha[1]-1, fecha[2]);
-		window.datos.fecha_cierre = sprintf(
-			'%s-%02d-%s'
-			, fecha.getDate()
-			, ( fecha.getMonth()+1 )
-			, fecha.getFullYear()
-		);
+		inicializa_fecha_cierre_peticion( $(this) );
 	});
 }
 
-function comportamiento_calculo_dias (){
-	$('.fecha_inicio, .fecha_cierre, input.tipo_reporte, input.tipo_dias').change( function(){
+function inicializa_fecha_maxima_inicio( control_fecha_cierre ){
+	$('.fecha_inicio').attr( 'max', control_fecha_cierre.val() );
+}
+
+function inicializa_fecha_cierre_peticion ( control_fecha_cierre ){
+	var fecha = control_fecha_cierre.val();
+	fecha = fecha.split("-");
+	fecha = new Date( fecha[0], fecha[1]-1, fecha[2]);
+	window.datos.fecha_cierre = sprintf(
+		'%s-%02d-%s'
+		, fecha.getDate()
+		, ( fecha.getMonth()+1 )
+		, fecha.getFullYear()
+	);
+}
+
+function comportamiento_peticion_calculo_dias (){
+	$('.control_fecha, input.tipo_reporte, input.tipo_dias').change( function(){
 		prepara_peticion_dias_reporte();
 	});
 }
 
 function prepara_peticion_dias_reporte (){
+	console.log('--- prepara_peticion_dias_reporte ---');
 	//calculo de dias
 	// var fecha = $('.fecha_inicio').val();
 	// var tipo_reporte = $("input.'tipo_reporte:checked");
@@ -189,7 +219,6 @@ function procesa_respuesta_peticion_dias_reporte ( respuesta ){
 	almacena_respuesta( respuesta );
 	genera_reporte();
 
-	
 	console.log('---------------------');
 	console.log( sprintf( 
 			'%s : %s '
@@ -210,6 +239,34 @@ function procesa_respuesta_peticion_dias_reporte ( respuesta ){
 
 function almacena_respuesta ( respuesta ){
 	window.datos_reporte = ( typeof( respuesta ) == 'string' ) ? JSON.parse(  respuesta ) : respuesta;
+}
+
+function comportamiento_tipo_dias (){
+	$('.tipo_dias').change( function (){
+		calcula_maximo_horas_dia();
+	});
+}
+
+function calcula_maximo_horas_dia (){
+	var horas_dia = $('.horas_dia');
+	switch ( $('.tipo_dias:checked').val() ){
+		case 'es':
+			horas_dia.attr( 'max', 4 );
+			verifica_restriccion_maximo_horas_dia( horas_dia );
+			break;
+		case 'fs':
+			horas_dia.attr( 'max', 10 );
+			horas_dia.val( 10 );
+			calcula_hora_maxima_entrada( horas_dia );
+			verifica_hora_entrada( horas_dia );
+			break;
+	}
+}
+
+function verifica_restriccion_maximo_horas_dia ( control_horas_dia ){
+	if ( control_horas_dia.val() > parseInt( control_horas_dia.attr('max') ) ){
+		control_horas_dia.val( control_horas_dia.attr('max') );
+	}
 }
 
 function comportamiento_horas_x_dia (){
@@ -293,7 +350,7 @@ function genera_reporte (){
 	asigna_datos_cabecera_reporte();
 	crea_tabla_reporte();
 	muestra_reporte();
-	mostrar_opcion_descargar_reporte();
+	muestra_opcion_descargar_reporte();
 }
 
 function asigna_datos_cabecera_reporte (){
@@ -346,7 +403,7 @@ function construye_tabla_reporte (){
 	var columnas_reporte = constantes_columnas();	
 
 	return sprintf(
-		'<table> \
+		'<table class="borde_redondo"> \
 			<tr> %s </tr> %s \
 		</table>'
 		, get_columnas_tabla_reporte( columnas_reporte )
@@ -444,11 +501,33 @@ function get_reporte_horas_dia (){
 }
 
 function muestra_reporte (){
-	$('.reporte').removeClass('oculto');
+	ajusta_altura_tabla_horas_reporte();
+	$('.contenedor_tabla_horas_reporte').removeClass('invisible');
+	$('.contenedor_reporte_datos').removeClass('invisible');
 }
 
-function mostrar_opcion_descargar_reporte (){
-	$('.contenedor_enlace_descargar').removeClass('oculto');
+function ajusta_altura_tabla_horas_reporte (){
+	var altura_pagina              = $(document).height();
+	var altura_cabecera            = $('.cabecera').height();
+	var altura_separador           = 30;
+	var altura_reporte_datos       = $('.contenedor_reporte_datos').height();
+	var altura_reporte_tabla_horas = $('.contenedor_tabla_horas_reporte').height();
+
+	var altura_elementos = altura_cabecera + altura_separador + altura_reporte_datos + altura_reporte_tabla_horas;
+	var diferencia_altura = altura_pagina - ( altura_elementos );
+
+	if ( diferencia_altura > 0 ){
+		console.log( sprintf('--- diferencia altura : %d - ( %d + %d + %d + %d )', altura_pagina, altura_cabecera, altura_separador, altura_reporte_datos, altura_reporte_tabla_horas ) );
+		console.log( '--- diferencia altura : ', diferencia_altura );
+		$('.contenedor_tabla_horas_reporte').height( altura_reporte_tabla_horas + diferencia_altura );
+	} else {
+		$('.contenedor_tabla_horas_reporte').removeAttr('style');
+	}
+
+}
+
+function muestra_opcion_descargar_reporte (){
+	$('.contenedor_enlace_descargar').removeClass('invisible');
 }
 
 function procesa_respuesta_error ( respuesta ){
@@ -534,4 +613,10 @@ function campo_dato_reporte ( nombre, valor ){
 function limpiar_formulario (){
 	$('.formulario_reporte input[type=hidden]').remove();
 	console.log( '--- formulario limpio ');
+}
+
+function comportamiento_redimension_pagina (){
+	$( window ).resize( function (){
+		ajusta_altura_tabla_horas_reporte();
+	});
 }
