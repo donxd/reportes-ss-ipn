@@ -63,6 +63,18 @@ class reporte {
         self::agrega_fechas_dias_reporte();
         self::agrega_horas_dia_reporte();
 		self::agrega_total_horas_reporte();
+		self::agrega_numero_reporte_reporte();
+		self::agrega_carrera_reporte();
+		self::agrega_nombre_alumno_reporte();
+		self::agrega_boleta_reporte();
+		self::agrega_correo_reporte();
+		self::agrega_telefono_reporte();
+		self::agrega_dependencia_reporte();
+		self::agrega_responsable_nombre_reporte();
+		self::agrega_responsable_puesto_reporte();
+		self::agrega_fecha_emision_reporte();
+		self::agrega_total_horas_acumuladas_reporte();
+		self::agrega_actividades_reporte();
 	}
 
 	private function agrega_mes_reporte (){
@@ -170,6 +182,83 @@ class reporte {
 
 	private function agrega_valor_celda ( $celda, $valor ){
 		$this->objetoPHPExcel->getActiveSheet()->setCellValue( $celda, $valor );
+	}
+
+	private function agrega_numero_reporte_reporte (){
+		self::agrega_valor_celda( 'O7', $_POST['numero_reporte'] );
+	}
+
+	private function agrega_carrera_reporte (){
+		self::agrega_valor_celda( 'D10', $_POST['carrera'] );
+	}
+
+	private function agrega_nombre_alumno_reporte (){
+		self::agrega_valor_celda( 'E14', $_POST['nombre_alumno'] );
+		self::agrega_valor_celda( 'Q7', $_POST['nombre_alumno'] );
+	}
+
+	private function agrega_boleta_reporte (){
+		self::agrega_valor_celda( 'N14', $_POST['boleta'] );
+	}
+
+	private function agrega_correo_reporte (){
+		self::agrega_valor_celda( 'H16', $_POST['correo'] );
+	}
+
+	private function agrega_telefono_reporte (){
+		self::agrega_valor_celda( 'D12', $_POST['telefono'] );
+	}
+
+	private function agrega_dependencia_reporte (){
+		self::agrega_valor_celda( 'A20', $_POST['dependencia'] );
+	}
+
+	private function agrega_responsable_nombre_reporte (){
+		self::agrega_valor_celda( 'B25', $_POST['responsable_nombre'] );
+		self::agrega_valor_celda( 'A42', $_POST['responsable_nombre'] );
+		self::agrega_valor_celda( 'Q42', $_POST['responsable_nombre'] );
+	}
+
+	private function agrega_responsable_puesto_reporte (){
+		self::agrega_valor_celda( 'J25', $_POST['responsable_puesto'] );
+		self::agrega_valor_celda( 'A43', $_POST['responsable_puesto'] );
+		self::agrega_valor_celda( 'Q43', $_POST['responsable_puesto'] );
+	}
+
+	private function agrega_fecha_emision_reporte (){
+		$fecha_emision_desglozada = self::get_fecha_emision_desglozada( $_POST['fecha_emision'] );
+		self::agrega_valor_celda( 'J37', $fecha_emision_desglozada['dia'] );
+		self::agrega_valor_celda( 'L37', $fecha_emision_desglozada['mes'] );
+		self::agrega_valor_celda( 'P37', $fecha_emision_desglozada['anio'] );
+	}
+
+	private function get_fecha_emision_desglozada ( $fecha_emision ){
+		$tiempo_fecha_emision = strtotime( $fecha_emision );
+		return array(
+			'dia' => intval( date( 'd', $tiempo_fecha_emision ) )
+			, 'mes' => intval( date( 'm', $tiempo_fecha_emision ) )
+			, 'anio' => intval( date( 'Y', $tiempo_fecha_emision ) )
+		);
+	}
+
+	private function agrega_total_horas_acumuladas_reporte (){
+		self::agrega_valor_celda( 'AA36', self::get_total_horas_acumuladas_reporte() );
+	}
+
+	private function get_total_horas_acumuladas_reporte (){
+		return intval( $_POST['total_horas_acumuladas_anterior'] ) + intval( $_POST['total_horas'] );
+	}
+
+	private function agrega_actividades_reporte (){
+		$columna = 'B';
+		$numero_elementos = count( $_POST['actividad'] );
+
+		for ( $contador = 0, $posicion_inicio = 31; $contador < $numero_elementos; $contador++, $posicion_inicio++ ){
+			$this->objetoPHPExcel->getActiveSheet()->setCellValue( 
+				sprintf( '%s%d', $columna, $posicion_inicio )
+				, $_POST['actividad'][ $contador ]
+			);
+		}
 	}
 
 	private function envia_archivo ( &$objPHPExcel ){

@@ -23,10 +23,15 @@ body {
 	font-weight : bold;
 }
 
+.configuracion_formato_reporte,
+.datos_complementarios_reporte,
 .informacion {
 	font-size: 18px;
 }
 
+
+.configuracion_formato_reporte tr td:first-child,
+.datos_complementarios_reporte tr td:first-child,
 .informacion tr td:first-child {
 	text-align     : right;
 	vertical-align : top;
@@ -69,6 +74,7 @@ input {
 	border-collapse: collapse;
 }
 
+.tabla.oculto, 
 .oculto {
 	display: none;
 }
@@ -233,4 +239,58 @@ input {
 	border : none;
 	border-bottom: 1px solid #000;
 	margin: 0px;
+}
+
+.alineacion_vertical_arriba {
+	vertical-align : top;
+}
+
+.alineacion_vertical_medio {
+	vertical-align : middle;
+}
+
+.actividad_reporte {
+	width: 350px;
+}
+
+.contenedor_datos_complementarios_reporte {
+	padding: 20px;
+	background-color : #F5F5F5;
+}
+
+.boton_accion {
+	-webkit-box-shadow :rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow    :rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow         :rgba(0,0,0,0.2) 0 1px 0 0;
+	transition            : background-color 0.5s ease;
+	color                 : #FFF;
+	background-color      : #FFAE00;
+	border-radius         : 5px;
+	-moz-border-radius    : 5px;
+	-webkit-border-radius : 5px;
+	border                : none;
+	font-size             : 16px;
+	font-weight           : 700;
+	height                : 32px;
+	padding               : 4px 16px;
+}
+
+.boton_accion:hover {
+	background-color : #82E842;
+}
+
+.tipo_plantilla {
+	-webkit-box-shadow :rgba(0,0,0,0.2) 0 1px 0 0;
+	-moz-box-shadow    :rgba(0,0,0,0.2) 0 1px 0 0;
+	box-shadow         :rgba(0,0,0,0.2) 0 1px 0 0;
+	color                 : #FFF;
+	background-color      : #CE90DB;
+	border-radius         : 5px;
+	-moz-border-radius    : 5px;
+	-webkit-border-radius : 5px;
+	border                : none;
+	font-size             : 16px;
+	font-weight           : 700;
+	height                : 32px;
+	padding               : 4px 16px;
 }

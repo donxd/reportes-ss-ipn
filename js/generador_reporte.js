@@ -11,8 +11,10 @@ $(document).ready( function(){
 	comportamiento_descripcion_reporte();
 	comportamiento_genera_reporte();
 	comportamiento_descargar_reporte();
-	comportamiento_redimension_pagina();
-	$('.fecha_inicio').focus();
+	comportamiento_ejemplos_formato_datos();
+	comportamiento_elementos_reporte();
+	// comportamiento_redimension_pagina();
+	// $('.fecha_inicio').focus();
 });
 
 function inicializa_control_tiempo (){
@@ -24,7 +26,7 @@ function inicializa_control_tiempo (){
 }
 
 function get_periodo ( tiempo ){
-	return tiempo.format('YYYY-MM-');
+	return tiempo.format('-MM-YYYY');
 }
 
 function get_dias_mes ( tiempo ){
@@ -32,7 +34,7 @@ function get_dias_mes ( tiempo ){
 }
 
 function get_periodo_siguiente ( tiempo ){
-	return get_periodo( moment( tiempo ).add(1, 'month') );
+	return get_periodo( moment( tiempo ).add( 1, 'month' ) );
 }
 
 function inicializa_controles (){
@@ -53,13 +55,13 @@ function inicializa_fechas (){
 	var fecha_cierre = $('.fecha_cierre');
 	switch ( $('input.tipo_reporte:checked').val() ){
 		case 'pm':
-			fecha_inicio.val( sprintf( '%s%s', window.informacion.periodo_actual, '01' ) );
-			fecha_cierre.val( sprintf( '%s%s', window.informacion.periodo_actual, window.informacion.dias_mes_actual ) );
+			fecha_inicio.val( sprintf( '%s%s', '01', window.informacion.periodo_actual ) );
+			fecha_cierre.val( sprintf( '%s%s', window.informacion.dias_mes_actual, window.informacion.periodo_actual ) );
 			inicializa_fechas_peticion();
 			break;
 		case 'mm':
-			fecha_inicio.val( sprintf( '%s%s', window.informacion.periodo_actual, '16' ) );
-			fecha_cierre.val( sprintf( '%s%s', window.informacion.periodo_siguiente, '15' ) );
+			fecha_inicio.val( sprintf( '%s%s', '16', window.informacion.periodo_actual ) );
+			fecha_cierre.val( sprintf( '%s%s', '15', window.informacion.periodo_siguiente ) );
 			inicializa_fechas_peticion();
 			break;
 		case 'pp':
@@ -71,19 +73,36 @@ function inicializa_fechas (){
 }
 
 function inicializa_fechas_peticion (){
-	window.datos.fecha_inicio = cambiaFormatoFecha( 'd-m-Y', $('.fecha_inicio').val() );
-	window.datos.fecha_cierre = cambiaFormatoFecha( 'd-m-Y', $('.fecha_cierre').val() );
+	// window.datos.fecha_inicio = cambiaFormatoFecha( 'd-m-Y', $('.fecha_inicio').val() );
+	// window.datos.fecha_cierre = cambiaFormatoFecha( 'd-m-Y', $('.fecha_cierre').val() );
+	window.datos.fecha_inicio = $('.fecha_inicio').val()
+	window.datos.fecha_cierre = $('.fecha_cierre').val()
 	window.datos.tipo_reporte = $('.tipo_reporte').val();
 }
 
 function comportamiento_controles_fechas (){
-	agrega_comportamiento_controles_fechas();
+	crea_controles_fecha();
+	agrega_comportamiento_controles_periodo_fecha();
 	agrega_comportamiento_fecha_inicio();
 	agrega_comportamiento_fecha_cierre();
 }
 
-function agrega_comportamiento_controles_fechas (){
-	$('.control_fecha').change( function (){
+function crea_controles_fecha (){
+	$('.control_fecha').datetimepicker( get_opciones_control_fecha() );
+}
+
+function get_opciones_control_fecha (){
+	return {
+ 		  timepicker : false
+ 		, allowBlank : true
+ 		, validateOnBlur : false
+ 		, format : 'd-m-Y' 
+ 		, lang : 'es'
+	};
+}
+
+function agrega_comportamiento_controles_periodo_fecha (){
+	$('.control_periodo_fecha').change( function (){
 		if ( fechas_validas_controles_fecha() ){
 			inicializa_fechas_peticion();
 		}
@@ -161,19 +180,20 @@ function inicializa_fecha_maxima_inicio( control_fecha_cierre ){
 }
 
 function inicializa_fecha_cierre_peticion ( control_fecha_cierre ){
-	var fecha = control_fecha_cierre.val();
-	fecha = fecha.split("-");
-	fecha = new Date( fecha[0], fecha[1]-1, fecha[2]);
-	window.datos.fecha_cierre = sprintf(
-		'%s-%02d-%s'
-		, fecha.getDate()
-		, ( fecha.getMonth()+1 )
-		, fecha.getFullYear()
-	);
+	// var fecha = control_fecha_cierre.val();
+	// fecha = fecha.split("-");
+	// fecha = new Date( fecha[0], fecha[1]-1, fecha[2]);
+	// window.datos.fecha_cierre = sprintf(
+	// 	'%s-%02d-%s'
+	// 	, fecha.getDate()
+	// 	, ( fecha.getMonth()+1 )
+	// 	, fecha.getFullYear()
+	// );
+	window.datos.fecha_cierre = control_fecha_cierre.val();
 }
 
 function comportamiento_peticion_calculo_dias (){
-	$('.control_fecha, input.tipo_reporte, input.tipo_dias').change( function(){
+	$('.control_periodo_fecha, input.tipo_reporte, input.tipo_dias').change( function(){
 		prepara_peticion_dias_reporte();
 	});
 }
@@ -233,7 +253,8 @@ function procesa_respuesta_peticion_dias_reporte ( respuesta ){
 		//revisar el formato que acepta el input[date]
 		// console.log('---> no habia fecha cierre')
 		// console.log('e ok : '+window.datos_reporte.periodo[1]+' -> '+ cambiaFormatoFecha('Y-m-d', window.datos_reporte.periodo[1] ) );
-		$('.fecha_cierre').val( cambiaFormatoFecha('Y-m-d', window.datos_reporte.fecha_cierre ) );
+		// $('.fecha_cierre').val( cambiaFormatoFecha('Y-m-d', window.datos_reporte.fecha_cierre ) );
+		$('.fecha_cierre').val( window.datos_reporte.fecha_cierre );
 	}
 }
 
@@ -504,6 +525,7 @@ function muestra_reporte (){
 	ajusta_altura_tabla_horas_reporte();
 	$('.contenedor_tabla_horas_reporte').removeClass('invisible');
 	$('.contenedor_reporte_datos').removeClass('invisible');
+	mostrar_datos_reporte();
 }
 
 function ajusta_altura_tabla_horas_reporte (){
@@ -516,14 +538,13 @@ function ajusta_altura_tabla_horas_reporte (){
 	var altura_elementos = altura_cabecera + altura_separador + altura_reporte_datos + altura_reporte_tabla_horas;
 	var diferencia_altura = altura_pagina - ( altura_elementos );
 
-	if ( diferencia_altura > 0 ){
-		console.log( sprintf('--- diferencia altura : %d - ( %d + %d + %d + %d )', altura_pagina, altura_cabecera, altura_separador, altura_reporte_datos, altura_reporte_tabla_horas ) );
-		console.log( '--- diferencia altura : ', diferencia_altura );
-		$('.contenedor_tabla_horas_reporte').height( altura_reporte_tabla_horas + diferencia_altura );
-	} else {
-		$('.contenedor_tabla_horas_reporte').removeAttr('style');
-	}
-
+	// if ( diferencia_altura > 0 ){
+	// 	console.log( sprintf('--- diferencia altura : %d - ( %d + %d + %d + %d )', altura_pagina, altura_cabecera, altura_separador, altura_reporte_datos, altura_reporte_tabla_horas ) );
+	// 	console.log( '--- diferencia altura : ', diferencia_altura );
+	// 	$('.contenedor_tabla_horas_reporte').height( altura_reporte_tabla_horas + diferencia_altura );
+	// } else {
+	// 	$('.contenedor_tabla_horas_reporte').removeAttr('style');
+	// }
 }
 
 function muestra_opcion_descargar_reporte (){
@@ -599,7 +620,38 @@ function agrega_datos_reporte (){
 	formulario.append( campo_dato_reporte( 'hora_entrada', get_reporte_hora_entrada() ) );
 	formulario.append( campo_dato_reporte( 'hora_salida', get_reporte_hora_salida() ) );
 	formulario.append( campo_dato_reporte( 'dias', JSON.stringify( window.datos_reporte.dias ) ) );
+	formulario.append( campo_dato_reporte( 'numero_reporte', $('.numero_reporte').val() ) );
+	formulario.append( campo_dato_reporte( 'carrera', $('.carrera').val() ) );
+	formulario.append( campo_dato_reporte( 'nombre_alumno', $('.nombre_alumno').val() ) );
+	formulario.append( campo_dato_reporte( 'boleta', $('.boleta').val() ) );
+	formulario.append( campo_dato_reporte( 'correo', $('.correo').val() ) );
+	formulario.append( campo_dato_reporte( 'telefono', $('.telefono').val() ) );
+	formulario.append( campo_dato_reporte( 'dependencia', $('.dependencia').val() ) );
+	formulario.append( campo_dato_reporte( 'responsable_nombre', $('.nombre_responsable').val() ) );
+	formulario.append( campo_dato_reporte( 'responsable_puesto', $('.puesto_responsable').val() ) );
+	formulario.append( campo_dato_reporte( 'fecha_emision', $('.fecha_emision').val() ) );
+	formulario.append( campo_dato_reporte( 'total_horas_acumuladas_anterior', $('.total_horas_acumuladas_anterior').val() ) );
+	agrega_actividades_reporte();	
 	setTimeout( limpiar_formulario, 2000 );
+}
+
+function agrega_actividades_reporte (){
+	var formulario = $('.formulario_reporte');
+	if ( $('.actividad_1').val().length > 0 ){
+		formulario.append( campo_dato_reporte( 'actividad[]', $('.actividad_1').val() ) );
+	}
+	if ( $('.actividad_2').val().length > 0 ){
+		formulario.append( campo_dato_reporte( 'actividad[]', $('.actividad_2').val() ) );
+	}
+	if ( $('.actividad_3').val().length > 0 ){
+		formulario.append( campo_dato_reporte( 'actividad[]', $('.actividad_3').val() ) );
+	}
+	if ( $('.actividad_4').val().length > 0 ){
+		formulario.append( campo_dato_reporte( 'actividad[]', $('.actividad_4').val() ) );
+	}
+	if ( $('.actividad_5').val().length > 0 ){
+		formulario.append( campo_dato_reporte( 'actividad[]', $('.actividad_5').val() ) );
+	}
 }
 
 function campo_dato_reporte ( nombre, valor ){
@@ -619,4 +671,248 @@ function comportamiento_redimension_pagina (){
 	$( window ).resize( function (){
 		ajusta_altura_tabla_horas_reporte();
 	});
+}
+
+function comportamiento_ejemplos_formato_datos (){	
+	comportamiento_ejemplos_formato_mes_reporte();
+	comportamiento_ejemplos_formato_fechas_horas();
+	comportamiento_ejemplos_formato_horas_reporte();
+	comportamiento_ejemplos_formato_periodo_reporte();
+	comportamiento_ejemplos_formato_fecha_emision();
+}
+
+function comportamiento_ejemplos_formato_mes_reporte (){
+	$('.formato_mes_reporte').change( function (){
+		presenta_ejemplo_formato( 'formato_mes_reporte' );
+	});
+}
+
+function comportamiento_ejemplos_formato_fechas_horas (){
+	$('.formato_fechas_horas').change( function (){
+		presenta_ejemplo_formato( 'formato_fechas_horas' );
+	});
+}
+
+function comportamiento_ejemplos_formato_horas_reporte (){
+	$('.formato_horas_reporte').change( function (){
+		presenta_ejemplo_formato( 'formato_horas_reporte' );
+	});
+}
+
+function comportamiento_ejemplos_formato_periodo_reporte (){
+	$('.formato_periodo_reporte').change( function (){
+		presenta_ejemplo_formato( 'formato_periodo_reporte' );
+	});
+}
+
+function comportamiento_ejemplos_formato_fecha_emision (){
+	$('.formato_fecha_emision').change( function (){
+		presenta_ejemplo_formato( 'formato_fecha_emision' );
+	});
+}
+
+function presenta_ejemplo_formato ( clase_elemento ){
+	console.log( 'selector : ', get_selector_ejemplo_formato( clase_elemento ) );
+	console.log( 'valor : ', get_ejemplo_formato( clase_elemento ) );
+	$( get_selector_ejemplo_formato( clase_elemento ) ).html( get_ejemplo_formato( clase_elemento ) );
+}
+
+function get_selector_ejemplo_formato ( clase_elemento ){
+	return sprintf( '.ejemplo_%s', clase_elemento );
+}
+
+function get_ejemplo_formato ( clase_elemento ){
+	var selector_elemento = get_selector_clase_elemento( clase_elemento );
+	switch ( clase_elemento ){
+		case 'formato_mes_reporte':
+			return get_ejemplo_formato_mes_reporte( selector_elemento );
+		case 'formato_fechas_horas':
+			return get_ejemplo_formato_fechas_horas( selector_elemento );
+		case 'formato_horas_reporte':
+			return get_ejemplo_formato_horas_reporte( selector_elemento );
+		case 'formato_periodo_reporte':
+			return get_ejemplo_formato_periodo_reporte( selector_elemento );
+		case 'formato_fecha_emision':
+			return get_ejemplo_formato_fecha_emision( selector_elemento );
+	}
+}
+
+function get_selector_clase_elemento ( clase_elemento ){
+	return sprintf( '.%s', clase_elemento );
+}
+
+function get_ejemplo_formato_mes_reporte ( selector_elemento ){
+	switch ( $( selector_elemento ).val() ){
+		case 'mes_mayusculas':
+			return 'ENERO / ENERO-FEBRERO';
+		case 'mes_normal':
+			return 'Enero / Enero-Febrero';
+	}
+}
+
+function get_ejemplo_formato_fechas_horas ( selector_elemento ){
+	switch ( $( selector_elemento ).val() ){
+		case 'dd/mm/aa':
+			return '01/01/15';
+		case 'dd/mm/aaaa':
+			return '01/01/2015';
+		case 'dd-mm-aa':
+			return '01-01-15';
+		case 'dd-mm-aaaa':
+			return '01-01-2015';
+		case 'aaaa-mm-dd':
+			return '2015-01-01';
+		case 'aa-mm-dd':
+			return '15-01-01';
+	}
+}
+
+function get_ejemplo_formato_horas_reporte ( selector_elemento ){
+	switch ( $( selector_elemento ).val() ){
+		case 'horas_simple':
+			return '8:00';
+		case 'horas_formato':
+			return '08:00';
+	}
+}
+
+function get_ejemplo_formato_periodo_reporte ( selector_elemento ){
+	switch ( $( selector_elemento ).val() ){
+		case 'dMESaaaa':
+			return '1 ENE 2015';
+		case 'dMESaaaa*':
+			return '1 ENERO 2015';
+
+		case 'dMesaaaa':
+			return '1 Ene 2015';
+		case 'dMesaaaa*':
+			return '1 Enero 2015';
+
+		case 'ddMESaaaa':
+			return '01 ENE 2015';
+		case 'ddMESaaaa*':
+			return '01 ENERO 2015';
+
+		case 'ddMesaaaa':
+			return '01 Ene 2015';
+		case 'ddMesaaaa*':
+			return '01 Enero 2015';
+
+		case 'dMESaa':
+			return '1 ENE 15';
+		case 'dMESaa*':
+			return '1 ENERO 15';
+
+		case 'dMesaa':
+			return '1 Ene 15';
+		case 'dMesaa*':
+			return '1 Enero 15';
+
+		case 'ddMESaa':
+			return '01 ENE 15';
+		case 'ddMESaa*':
+			return '01 ENERO 15';
+
+		case 'ddMesaa':
+			return '01 Ene 15';
+		case 'ddMesaa*':
+			return '01 Enero 15';
+
+		case 'dmaaaa':
+			return '1 1 2015';
+		case 'dmmaaaa':
+			return '1 01 2015';
+		case 'ddmaaaa':
+			return '01 1 2015';
+		case 'ddmmaaaa':
+			return '01 01 2015';
+
+		case 'dmaa':
+			return '1 1 15';
+		case 'dmmaa':
+			return '1 01 15';
+		case 'ddmaa':
+			return '01 1 15';
+		case 'ddmmaa':
+			return '01 01 15';
+	}
+}
+
+function get_ejemplo_formato_fecha_emision ( selector_elemento ){
+	switch ( $( selector_elemento ).val() ){
+		case 'dMESaaaa':
+			return '1 ENERO 2015';
+		case 'ddMESaaaa':
+			return '01 ENERO 2015';
+
+		case 'dMesaaaa':
+			return '1 Enero 2015';
+		case 'ddMesaaaa':
+			return '1 Enero 2015';
+
+		case 'ddmmaaaa':
+			return '01 01 2015';
+		case 'ddmmaa':
+			return '01 01 15';
+
+		case 'ddmaaaa':
+			return '01 1 2015';
+		case 'ddmaa':
+			return '01 1 15';
+
+		case 'dmmaaaa':
+			return '1 01 2015';
+		case 'dmmaa':
+			return '1 01 15';
+
+		case 'dmaaaa':
+			return '1 1 2015';
+		case 'dmaa':
+			return '1 1 15';
+	}
+}
+
+function comportamiento_elementos_reporte (){
+	comportamiento_ver_horas_reporte();
+	comportamiento_ver_datos_formato();
+}
+
+function comportamiento_ver_horas_reporte (){
+	$('.ver_horas_reporte').click( function (){
+		ocultar_datos_formato();
+		mostrar_datos_reporte();
+		mostrar_horas_reporte();
+	});
+}
+
+function ocultar_datos_formato (){
+	$('.contenedor_datos_complementarios_reporte').addClass('oculto');
+}
+
+function mostrar_datos_reporte (){
+	$('.reporte_datos').removeClass('invisible');
+}
+
+function mostrar_horas_reporte (){
+	$('.contenedor_tabla_horas_reporte').removeClass('oculto invisible');
+}
+
+function comportamiento_ver_datos_formato (){
+	$('.ver_datos_formato').click( function (){
+		ocultar_datos_reporte();
+		ocultar_horas_reporte();
+		mostrar_datos_formato();
+	});
+}
+
+function ocultar_datos_reporte (){
+	$('.reporte_datos').addClass('invisible');
+}
+
+function ocultar_horas_reporte (){
+	$('.contenedor_tabla_horas_reporte').addClass('oculto invisible');
+}
+
+function mostrar_datos_formato (){
+	$('.contenedor_datos_complementarios_reporte').removeClass('oculto');
 }
