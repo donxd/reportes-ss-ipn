@@ -23,17 +23,19 @@
 							<div class="instrucciones">
 								<h3> INSTRUCCIONES </h3>
 								<ol>
-									<li>Ingrese la fecha de inicio del período del reporte.</li>
-									<li>Ingrese la fecha de cierre del período del reporte.</li>
-									<li>Seleccione los días que va a registrar.</li>
-									<li>Ingrese las horas de servicio.</li>
-									<li>Ingrese la hora de entrada.</li>
+									<li> Periodo y horas </li>
+									<li> Control de asistencias </li>
+									<li> Datos del reporte </li>
+									<li> Formato </li>
+									<li> Plantilla </li>
+									<li> Descargar  </li>
 								</ol>	
 							</div>
 						</div>
 						<div class="controles_datos_reporte">
-							<hr/>
-							<h3> FECHAS Y HORAS DEL REPORTE </h3>
+							<!-- <hr/> -->
+							<h3> <span class="paso_proceso"> #1. </span> PERIODO Y HORAS DEL REPORTE </h3>
+							<!-- <h3> FECHAS Y HORAS DEL REPORTE </h3> -->
 							<br/>
 							<table class="informacion">				
 								<tr>
@@ -111,12 +113,12 @@
 						</div>
 						<div>
 							<hr/>
-							<h3> CONFIGURAR FORMATO PARA DESCARGAR </h3>
+							<h3> <span class="paso_proceso"> #4. </span> CONFIGURAR FORMATO PARA DESCARGAR </h3>
 							<div>
 								<table class="configuracion_formato_reporte">
 									<tr>
 										<td colspan="2"></td>
-										<td> Ejemplo </td>
+										<td class="texto_centrado"> Ejemplo: </td>
 									</tr>
 									<tr>
 										<td> Mes del reporte : </td>
@@ -126,7 +128,7 @@
 												<option value="mes_normal"> Mes / Mes-Mes </option>
 											</select>
 										</td>
-										<td class="ejemplo_formato_mes_reporte"> ENERO / ENERO-FEBRERO </td>
+										<td class="ejemplo_formato ejemplo_formato_mes_reporte"> ENERO / ENERO-FEBRERO </td>
 									</tr>
 									<tr>
 										<td> Fecha horas : </td>
@@ -140,7 +142,7 @@
 												<option value="aa-mm-dd"> aa-mm-dd </option>
 											</select>
 										</td>
-										<td class="ejemplo_formato_fechas_horas"> 01/01/15 </td>
+										<td class="ejemplo_formato ejemplo_formato_fechas_horas"> 01/01/15 </td>
 									</tr>
 									<tr>
 										<td> Horas : </td>
@@ -150,7 +152,7 @@
 												<option value="horas_formato"> 00:00 </option>
 											</select>
 										</td>
-										<td class="ejemplo_formato_horas_reporte"> 8:00 </td>
+										<td class="ejemplo_formato ejemplo_formato_horas_reporte"> 8:00 </td>
 									</tr>
 									<tr>
 										<td> Periodo del reporte : </td>
@@ -182,12 +184,19 @@
 												<option value="ddmmaa"> dd mm aa </option>
 											</select>
 										</td>
-										<td class="ejemplo_formato_periodo_reporte"> 1 ENE 2015 </td>
+										<td class="ejemplo_formato ejemplo_formato_periodo_reporte"> 1 ENE 2015 </td>
+									</tr>
+									<tr>
+										<td colspan="3"> &nbsp; <br/> &nbsp; </td>
 									</tr>
 									<tr>
 										<td> Fecha de emisión : </td>
 										<td>
 											<select class="formato_fecha_emision">
+												<option value="dMESaaaa*"> d MES aaaa* </option>
+												<option value="ddMESaaaa*"> dd MES aaaa* </option>
+												<option value="ddMesaaaa*"> dd Mes aaaa* </option>
+												<option value="dMesaaaa*"> d Mes aaaa* </option>
 												<option value="dMESaaaa"> d MES aaaa </option>
 												<option value="ddMESaaaa"> dd MES aaaa </option>
 												<option value="dMesaaaa"> d Mes aaaa </option>
@@ -202,7 +211,7 @@
 												<option value="dmaa"> d m aa </option>
 											</select>
 										</td>
-										<td class="ejemplo_formato_fecha_emision"> 1 ENERO 2015 </td>
+										<td class="ejemplo_formato ejemplo_formato_fecha_emision"> 1 ENERO 2015 </td>
 									</tr>
 								</table>
 							</div>
@@ -236,21 +245,23 @@
 											</td>
 										</tr>
 										<tr>
-											<td> Total de horas del periodo : </td>
+											<td> Total de horas <br/> del periodo : </td>
 											<td>
 												<input type="text" class="periodo_horas elemento" readonly/>
 											</td>
 										</tr>
 									</table>
+									<br/>
+									<h3 class="sin_margen_abajo"> Control de asistencias </h3>
 								</div>
 							</div>
 							<div class="celda">
 								<div class="contenedor_enlace_descargar invisible">
-									<input type="button" class="boton_accion ver_horas_reporte" value="Horas del reporte"/> &nbsp;
-									<input type="button" class="boton_accion ver_datos_formato" value="Datos del reporte"/> <br/> <br/>
+									<input type="button" class="boton_accion ver_horas_reporte" value=" 2. Control de asistencias"/>
+									<input type="button" class="boton_accion ver_datos_formato" value="3. Datos del reporte"/> <br/> <br/>
 									<div class="una_linea">
 										<form class="formulario_reporte" action="recursos/generador_reporte.php" method="post" target="_blank">											
-											<select class="tipo_plantilla">
+											<select class="tipo_plantilla" title="Plantilla">
 												<option value="upiicsa"> UPIICSA </option>
 												<option value="generica"> Genérica </option>
 											</select>
@@ -334,7 +345,9 @@
 									</table>
 								</div>
 							</div>
+							<br/>
 							<hr/>
+							<br/>
 							<table class="datos_complementarios_reporte">
 								<tr>
 									<td class="una_linea"> Actividades : </td>
@@ -349,7 +362,9 @@
 									</td>
 								</tr>
 							</table>
+							<br/>
 							<hr/>
+							<br/>
 							<div class="tabla">
 								<div class="celda alineacion_vertical_medio">
 									<table class="datos_complementarios_reporte">

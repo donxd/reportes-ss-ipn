@@ -58,6 +58,10 @@ input {
 	text-align: center;
 }
 
+input[type=text] {
+	border : 1px solid #7B7B7B;
+}
+
 .contenido {
 	display          : table;
 	background-color : #FFF;
@@ -235,10 +239,14 @@ input {
 }
 
 .contenedor_controles hr {
-	max-width : 450px;
+	margin-right: 60px;
 	border : none;
 	border-bottom: 1px solid #000;
-	margin: 0px;
+}
+
+.contenedor_datos_complementarios_reporte hr {
+	border : none;
+	border-bottom: 1px solid #D8D8D8;
 }
 
 .alineacion_vertical_arriba {
@@ -293,4 +301,37 @@ input {
 	font-weight           : 700;
 	height                : 32px;
 	padding               : 4px 16px;
+}
+
+.ejemplo_formato {
+	color : #20B528;
+	font-size : 15px;
+	padding-left : 20px;
+}
+
+.configuracion_formato_reporte select {
+	width : 130px;
+}
+
+.texto_centrado {
+	text-align : center;
+}
+
+  .descargar
+, .tipo_plantilla
+, .boton_accion {
+	cursor : pointer;
+}
+
+.paso_proceso {
+	color : red;
+	font-family : monospace;
+}
+
+.sin_margen_abajo {
+	margin-bottom: 0px;
+}
+
+.informacion input[type=text] {
+	width: 180px;
 }
