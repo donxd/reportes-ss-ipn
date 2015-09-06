@@ -260,7 +260,7 @@ function procesa_respuesta_peticion_dias_reporte ( respuesta ){
 }
 
 function almacena_respuesta ( respuesta ){
-	window.datos_reporte = ( typeof( respuesta ) == 'string' ) ? JSON.parse(  respuesta ) : respuesta;
+	window.datos_reporte = ( typeof( respuesta ) == 'string' ) ? JSON.parse( respuesta ) : respuesta;
 }
 
 function comportamiento_tipo_dias (){
@@ -368,7 +368,7 @@ function genera_hora_entrada (rango){
 		entrada += ':00';
 	}
 	// console.log('hora_entrada ('+rango+')->'+entrada);
-	$('.entrada').html( entrada );
+	$('.entrada').val( entrada );
 }
 
 function genera_reporte (){
@@ -382,10 +382,12 @@ function asigna_datos_cabecera_reporte (){
 	if ( window.datos_reporte != null ){
 		window.datos_reporte.total_horas_reporte = get_total_horas_reporte();
 		window.datos_reporte.horas_dia = get_horas_dia_reporte();
-		$('.periodo_inicio').val( aplica_formato_periodo_reporte( window.datos_reporte.periodo.fecha_inicio ) );
-		$('.periodo_cierre').val( aplica_formato_periodo_reporte( window.datos_reporte.periodo.fecha_cierre ) );
-		$('.periodo_mes').val( aplica_formato_mes_reporte( window.datos_reporte.mes ) );
-		$('.periodo_horas').val( window.datos_reporte.total_horas_reporte );
+		if ( window.datos_reporte.periodo != null ){
+			$('.periodo_inicio').val( aplica_formato_periodo_reporte( window.datos_reporte.periodo.fecha_inicio ) );
+			$('.periodo_cierre').val( aplica_formato_periodo_reporte( window.datos_reporte.periodo.fecha_cierre ) );
+			$('.periodo_mes').val( aplica_formato_mes_reporte( window.datos_reporte.mes ) );
+			$('.periodo_horas').val( window.datos_reporte.total_horas_reporte );
+		}
 	}
 }
 
@@ -396,8 +398,17 @@ function get_total_horas_reporte (){
 }
 
 function get_numero_dias_laborales (){
-	if ( window.datos_reporte != null && window.datos_reporte.dias != null )
-		return window.datos_reporte.dias.length;
+	if ( window.datos_reporte != null && window.datos_reporte.dias != null ){
+		var dias_asistencia = 0;
+		// console.group();
+		for ( var dia in window.datos_reporte.dias ){
+			// console.log( ' festivo : ', window.datos_reporte.dias[ dia ].festivo );
+			if ( !window.datos_reporte.dias[ dia ].festivo ) 
+				dias_asistencia++;
+		}
+		// console.groupEnd();
+		return dias_asistencia;
+	}
 	return 0;
 }
 
@@ -487,7 +498,7 @@ function fija_horas_reporte (){
 
 function set_horas_reporte (){
 	var hora_salida = '';
-	var hora_entrada = $('.entrada').html();
+	var hora_entrada = $('.entrada').val();
 	var horas_dia = $('.horas_dia').val();
 
 	if (hora_entrada.length > 0 && horas_dia.length > 0){
@@ -721,24 +732,69 @@ function agregaCeros ( numero_parametro ){
 }
 
 function comportamiento_descargar_reporte (){
-	$('.descargar').click( function (){
-		if ( datos_validos_reporte() ){
+	$('.entrada').focus( function (){
+		$('.entrada_rango').focus();
+	});
+	$('.formulario_reporte').submit( function (){
+		try {
+			valida_hora_entrada();
+			verifica_validacion_datos_reporte();
 			agrega_datos_reporte();
-			$('.formulario_reporte').submit();
+		} catch( error ){
+			return false;
 		}
 	});
 }
 
-function datos_validos_reporte (){
-	if ( window.datos_reporte.horas_dia == undefined || window.datos_reporte.horas_dia == null || window.datos_reporte.horas_dia == 0 ){
-		$('.horas_dia').focus();
-		return false;
-	}
-	if ( window.reporte.hora_entrada == undefined || window.reporte.hora_entrada == null || window.reporte.hora_entrada.length == 0 ){
+function valida_hora_entrada (){
+	if ( $('.entrada').val().length == 0 ){
 		$('.entrada_rango').focus();
-		return false;
+		throw true;
 	}
-	return true;
+}
+
+function verifica_validacion_datos_reporte (){
+	var dependencia = $('.numero_reporte').prop('required');
+	// console.log( 'dependencia : ', dependencia );
+	if ( !dependencia ){
+		agrega_dependencia_campos_datos_reporte( get_campos_datos_reporte() );
+		setTimeout( revalida_datos_reporte, 250 );
+		throw true;
+	}
+}
+
+function revalida_datos_reporte (){
+	$('.ver_datos_formato').click();
+	$('.descargar').click();
+}
+
+function get_campos_datos_reporte (){
+	return new Array(
+		  '.numero_reporte'
+		, '.carrera'
+		, '.nombre_alumno'
+		, '.boleta'
+		, '.correo'
+		, '.telefono'
+		, '.dependencia'
+		, '.nombre_responsable'
+		, '.puesto_responsable'
+		, '.actividad_1'
+		, '.actividad_2'
+		, '.actividad_3'
+		, '.fecha_emision'
+		, '.total_horas_acumuladas_anterior'
+	);
+}
+
+function agrega_dependencia_campos_datos_reporte ( campos ){
+	for ( var campo in campos ){
+		agrega_dependencia_campo( campos[ campo ] );
+	}
+}
+
+function agrega_dependencia_campo ( selector ){
+	$( selector ).prop( 'required', true );
 }
 
 function agrega_datos_reporte (){

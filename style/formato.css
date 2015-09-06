@@ -335,3 +335,20 @@ input[type=text] {
 .informacion input[type=text] {
 	width: 180px;
 }
+
+.informacion input[type=text].entrada {
+	border     : none;
+	text-align : right;
+	width      : 180px;
+	background-color : rgba(0, 0, 0, 0);
+}
+
+.entrada_rango{
+	left       : -180px;
+	position   : relative;
+}
+
+  .nombre_alumno
+, .carrera {
+	width : 250px;
+}
