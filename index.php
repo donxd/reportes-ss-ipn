@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="lib/datetimepicker-master/jquery.datetimepicker.css">
 	</head>
 	<body>
-		<form class="formulario_reporte" action="/recursos/generador_reporte.php" method="post" target="_blank">
+		<form class="formulario_reporte" action="recursos/generador_reporte.php" method="post" target="_blank">
 			<div class="cabecera">
 				<table>
 					<tr>
@@ -74,7 +74,7 @@
 										<td class="una_linea"> Días del servicio : </td>
 										<td>
 											<label>
-												<input type="radio" name="tipo_dias" class="entre_semana tipo_dias" value="es"/>
+												<input type="radio" name="tipo_dias" class="entre_semana tipo_dias" value="es" checked />
 												Lunes a Viernes
 											</label>
 											<br/>
