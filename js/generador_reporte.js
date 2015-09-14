@@ -12,9 +12,12 @@ $(document).ready( function(){
 	comportamiento_genera_reporte();
 	comportamiento_descargar_reporte();
 	comportamiento_ejemplos_formato_datos();
-	comportamiento_elementos_reporte();
+	// comportamiento_elementos_reporte();
 	// comportamiento_redimension_pagina();
 	// $('.fecha_inicio').focus();
+	comportamiento_presentacion();
+	comportamiento_desplazamiento_secciones();
+	comportamiento_almacenamiento_datos();
 });
 
 function inicializa_valores_tiempo (){
@@ -651,10 +654,10 @@ function get_reporte_horas_dia (){
 }
 
 function muestra_reporte (){
-	ajusta_altura_tabla_horas_reporte();
+	// ajusta_altura_tabla_horas_reporte();
 	$('.contenedor_tabla_horas_reporte').removeClass('invisible');
-	$('.contenedor_reporte_datos').removeClass('invisible');
-	mostrar_datos_reporte();
+	// $('.contenedor_reporte_datos').removeClass('invisible');
+	// mostrar_datos_reporte();
 }
 
 function ajusta_altura_tabla_horas_reporte (){
@@ -1067,8 +1070,8 @@ function get_ejemplo_formato_fecha_emision ( selector_elemento ){
 }
 
 function comportamiento_elementos_reporte (){
-	comportamiento_ver_horas_reporte();
-	comportamiento_ver_datos_formato();
+	// comportamiento_ver_horas_reporte();
+	// comportamiento_ver_datos_formato();
 }
 
 function comportamiento_ver_horas_reporte (){
@@ -1113,4 +1116,122 @@ function mostrar_datos_formato (){
 
 function muestra_informacion_reporte ( formulario ){
 	console.log( JSON.stringify( formulario.serializeArray() ) );
+}
+
+function enfoca_seccion ( elemento ){
+	console.log( 'posicion : ', window.posiciones_secciones[ elemento ] );
+	$( '.segmentacion' ).animate( {
+		scrollLeft : window.posiciones_secciones[ elemento ]
+	}, 300 );
+}
+
+function comportamiento_presentacion (){
+	$( window ).resize( function (){
+		ajusta_tamanio_principal();
+	});
+	ajusta_tamanio_principal();
+}
+
+function ajusta_tamanio_principal (){
+	// $('.separador_cabecera').height( $('.cabecera').height() );
+	// $('.separador_controles').height( $('.controles_contenido').height() + 50 );
+	// $('.segmentacion').height( $('.controles_contenido').height() );
+	console.log( sprintf(' wh : %d, ch : %d, sch : %d', window.innerHeight, $('.cabecera').height(), $('.contenedor_controles_contenido').height() ) );
+	$('.segmentacion').width( $( window ).width() );
+	$('.segmentacion').height( window.innerHeight - $('.cabecera').height() - $('.contenedor_controles_contenido').height() );
+}
+
+function comportamiento_desplazamiento_secciones (){
+	window.posiciones_secciones = {
+		  'controles_datos_reporte'         		 : $('.controles_datos_reporte').offset().left
+		, 'contenedor_fechas_horas_reporte' 		 : $('.contenedor_fechas_horas_reporte').offset().left
+		, 'controles_formato_reporte'       		 : $('.controles_formato_reporte').offset().left
+		, 'contenedor_datos_complementarios_reporte' : $('.contenedor_datos_complementarios_reporte').offset().left
+	}
+	$('.ver_periodos').click( function (){
+		enfoca_seccion( 'controles_datos_reporte' );
+	});
+	$('.ver_fechas_horas').click( function (){
+		enfoca_seccion( 'contenedor_fechas_horas_reporte' );
+	});
+	$('.ver_datos_formato').click( function (){
+		enfoca_seccion( 'controles_formato_reporte' );
+	});
+	$('.ver_datos_complementarios').click( function (){
+		enfoca_seccion( 'contenedor_datos_complementarios_reporte' );
+	});
+}
+
+function comportamiento_almacenamiento_datos (){
+    if ( verificacion_almacenamiento() ){
+		agrega_eventos_almacenamiento();
+		verifica_datos_almacenados();
+    }
+}
+
+function verificacion_almacenamiento (){
+	var test = 'test';
+    try {
+        localStorage.setItem(test, test);
+        localStorage.removeItem(test);
+        return true;
+    } catch(e) {
+        return false;
+    }
+}
+
+function agrega_eventos_almacenamiento (){
+	var elementos = get_lista_elementos_almacenamiento();
+
+	for ( var elemento in elementos ){
+		var clase = elementos[ elemento ];
+		var selector = get_selector( clase );
+		// console.log( sprintf( 'clase : %s, selector : %s ', clase, selector) );
+		crea_evento_almacenamiento_dato( selector, clase );
+	}
+}
+
+function get_lista_elementos_almacenamiento () {
+	return [
+		  'numero_reporte'
+		, 'nombre_alumno'
+		, 'correo'
+		, 'carrera'
+		, 'boleta'
+		, 'telefono'
+		, 'dependencia'
+		, 'nombre_responsable'
+		, 'puesto_responsable'
+		, 'actividad_1'
+		, 'actividad_2'
+		, 'actividad_3'
+		, 'actividad_4'
+		, 'actividad_5'
+		, 'fecha_emision'
+		, 'total_horas_acumuladas_anterior'
+	];
+}
+
+function get_selector ( clase ){
+	return sprintf( '.%s', clase );
+}
+
+function crea_evento_almacenamiento_dato ( selector, clase ){
+	$( selector ).change( function (){
+		almacena_dato( clase, $( selector ).val() );
+	});
+}
+
+function almacena_dato ( nombre, valor ){
+	if ( valor.length > 0 ){
+		localStorage.setItem( nombre, valor );
+	} else {
+		localStorage.removeItem( nombre );
+	}
+}
+
+function verifica_datos_almacenados (){
+	for ( var elemento in localStorage ){
+		$( get_selector( elemento ) ).val( localStorage[ elemento ] );
+	}
 }
