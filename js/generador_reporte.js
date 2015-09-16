@@ -18,6 +18,7 @@ $(document).ready( function(){
 	comportamiento_presentacion();
 	comportamiento_desplazamiento_secciones();
 	comportamiento_almacenamiento_datos();
+	comportamiento_numero_reporte();
 });
 
 function inicializa_valores_tiempo (){
@@ -1129,14 +1130,14 @@ function comportamiento_presentacion (){
 	$( window ).resize( function (){
 		ajusta_tamanio_principal();
 	});
-	ajusta_tamanio_principal();
+	setTimeout( ajusta_tamanio_principal, 200 );
 }
 
 function ajusta_tamanio_principal (){
 	// $('.separador_cabecera').height( $('.cabecera').height() );
 	// $('.separador_controles').height( $('.controles_contenido').height() + 50 );
 	// $('.segmentacion').height( $('.controles_contenido').height() );
-	console.log( sprintf(' wh : %d, ch : %d, sch : %d', window.innerHeight, $('.cabecera').height(), $('.contenedor_controles_contenido').height() ) );
+	// console.log( sprintf(' wh : %d, ch : %d, sch : %d', window.innerHeight, $('.cabecera').height(), $('.contenedor_controles_contenido').height() ) );
 	$('.segmentacion').width( $( window ).width() );
 	$('.segmentacion').height( window.innerHeight - $('.cabecera').height() - $('.contenedor_controles_contenido').height() );
 }
@@ -1234,4 +1235,13 @@ function verifica_datos_almacenados (){
 	for ( var elemento in localStorage ){
 		$( get_selector( elemento ) ).val( localStorage[ elemento ] );
 	}
+}
+
+function comportamiento_numero_reporte (){
+	$('.numero_reporte').change( function (){
+		if ( $( this ).val() == '1' ){
+			$('.total_horas_acumuladas_anterior').val( 0 );
+			localStorage.setItem( 'total_horas_acumuladas_anterior', 0 );
+		}
+	});
 }

@@ -341,6 +341,7 @@ input[type=text] {
 .entrada_rango{
 	left       : -180px;
 	position   : relative;
+	width: 120px;
 }
 
   .puesto_responsable

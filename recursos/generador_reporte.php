@@ -213,9 +213,13 @@ class reporte {
 		$dias = json_decode( $_POST['dias'] );
 
 		foreach ( $dias as $dia ){
+			$contenido_celda = $_POST['hora_entrada'];
+			if ( $dia->festivo ){
+				$contenido_celda = 'DIA';
+			}
 			$this->objetoPHPExcel->getActiveSheet()->setCellValue( 
 				sprintf( '%s%d', $columna, $posicion_inicio )
-				, $_POST['hora_entrada']
+				, $contenido_celda
 			);
 			$posicion_inicio++;
 		}
@@ -228,9 +232,13 @@ class reporte {
 		$dias = json_decode( $_POST['dias'] );
 
 		foreach ( $dias as $dia ){
+			$contenido_celda = $_POST['hora_salida'];
+			if ( $dia->festivo ){
+				$contenido_celda = 'FESTIVO';
+			}
 			$this->objetoPHPExcel->getActiveSheet()->setCellValue( 
 				sprintf( '%s%d', $columna, $posicion_inicio )
-				, $_POST['hora_salida']
+				, $contenido_celda
 			);
 			$posicion_inicio++;
 		}
@@ -255,13 +263,16 @@ class reporte {
 		$horas_dia = $this->configuracion_plantilla['horas_dia'];
 		$columna = $horas_dia['columna'];
 		$posicion_inicio = $horas_dia['posicion'];
-		$numero_dias = count( json_decode( $_POST['dias'] ) );
+		$dias = json_decode( $_POST['dias'] );
 
-		for ( $contador = 0; $contador < $numero_dias; $contador++, $posicion_inicio++ ){
-			$this->objetoPHPExcel->getActiveSheet()->setCellValue( 
-				sprintf( '%s%d', $columna, $posicion_inicio )
-				, $_POST['horas_dia']
-			);
+		foreach ( $dias as $dia ){
+			if ( !$dia->festivo ){
+				$this->objetoPHPExcel->getActiveSheet()->setCellValue( 
+					sprintf( '%s%d', $columna, $posicion_inicio )
+					, $_POST['horas_dia']
+				);
+			}
+			$posicion_inicio++;
 		}
 	}
 
