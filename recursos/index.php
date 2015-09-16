@@ -53,10 +53,10 @@
 	function genera_salida ( $periodo_tiempo, $dias_reporte ){
 		$salida = sprintf( 
 			'{ 
-				  "consulta"            : true
-				, "mes"                 : "%s"
-				, "periodo"             : %s
-				, "dias"                : %s
+				  "consulta" : true
+				, "mes"      : "%s"
+				, "periodo"  : %s
+				, "dias"     : %s
 			}'
 			, get_mes_periodo( $periodo_tiempo )
 			, get_periodo_fechas( $periodo_tiempo )

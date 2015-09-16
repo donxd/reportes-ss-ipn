@@ -23,11 +23,11 @@ $(document).ready( function(){
 
 function inicializa_valores_tiempo (){
 	moment.locale('es');
-	var tiempo_actual = moment();
+	var tiempo_mes_anterior = moment().startOf('month').subtract(1, 'days');
 	window.tiempo = {
-		  periodo_actual : get_periodo( tiempo_actual )
-		, dias_mes_actual : get_dias_mes( tiempo_actual )
-		, periodo_siguiente : get_periodo_siguiente( tiempo_actual )
+		  periodo_actual : get_periodo( tiempo_mes_anterior )
+		, dias_mes_actual : get_dias_mes( tiempo_mes_anterior )
+		, periodo_siguiente : get_periodo_siguiente( tiempo_mes_anterior )
 	};
 }
 
@@ -105,6 +105,9 @@ function get_opciones_control_fecha (){
 }
 
 function agrega_comportamiento_controles_periodo_fecha (){
+	$('.control_periodo_fecha').focus( function (){
+		$('input.tipo_reporte[value=pp]').prop('checked', true);
+	});
 	$('.control_periodo_fecha').change( function (){
 		if ( fechas_validas_controles_fecha() ){
 			inicializa_fechas_peticion();
@@ -113,7 +116,7 @@ function agrega_comportamiento_controles_periodo_fecha (){
 }
 
 function fechas_validas_controles_fecha (){
-	return ( $('.fecha_inicio').val().length > 0 && $('.fecha_cierre').val().length );
+	return ( $('.fecha_inicio').val().length > 0 && $('.fecha_cierre').val().length > 0 );
 }
 
 function agrega_comportamiento_fecha_inicio (){
@@ -225,8 +228,12 @@ function procesa_respuesta_peticion_dias_reporte ( respuesta ){
 	// console.log(' --- procesa_respuesta_peticion_dias_reporte --- ');
 
 	almacena_respuesta( respuesta );
-	respalda_repuesta_peticion_dias_reporte();
-	genera_reporte();
+	if ( window.respuesta_peticion_dias_reporte.consulta ){
+		respalda_repuesta_peticion_dias_reporte();
+		genera_reporte();
+	} else {
+		alert('El periodo que ha seleccionado no puede ser procesado, verifiquelo e intenta nuevamente.');
+	}
 
 	// console.log('---------------------');
 	// console.log( sprintf( 
