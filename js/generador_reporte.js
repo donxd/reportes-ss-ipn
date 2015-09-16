@@ -17,6 +17,7 @@ $(document).ready( function(){
 	// $('.fecha_inicio').focus();
 	comportamiento_presentacion();
 	comportamiento_desplazamiento_secciones();
+	comportamiento_lista_carreras();
 	comportamiento_almacenamiento_datos();
 	comportamiento_numero_reporte();
 });
@@ -47,6 +48,7 @@ function inicializa_variables_control (){
 	window.peticion = {};
 	window.reporte = {};
 	window.tiempo;
+	window.seleccion_plantilla_anterior = '';
 }
 
 function comportamiento_dia_inicio_reporte (){
@@ -736,7 +738,7 @@ function comportamiento_descargar_reporte (){
 	$('.formulario_reporte').submit( function (){
 		try {
 			valida_hora_entrada();
-			verifica_validacion_datos_reporte();
+			// verifica_validacion_datos_reporte();
 			agrega_datos_reporte();
 			muestra_informacion_reporte( $(this) );
 		} catch( error ){
@@ -798,6 +800,7 @@ function agrega_dependencia_campo ( selector ){
 
 function agrega_datos_reporte (){
 	var formulario = $('.formulario_reporte');
+	var carrera = $('.tipo_plantilla').val() != 'generica' ? $('.lista_carreras').val() : $('.carrera').val();
 	formulario.append( campo_dato_reporte( 'fecha_inicio', $('.periodo_inicio').val() ) );
 	formulario.append( campo_dato_reporte( 'fecha_cierre', $('.periodo_cierre').val() ) );
 	formulario.append( campo_dato_reporte( 'mes', $('.periodo_mes').val() ) );
@@ -807,7 +810,7 @@ function agrega_datos_reporte (){
 	formulario.append( campo_dato_reporte( 'hora_salida', get_reporte_hora_salida() ) );
 	formulario.append( campo_dato_reporte( 'dias', JSON.stringify( aplica_formato_fecha_horas_dias() ) ) );
 	formulario.append( campo_dato_reporte( 'numero_reporte', $('.numero_reporte').val() ) );
-	formulario.append( campo_dato_reporte( 'carrera', $('.carrera').val() ) );
+	formulario.append( campo_dato_reporte( 'carrera', carrera ) );
 	formulario.append( campo_dato_reporte( 'nombre_alumno', $('.nombre_alumno').val() ) );
 	formulario.append( campo_dato_reporte( 'boleta', $('.boleta').val() ) );
 	formulario.append( campo_dato_reporte( 'correo', $('.correo').val() ) );
@@ -1217,6 +1220,8 @@ function get_lista_elementos_almacenamiento () {
 		, 'actividad_5'
 		, 'fecha_emision'
 		, 'total_horas_acumuladas_anterior'
+		, 'lista_carreras'
+		, 'tipo_plantilla'
 	];
 }
 
@@ -1251,4 +1256,93 @@ function comportamiento_numero_reporte (){
 			localStorage.setItem( 'total_horas_acumuladas_anterior', 0 );
 		}
 	});
+}
+
+function comportamiento_lista_carreras (){
+	$('.tipo_plantilla').change( function (){
+		crea_lista_carreras();
+	});
+	crea_lista_carreras();
+}
+
+function crea_lista_carreras (){
+	var plantilla = $('.tipo_plantilla').val();
+	if ( plantilla != 'generica' ){
+		if ( plantilla != window.seleccion_plantilla_anterior ){
+			switch( plantilla ){
+				case 'upiicsa':
+					agrega_opciones_carreras_lista( get_lista_carreras_upiicsa() );
+					break;
+			}
+			window.seleccion_plantilla_anterior = plantilla;
+		}
+		ocultar_control_carrera_manual();
+		remueve_dependencia_carrera_manual();
+		mostrar_lista_carreras();
+		agrega_dependencia_lista_carreras();
+	} else {
+		ocultar_lista_carreras();
+		remueve_dependencia_lista_carreras();
+		mostrar_control_carrera_manual();
+		agrega_dependencia_carrera_manual();
+	}
+}
+
+function get_lista_carreras_upiicsa (){
+	return [
+		  'INGENIERIA EN INFORMATICA'
+		, 'INGENIERIA INDUSTRIAL'
+		, 'INGENIERIA EN TRANSPORTE'
+		, 'ADMINISTRACION INDUSTRIAL'
+		, 'CIENCIAS DE LA INFORMATICA'
+	];
+}
+
+function agrega_opciones_carreras_lista ( carreras ){
+	$('.lista_carreras').html( genera_opciones_carreras( carreras ) );
+}
+
+function genera_opciones_carreras ( carreras ){
+	var opciones = [];
+	for ( carrera in  carreras ){
+		opciones.push( sprintf( 
+			'<option value="%s"> %s </opction>'
+				, carreras[ carrera ]
+				, carreras[ carrera ]
+			) 
+		);
+	}
+	return opciones.join('');
+}
+
+function ocultar_control_carrera_manual (){
+	$('.carrera').addClass('oculto');
+}
+
+function remueve_dependencia_carrera_manual (){
+	$('.carrera').prop( 'required', false );
+}
+
+function agrega_dependencia_lista_carreras (){
+	$('.lista_carreras').prop( 'required', true );
+}
+
+function mostrar_lista_carreras (){
+	$('.lista_carreras').removeClass('oculto');
+}
+
+function ocultar_lista_carreras (){
+	$('.lista_carreras').addClass('oculto');
+}
+
+function remueve_dependencia_lista_carreras (){
+	$('.lista_carreras').prop( 'required', false );
+}
+
+function agrega_dependencia_carrera_manual (){
+	$('.carrera').prop( 'required', true );
+}
+
+function mostrar_control_carrera_manual (){
+	$('.carrera').removeClass('oculto');
 }

@@ -271,7 +271,7 @@
 									<tr>
 										<td colspan="3" class="advertencia_formato"> 
 											<hr/>
-											<br/> « Verificar que el formato de los datos se correcto » <br/> <br/>
+											<br/> « Verificar que el formato de los datos sea correcto » <br/> <br/>
 											<hr/>
 											<br/> <br/>
 										</td>
@@ -396,37 +396,38 @@
 												<tr>
 													<td class="una_linea"> Número de reporte : </td>
 													<td>
-														<input type="number" min="1" class="numero_reporte" placeholder="#" pattern="\d+" />
+														<input type="number" min="1" class="numero_reporte" placeholder="#" pattern="\d+" required/>
 													</td>
 												</tr>
 												<tr>
 													<td class="una_linea"> Nombre del alumno: </td>
 													<td>
-														<input type="text" class="nombre_alumno"/>
+														<input type="text" class="nombre_alumno" required/>
 													</td>
 												</tr>
 												<tr>
 													<td class="una_linea"> Correo electrónico : </td>
 													<td>
-														<input type="text" class="correo" placeholder="usuario@cuenta.xy" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*"/>
+														<input type="text" class="correo" placeholder="usuario@cuenta.xy" pattern="[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*" required/>
 													</td>
 												</tr>
 												<tr>
 													<td class="una_linea"> Carrera : </td>
 													<td>
-														<input type="text" class="carrera"/>
+														<input type="text" class="carrera oculto"/>
+														<select class="lista_carreras" required></select>
 													</td>
 												</tr>
 												<tr>
 													<td class="una_linea"> Boleta : </td>
 													<td>
-														<input type="text" class="boleta" placeholder="20XXPPXXXX" pattern="\d{10}"/>
+														<input type="text" class="boleta" placeholder="20XXPPXXXX" pattern="\d{10}" required/>
 													</td>
 												</tr>
 												<tr>
 													<td class="una_linea"> Teléfono : </td>
 													<td>
-														<input type="text" class="telefono"/>
+														<input type="text" class="telefono" required/>
 													</td>
 												</tr>
 											</table>
@@ -437,19 +438,19 @@
 												<tr>
 													<td> Dependencia donde <br/> se realiza el servicio social : </td>
 													<td>
-														<input type="text" class="dependencia"/>
+														<input type="text" class="dependencia" required/>
 													</td>
 												</tr>
 												<tr>
 													<td class="una_linea"> Responsable directo : </td>
 													<td>
-														<input type="text" class="nombre_responsable" placeholder="Nombre"/>
+														<input type="text" class="nombre_responsable" placeholder="Nombre" required/>
 													</td>
 												</tr>
 												<tr>
 													<td></td>
 													<td>
-														<input type="text" class="puesto_responsable" placeholder="Puesto"/>
+														<input type="text" class="puesto_responsable" placeholder="Puesto" required/>
 													</td>
 												</tr>
 											</table>
@@ -472,9 +473,9 @@
 												<tr>
 													<td class="una_linea"> Actividades : </td>
 													<td>
-														<input type="text" class="actividad_reporte actividad_1" placeholder="1"/> <br/>
-														<input type="text" class="actividad_reporte actividad_2" placeholder="2"/> <br/>
-														<input type="text" class="actividad_reporte actividad_3" placeholder="3"/> <br/>
+														<input type="text" class="actividad_reporte actividad_1" placeholder="1" required/> <br/>
+														<input type="text" class="actividad_reporte actividad_2" placeholder="2" required/> <br/>
+														<input type="text" class="actividad_reporte actividad_3" placeholder="3" required/> <br/>
 														<input type="text" class="actividad_reporte actividad_4" placeholder="4"/> <br/>
 														<input type="text" class="actividad_reporte actividad_5" placeholder="5"/> <br/>
 													</td>
@@ -487,13 +488,13 @@
 												<tr>
 													<td class="una_linea"> Fecha de emisión : </td>
 													<td>
-														<input type="text" class="fecha_emision control_fecha" placeholder="dd-mm-aaaa" pattern="\d{2}-\d{2}-\d{4}"/>
+														<input type="text" class="fecha_emision control_fecha" placeholder="dd-mm-aaaa" pattern="\d{2}-\d{2}-\d{4}" required/>
 													</td>
 												</tr>
 												<tr>
 													<td class="una_linea"> Total de horas <br/> acumuladas anterior : </td>
 													<td>
-														<input type="number" min="0" class="total_horas_acumuladas_anterior" placeholder="#" pattern="\d+" />
+														<input type="number" min="0" class="total_horas_acumuladas_anterior" placeholder="#" pattern="\d+" required/>
 													</td>
 												</tr>
 											</table>
