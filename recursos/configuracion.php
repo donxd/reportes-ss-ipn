@@ -3,13 +3,13 @@
 define( 'CARPETA_CODIGO', '/opt/lampp/htdocs/');
 
 define( 'URL_DB'    , '127.0.0.1' );
-define( 'NOMBRE_BD' , 'reportess' );
+define( 'NOMBRE_BD' , 'donxd_reportess' );
 
-define( 'USUARIO_SOLO_LECTURA'     , 'root');
-define( 'CONTRASENIA_SOLO_LECTURA' , '');
+define( 'USUARIO_SOLO_LECTURA'     , 'donxd_reportess');
+define( 'CONTRASENIA_SOLO_LECTURA' , 'NJE73V6OMD');
 
-define( 'USUARIO_EDICION'     , 'root');
-define( 'CONTRASENIA_EDICION' , '');
+define( 'USUARIO_EDICION'     , 'donxd_reportess');
+define( 'CONTRASENIA_EDICION' , 'NJE73V6OMD');
 
 define( 'CONEXION_SOLO_LECTURA' , 0 );
 define( 'CONEXION_EDICION'      , 1 );
