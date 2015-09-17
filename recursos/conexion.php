@@ -65,7 +65,7 @@ class conexion {
 	}
 
 	private function procesa_error (){
-		$log = new log( CARPETA_CODIGO.'recursos/log.txt' );
+		$log = new log();
 	}
 	
 	function cerrar ( &$enlace ){

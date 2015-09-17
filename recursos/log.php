@@ -10,7 +10,7 @@ class log {
 
 	function __construct ( $nombre_logger = NULL ){
 		if ( is_null( $nombre_logger ) )
-			$this->direccion_archivo = 'log.txt';
+			$this->direccion_archivo = sprintf('log[ %s ].txt', date('Y-m-d') );
 		else 
 			$this->direccion_archivo = $nombre_logger;
 	}
