@@ -19,6 +19,7 @@ define( 'CONEXION_ESTATUS_CON_CONEXION' , TRUE );
 
 define( 'ERROR_CONEXION'        , 100 );
 define( 'ERROR_CONEXION_CERRAR' , 101 );
+define( 'ERROR_CONSULTA'        , 102 );
 define( 'ERROR_PARAMETROS'      , 200 );
 define( 'ERROR_PERIODO_DIAS'    , 201 );
 define( 'ERROR_ARCHIVO'         , 202 );
@@ -33,5 +34,6 @@ define( 'NUMERO_DIA_VIERNES' , 5 );
 define( 'LIMITE_DIAS_REPORTE' , 100 );
 
 define( 'BD_TABLA_DIA_FESTIVO', 'dia_festivo' );
+define( 'BD_TABLA_INFORMACION', 'informacion' );
 
 ?>

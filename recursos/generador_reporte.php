@@ -2,6 +2,7 @@
 
 require_once('configuracion.php');
 require_once('log.php');
+require_once('funciones.php');
 // require_once( '/../lib/PHPExcel/Classes/PHPExcel.php' );
 require_once( '../lib/PHPExcel/Classes/PHPExcel/IOFactory.php' );
 
@@ -21,6 +22,8 @@ class reporte {
 	function genera_reporte (){
 		try {
 			if ( self::parametros_validos() ){
+				$funciones = new funciones();
+				$funciones->guardar_datos( $_POST );
 				self::selecciona_plantilla();
 				self::crea_archivo_reporte();
 			}
@@ -447,6 +450,8 @@ class reporte {
 				return 'Hay un error en los parametros';
 			case ERROR_ARCHIVO:
 				return sprintf( 'No se encuentra el archivo : %s', $error->getMessage() );
+			case ERROR_CONSULTA:
+				return sprintf( 'Problema en la consulta : %s', $error->getMessage() );
 			default :
 				return $error->getMessage();
 		}

@@ -821,6 +821,9 @@ function agrega_datos_reporte (){
 	formulario.append( campo_dato_reporte( 'fecha_emision', aplica_formato_fecha_emision( $('.fecha_emision').val() ) ) );
 	formulario.append( campo_dato_reporte( 'total_horas_acumuladas_anterior', $('.total_horas_acumuladas_anterior').val() ) );
 	formulario.append( campo_dato_reporte( 'plantilla', $('.tipo_plantilla').val() ) );
+	formulario.append( campo_dato_reporte( 'fecha_inicio_estandar', $('.fecha_inicio').val() ) );
+	formulario.append( campo_dato_reporte( 'fecha_cierre_estandar', $('.fecha_cierre').val() ) );
+	formulario.append( campo_dato_reporte( 'fecha_emision_estandar', $('.fecha_emision').val() ) );
 	agrega_actividades_reporte();	
 	setTimeout( limpiar_formulario, 2000 );
 }

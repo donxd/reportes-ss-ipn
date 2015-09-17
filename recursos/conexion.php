@@ -56,6 +56,8 @@ class conexion {
 		$this->enlace = mysqli_connect( $this->servidor, $this->usuario, $this->contrasenia, $this->nombre_bd );
 		if ( is_bool( $this->enlace ) )
 			throw new Exception( mysqli_connect_error(), ERROR_CONEXION );
+
+		mysqli_set_charset( $this->enlace, 'utf8' );
 	}
 
 	private function set_estado_conexion ( $valor ){

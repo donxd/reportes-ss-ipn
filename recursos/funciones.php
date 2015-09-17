@@ -153,5 +153,117 @@ class funciones {
 		return FALSE;
 	}
 
+	function guardar_datos ( $datos ){
+		$baseDeDatos = new conexion();	
+		$conexion    = $baseDeDatos->conectar( CONEXION_EDICION );
+
+		$consulta = self::get_query_guardar_informacion( $datos );
+		self::ejecuta_consulta( $consulta, $conexion );
+
+		$baseDeDatos->cerrar( $conexion );
+	}
+
+	private function get_query_guardar_informacion ( $datos ){
+		return sprintf(
+			"INSERT INTO 
+				%s
+			( 
+				  id_informacion
+				, tipo_reporte
+				, tipo_dias
+				, fecha_inicio
+				, fecha_cierre
+				, total_horas
+				, horas_dia
+				, hora_entrada
+				, hora_salida
+				, numero_reporte
+				, carrera
+				, nombre_alumno
+				, boleta
+				, correo
+				, telefono
+				, dependencia
+				, responsable_nombre
+				, responsable_puesto
+				, fecha_emision
+				, total_horas_acumuladas_anterior
+				, plantilla
+				, actividades
+			) VALUES (
+				  NULL
+				, '%s'
+				, '%s'
+				, '%s'
+				, '%s'
+				, %d
+				, %d
+				, '%s'
+				, '%s'
+				, %d
+				, '%s'
+				, '%s'
+				, '%s'
+				, '%s'
+				, '%s'
+				, '%s'
+				, '%s'
+				, '%s'
+				, '%s'
+				, %d
+				, '%s'
+				, '%s'
+			)"
+			, BD_TABLA_INFORMACION
+			, $datos['tipo_reporte']
+			, $datos['tipo_dias']
+			, self::get_fecha( $datos['fecha_inicio_estandar'] )
+			, self::get_fecha( $datos['fecha_cierre_estandar'] )
+			, $datos['total_horas']
+			, $datos['horas_dia']
+			, $datos['hora_entrada']
+			, $datos['hora_salida']
+			, $datos['numero_reporte']
+			, $datos['carrera']
+			, $datos['nombre_alumno']
+			, $datos['boleta']
+			, $datos['correo']
+			, $datos['telefono']
+			, $datos['dependencia']
+			, $datos['responsable_nombre']
+			, $datos['responsable_puesto']
+			, self::get_fecha( $datos['fecha_emision_estandar'] )
+			, $datos['total_horas_acumuladas_anterior']
+			, $datos['plantilla']
+			, join( ',', $datos['actividad'] )
+		);
+	}
+
+	function get_fecha ( $fecha_formulario ){
+		$tiempo_fecha = strtotime( $fecha_formulario );
+		return date( 'Y-m-d', $tiempo_fecha );
+	}
+
+	function ejecuta_consulta ( $consulta, &$conexion ){
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, ' --- [ ejecuta_consulta ] ---');	
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf(' <-- consulta : %s', $consulta) );
+
+		$resultado = mysqli_query( $conexion, $consulta );
+		self::verifica_consulta( $resultado, $consulta, $conexion );
+	}
+
+	private function verifica_consulta ( &$resultado, $consulta, &$conexion ){
+		if ( $resultado == FALSE ){
+			throw new Exception( sprintf(
+					'consulta : %s ## descripcion : %s'
+					, $consulta
+					, mysqli_error( $conexion )
+				)
+				, ERROR_CONSULTA 
+			);
+		} else {
+			$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- # registros modificados : %d ', mysqli_affected_rows( $conexion ) ) );
+		}
+	}
 }
 ?>
