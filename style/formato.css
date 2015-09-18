@@ -397,3 +397,11 @@ body {
 	text-align: center !important;
 	color: #F09D9D;
 }
+
+.derecha {
+	float: right;
+}
+
+.instrucciones {
+	padding: 5px;
+}
