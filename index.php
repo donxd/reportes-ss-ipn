@@ -6,12 +6,24 @@
 		<link rel="stylesheet" href="lib/datetimepicker-master/jquery.datetimepicker.css">
 	</head>
 	<body>
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.4";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
 		<form class="formulario_reporte" action="recursos/generador_reporte.php" method="post" target="_blank">
 			<div class="cabecera">
-				<table>
+				<table class="ancho_100p">
 					<tr>
 						<td class="titulo">
 							Generador de contenido para el reporte de Servicio Social
+							<div class="derecha">
+								<div class="fb-like" data-href="https://www.facebook.com/reportess" data-layout="button_count"></div>
+							</div>
+							<div class="limpiar"></div>
 						</td>
 					</tr>
 				</table>
@@ -23,6 +35,9 @@
 					<input type="button" class="boton_accion ver_datos_formato" value="3. Formato"/>
 					<input type="button" class="boton_accion ver_datos_complementarios" value="4. Datos del reporte"/>
 					<input type="submit" class="descargar" value="Descargar"/>
+				</div>
+				<div class="tabla ancho_100p">
+					<div class="centrado_margen texto_centrado instrucciones"> Notas : Desplazamiento horizontal -> shift + scroll </div>
 				</div>
 			</div>
 			<div>
