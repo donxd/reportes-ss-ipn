@@ -5,18 +5,19 @@ USE reportess;
 CREATE TABLE `reportess`.`dia_festivo` (
   `id_dia_festivo` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `descripcion` TEXT NOT NULL,
   PRIMARY KEY (`id_dia_festivo`));
 
 INSERT INTO 
 	dia_festivo
 VALUES
-   ( NULL, '02-02-2015', 'Día de la constitución')
-,  ( NULL, '16-03-2015', 'Natalicio de Benito Juárez')
-,  ( NULL, '01-05-2015', 'Día del trabajo')
-,  ( NULL, '16-09-2015', 'Día de la independencia')
-,  ( NULL, '16-11-2015', 'Conmemoración del inicio de la revolución mexicana')
-,  ( NULL, '25-12-2015', 'Navidad');
+   ( NULL, '2015-02-02', 'Día de la constitución')
+,  ( NULL, '2015-03-16', 'Natalicio de Benito Juárez')
+,  ( NULL, '2015-05-01', 'Día del trabajo')
+,  ( NULL, '2015-09-16', 'Día de la independencia')
+,  ( NULL, '2015-11-16', 'Conmemoración del inicio de la revolución mexicana')
+,  ( NULL, '2015-12-25', 'Navidad');
+
 
 CREATE TABLE `reportess`.`informacion` (
   `id_informacion` INT NOT NULL AUTO_INCREMENT,
@@ -40,5 +41,5 @@ CREATE TABLE `reportess`.`informacion` (
   `fecha_emision` DATE NOT NULL,
   `total_horas_acumuladas_anterior` INT(3) NOT NULL,
   `plantilla` TINYTEXT NOT NULL,
-  `actividades` TINYTEXT NOT NULL,
+  `actividades` MEDIUMTEXT NOT NULL,
   PRIMARY KEY (`id_informacion`));
