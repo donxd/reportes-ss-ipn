@@ -179,7 +179,6 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 * Días servicio : [entre semana, fines de semana]
 * Hora de entrada (min. y máx.)
 * Agregar eventos en la columna fecha para cambiar el estado ha [DIA FESTIVO, etc.]
-* Personalizar el formato de las salidas (sección especial)
 
 ## OK
 
@@ -188,6 +187,7 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 * Mes periodo depende del rango de fechas, no únicamente del tipo de reporte
 * Total horas del periodo
 * Fecha inicio < fecha cierre
+* Personalizar el formato de las salidas (sección especial)
 
 ## Bugs
 
@@ -198,4 +198,5 @@ https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
 		parametros :
 		{"fecha_inicio":"16-11-2014","fecha_cierre":"30-11-2014","tipo_reporte":"pm","tipo_dias":"es"} 
 		{"fecha_inicio":"16-11-2014","fecha_cierre":"30-11-2014","tipo_reporte":"mm","tipo_dias":"es"} <-Error
-			
+
+ * Combinación de los controles de fechas

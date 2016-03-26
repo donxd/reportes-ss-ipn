@@ -18,6 +18,17 @@ VALUES
 ,  ( NULL, '2015-11-16', 'Conmemoración del inicio de la revolución mexicana')
 ,  ( NULL, '2015-12-25', 'Navidad');
 
+INSERT INTO 
+  dia_festivo
+VALUES
+   ( NULL, '2016-01-01', 'Año nuevo')
+,  ( NULL, '2016-02-01', 'Día de la Constitución')
+,  ( NULL, '2016-03-21', 'Natalicio de Benito Juárez')
+,  ( NULL, '2016-05-01', 'Día del trabajo')
+,  ( NULL, '2016-09-16', 'Día de la Independencia de México')
+,  ( NULL, '2016-11-21', 'Día de la Revolución Mexicana')
+,  ( NULL, '2016-12-25', 'Navidad');
+
 
 CREATE TABLE `reportess`.`informacion` (
   `id_informacion` INT NOT NULL AUTO_INCREMENT,

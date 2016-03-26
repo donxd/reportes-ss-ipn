@@ -1,5 +1,5 @@
 
-$(document).ready( function(){
+$( document ).ready( function(){
 	inicializa_valores_tiempo();
 	inicializa_variables_control();
 	comportamiento_dia_inicio_reporte();
@@ -17,8 +17,8 @@ $(document).ready( function(){
 	// $('.fecha_inicio').focus();
 	comportamiento_presentacion();
 	comportamiento_desplazamiento_secciones();
-	comportamiento_lista_carreras();
 	comportamiento_almacenamiento_datos();
+	comportamiento_lista_plantillas();
 	comportamiento_numero_reporte();
 });
 
@@ -665,8 +665,8 @@ function get_reporte_horas_dia (){
 
 function muestra_reporte (){
 	// ajusta_altura_tabla_horas_reporte();
-	$('.contenedor_tabla_horas_reporte').removeClass('invisible');
-	// $('.contenedor_reporte_datos').removeClass('invisible');
+	$('.contenedor_tabla_horas_reporte').removeClass( 'invisible' );
+	// $('.contenedor_reporte_datos').removeClass( 'invisible' );
 	// mostrar_datos_reporte();
 }
 
@@ -690,7 +690,7 @@ function ajusta_altura_tabla_horas_reporte (){
 }
 
 function muestra_opcion_descargar_reporte (){
-	$('.contenedor_enlace_descargar').removeClass('invisible');
+	$('.contenedor_enlace_descargar').removeClass( 'invisible' );
 }
 
 function procesa_respuesta_error ( respuesta ){
@@ -718,6 +718,7 @@ function cambiaFormatoFecha (formato_salida, fecha){
 
 function get_fecha_anio_mes_dia (){
 	fecha_salida = new Date( fecha_salida[2], fecha_salida[1]-1, fecha_salida[0]);
+	
 	return sprintf(
 		'%s-%s-%s'
 		, fecha_salida.getFullYear()
@@ -728,6 +729,7 @@ function get_fecha_anio_mes_dia (){
 
 function agregaCeros ( numero_parametro ){
 	var numero = parseInt( numero_parametro );
+	
 	return sprintf( '%02d', numero );
 }
 
@@ -738,7 +740,7 @@ function comportamiento_descargar_reporte (){
 	$('.formulario_reporte').submit( function (){
 		try {
 			valida_hora_entrada();
-			// verifica_validacion_datos_reporte();
+			verifica_validacion_datos_reporte();
 			agrega_datos_reporte();
 			muestra_informacion_reporte( $(this) );
 		} catch( error ){
@@ -770,6 +772,18 @@ function revalida_datos_reporte (){
 }
 
 function get_campos_datos_reporte (){
+	switch ( $('.tipo_plantilla').val() ){
+		case 'escom':
+			get_campos_escom();
+			break;
+		case 'upiicsa':
+		default:
+			get_campos_upiicsa();
+			break;
+	}
+}
+
+function get_campos_upiicsa (){
 	return new Array(
 		  '.numero_reporte'
 		, '.carrera'
@@ -777,6 +791,25 @@ function get_campos_datos_reporte (){
 		, '.boleta'
 		, '.correo'
 		, '.telefono'
+		, '.dependencia'
+		, '.nombre_responsable'
+		, '.puesto_responsable'
+		, '.actividad_1'
+		, '.actividad_2'
+		, '.actividad_3'
+		, '.fecha_emision'
+		, '.total_horas_acumuladas_anterior'
+	);
+}
+
+function get_campos_escom (){
+	return new Array(
+		  '.numero_reporte'
+		, '.carrera'
+		, '.nombre_alumno'
+		, '.boleta'
+		// , '.correo'
+		// , '.telefono'
 		, '.dependencia'
 		, '.nombre_responsable'
 		, '.puesto_responsable'
@@ -796,6 +829,10 @@ function agrega_dependencia_campos_datos_reporte ( campos ){
 
 function agrega_dependencia_campo ( selector ){
 	$( selector ).prop( 'required', true );
+}
+
+function remueve_dependencia_campo ( selector ){
+	$( selector ).prop( 'required', false );
 }
 
 function agrega_datos_reporte (){
@@ -824,6 +861,11 @@ function agrega_datos_reporte (){
 	formulario.append( campo_dato_reporte( 'fecha_inicio_estandar', $('.fecha_inicio').val() ) );
 	formulario.append( campo_dato_reporte( 'fecha_cierre_estandar', $('.fecha_cierre').val() ) );
 	formulario.append( campo_dato_reporte( 'fecha_emision_estandar', $('.fecha_emision').val() ) );
+
+	formulario.append( campo_dato_reporte( 'egresado', $('[name=alumno_egresado]:checked').val() ) );
+	formulario.append( campo_dato_reporte( 'semestre', $('.semestre').val() ) );
+	formulario.append( campo_dato_reporte( 'grupo'   , $('.grupo').val() ) );
+
 	agrega_actividades_reporte();	
 	setTimeout( limpiar_formulario, 2000 );
 }
@@ -1097,15 +1139,15 @@ function comportamiento_ver_horas_reporte (){
 }
 
 function ocultar_datos_formato (){
-	$('.contenedor_datos_complementarios_reporte').addClass('oculto');
+	oculta_elemento( '.contenedor_datos_complementarios_reporte' );
 }
 
 function mostrar_datos_reporte (){
-	$('.reporte_datos').removeClass('invisible');
+	$('.reporte_datos').removeClass( 'invisible' );
 }
 
 function mostrar_horas_reporte (){
-	$('.contenedor_tabla_horas_reporte').removeClass('oculto invisible');
+	$('.contenedor_tabla_horas_reporte').removeClass( 'oculto invisible' );
 }
 
 function comportamiento_ver_datos_formato (){
@@ -1125,7 +1167,7 @@ function ocultar_horas_reporte (){
 }
 
 function mostrar_datos_formato (){
-	$('.contenedor_datos_complementarios_reporte').removeClass('oculto');
+	muestra_elemento( '.contenedor_datos_complementarios_reporte' );
 }
 
 function muestra_informacion_reporte ( formulario ){
@@ -1188,8 +1230,10 @@ function verificacion_almacenamiento (){
     try {
         localStorage.setItem(test, test);
         localStorage.removeItem(test);
+        
         return true;
     } catch(e) {
+        
         return false;
     }
 }
@@ -1201,7 +1245,7 @@ function agrega_eventos_almacenamiento (){
 		var clase = elementos[ elemento ];
 		var selector = get_selector( clase );
 		// console.log( sprintf( 'clase : %s, selector : %s ', clase, selector) );
-		crea_evento_almacenamiento_dato( selector, clase );
+		crea_evento_almacenamiento_datos( selector, clase );
 	}
 }
 
@@ -1225,6 +1269,8 @@ function get_lista_elementos_almacenamiento () {
 		, 'total_horas_acumuladas_anterior'
 		, 'lista_carreras'
 		, 'tipo_plantilla'
+		, 'semestre'
+		, 'grupo'
 	];
 }
 
@@ -1232,7 +1278,7 @@ function get_selector ( clase ){
 	return sprintf( '.%s', clase );
 }
 
-function crea_evento_almacenamiento_dato ( selector, clase ){
+function crea_evento_almacenamiento_datos ( selector, clase ){
 	$( selector ).change( function (){
 		almacena_dato( clase, $( selector ).val() );
 	});
@@ -1261,33 +1307,35 @@ function comportamiento_numero_reporte (){
 	});
 }
 
-function comportamiento_lista_carreras (){
+function comportamiento_lista_plantillas (){
 	$('.tipo_plantilla').change( function (){
-		crea_lista_carreras();
+		cambia_plantilla();
 	});
-	crea_lista_carreras();
+	cambia_plantilla();
 }
 
-function crea_lista_carreras (){
+function cambia_plantilla (){
 	var plantilla = $('.tipo_plantilla').val();
 	if ( plantilla != 'generica' ){
-		if ( plantilla != window.seleccion_plantilla_anterior ){
+		if ( window.seleccion_plantilla_anterior == '' || plantilla != window.seleccion_plantilla_anterior ){
 			switch( plantilla ){
 				case 'upiicsa':
 					agrega_opciones_carreras_lista( get_lista_carreras_upiicsa() );
+					desactiva_campos_plantilla_escom();
+					activa_campos_plantilla_upiicsa_generica();
+					break;
+				case 'escom':
+					agrega_opciones_carreras_lista( get_lista_carreras_escom() );
+					desactiva_campos_plantilla_upiicsa_generica();
+					activa_campos_plantilla_escom();
 					break;
 			}
 			window.seleccion_plantilla_anterior = plantilla;
 		}
-		ocultar_control_carrera_manual();
-		remueve_dependencia_carrera_manual();
-		mostrar_lista_carreras();
-		agrega_dependencia_lista_carreras();
+		desactiva_campos_plantilla_generica();
 	} else {
-		ocultar_lista_carreras();
-		remueve_dependencia_lista_carreras();
-		mostrar_control_carrera_manual();
-		agrega_dependencia_carrera_manual();
+		activa_campos_plantilla_generica();
+		desactiva_campos_plantilla_escom();
 	}
 }
 
@@ -1301,8 +1349,68 @@ function get_lista_carreras_upiicsa (){
 	];
 }
 
+function get_lista_carreras_escom (){
+	return [
+		  'INGENIERIA EN SISTEMAS COMPUTACIONALES'
+	];
+}
+
 function agrega_opciones_carreras_lista ( carreras ){
 	$('.lista_carreras').html( genera_opciones_carreras( carreras ) );
+}
+
+function activa_campos_plantilla_escom (){
+	agrega_dependencia_campo( '[name=alumno_egresado]:first' );
+	agrega_dependencia_campo( '.semestre' );
+	agrega_dependencia_campo( '.grupo' );
+
+	muestra_elemento( '.control_alumno_egresado' );
+	muestra_elemento( '.control_alumno_semestre' );
+	muestra_elemento( '.control_alumno_grupo' );
+}
+
+function muestra_elemento ( selector ){
+	$( selector ).removeClass( 'oculto' );
+}
+
+function oculta_elemento ( selector ){
+	$( selector ).addClass( 'oculto' );
+}
+
+function desactiva_campos_plantilla_escom (){
+	remueve_dependencia_campo( '[name=alumno_egresado]:first' );
+	remueve_dependencia_campo( '.semestre' );
+	remueve_dependencia_campo( '.grupo' );
+
+	oculta_elemento( '.control_alumno_egresado' );
+	oculta_elemento( '.control_alumno_semestre' );
+	oculta_elemento( '.control_alumno_grupo' );
+}
+
+function activa_campos_plantilla_upiicsa_generica (){
+	agrega_dependencia_campo( '.telefono' );
+
+	muestra_elemento( '.control_telefono' );
+}
+
+function desactiva_campos_plantilla_upiicsa_generica (){
+	remueve_dependencia_campo( '.telefono' );
+
+	oculta_elemento( '.control_telefono' );
+}
+
+function activa_campos_plantilla_generica (){
+	ocultar_lista_carreras();
+	remueve_dependencia_lista_carreras();
+	mostrar_control_carrera_manual();
+	agrega_dependencia_carrera_manual();
+}
+
+function desactiva_campos_plantilla_generica (){
+	ocultar_control_carrera_manual();
+	remueve_dependencia_carrera_manual();
+	mostrar_lista_carreras();
+	agrega_dependencia_lista_carreras();
 }
 
 function genera_opciones_carreras ( carreras ){
@@ -1319,33 +1427,33 @@ function genera_opciones_carreras ( carreras ){
 }
 
 function ocultar_control_carrera_manual (){
-	$('.carrera').addClass('oculto');
+	oculta_elemento( '.carrera' );
 }
 
 function remueve_dependencia_carrera_manual (){
-	$('.carrera').prop( 'required', false );
+	remueve_dependencia_campo( '.carrera' );
 }
 
 function agrega_dependencia_lista_carreras (){
-	$('.lista_carreras').prop( 'required', true );
+	agrega_dependencia_campo( '.lista_carreras' );
 }
 
 function mostrar_lista_carreras (){
-	$('.lista_carreras').removeClass('oculto');
+	muestra_elemento( '.lista_carreras' );
 }
 
 function ocultar_lista_carreras (){
-	$('.lista_carreras').addClass('oculto');
+	oculta_elemento( '.lista_carreras' );
 }
 
 function remueve_dependencia_lista_carreras (){
-	$('.lista_carreras').prop( 'required', false );
+	remueve_dependencia_campo( '.lista_carreras' );
 }
 
 function agrega_dependencia_carrera_manual (){
-	$('.carrera').prop( 'required', true );
+	agrega_dependencia_campo( '.carrera' );
 }
 
 function mostrar_control_carrera_manual (){
-	$('.carrera').removeClass('oculto');
+	muestra_elemento( '.carrera' );
 }
