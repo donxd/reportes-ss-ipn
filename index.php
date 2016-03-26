@@ -296,6 +296,7 @@
 										<td colspan="2">
 											<select class="tipo_plantilla" title="Plantilla">
 												<option value="upiicsa"> UPIICSA </option>
+												<option value="escom"> ESCOM </option>
 												<option value="generica"> Genérica </option>
 											</select>
 										</td>
@@ -439,10 +440,36 @@
 														<input type="text" class="boleta" placeholder="20XXPPXXXX" pattern="\d{10}" required/>
 													</td>
 												</tr>
-												<tr>
+												<tr class="control_telefono">
 													<td class="una_linea"> Teléfono : </td>
 													<td>
-														<input type="text" class="telefono" required/>
+														<input type="text" class="telefono" />
+													</td>
+												</tr>
+												<tr class="oculto control_alumno_egresado">
+													<td class="una_linea"> Egresado : </td>
+													<td>
+														<label>
+															<input type="radio" name="alumno_egresado" value="y" />
+															Si
+														</label>
+														<br/>
+														<label>
+															<input type="radio" name="alumno_egresado" value="n" checked />
+															No
+														</label>
+													</td>
+												</tr>
+												<tr class="oculto control_alumno_semestre">
+													<td class="una_linea"> Semestre : </td>
+													<td>
+														<input type="number" min="1" max="12" class="semestre" placeholder="#" pattern="\d+" />
+													</td>
+												</tr>
+												<tr class="oculto control_alumno_grupo">
+													<td class="una_linea"> Grupo : </td>
+													<td>
+														<input type="text" class="grupo"/>
 													</td>
 												</tr>
 											</table>

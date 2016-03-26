@@ -1,10 +1,8 @@
 <?php
 
-require_once('configuracion.php');
-require_once('log.php');
-require_once('funciones.php');
-// require_once( '/../lib/PHPExcel/Classes/PHPExcel.php' );
-require_once( '../lib/PHPExcel/Classes/PHPExcel/IOFactory.php' );
+require_once( 'configuracion.php' );
+require_once( 'log.php' );
+require_once( 'funciones.php' );
 
 $reporte = new reporte();
 $reporte->genera_reporte();
@@ -14,6 +12,9 @@ class reporte {
 	private $log;
 	private $objetoPHPExcel;
 	private $configuracion_plantilla;
+	private $TBS;
+	private $LIMITE_VARIABLES = 30;
+	private $LIMITE_VARIABLES_ACTIVIDADES = 5;
 
 	function __construct (){
 		$this->log = new log();
@@ -50,6 +51,9 @@ class reporte {
 			case 'generica':
 				self::inicializa_plantilla_generica();
 				break;
+			case 'escom':
+				self::inicializa_plantilla_escom();
+				break;
 		}
 	}
 
@@ -60,6 +64,7 @@ class reporte {
 	private function get_configuracion_plantilla_upiicsa (){
 		return array(
 			  'nombre_archivo' => 'upiicsa.xlsx'
+			, 'tipo_plantilla' => 'excel'
 			, 'mes'            => array( 'celda' => 'AC7' )
 			, 'total_horas'    => array( 'celda' => 'AA35' )
 			, 'numero_reporte' => array( 'celda' => 'O7' )
@@ -90,6 +95,7 @@ class reporte {
 	private function get_configuracion_plantilla_generica (){
 		return array(
 			  'nombre_archivo' => 'generica.xlsx'
+			, 'tipo_plantilla' => 'excel'
 			, 'mes'            => array( 'celda' => 'AC7' )
 			, 'total_horas'    => array( 'celda' => 'AA35' )
 			, 'numero_reporte' => array( 'celda' => 'O7' )
@@ -113,17 +119,291 @@ class reporte {
 		);
 	}
 
+	private function inicializa_plantilla_escom (){
+		$this->configuracion_plantilla = self::get_configuracion_plantilla_escom();
+	}
+
+	private function get_configuracion_plantilla_escom (){
+		return array(
+			  'nombre_archivo' => 'escom.docx'
+			, 'tipo_plantilla' => 'word'
+			, 'numero_reporte' => 'nuR'
+			, 'boleta'         => 'nuB'
+			, 'carrera'        => 'txCar'
+			, 'egresado'       => ''
+			, 'egresado_si'    => 'ckEY'
+			, 'egresado_no'    => 'ckEN'
+			, 'semestre'       => 'nuS'
+			, 'grupo'          => 'nuG'
+			, 'dependencia'    => 'txRep'
+			, 'nombre_alumno'  => 'nombreAlumno'
+			, 'mes'            => 'fhMR'
+			, 'responsable_nombre' => 'txJe'
+			, 'responsable_puesto' => 'txRCar'
+			, 'actividades' => ''
+			, 'actividad_1' => 'txA1'
+			, 'actividad_2' => 'txA2'
+			, 'actividad_3' => 'txA3'
+			, 'actividad_4' => 'txA4'
+			, 'actividad_5' => 'txA5'
+			, 'dia_emision'  => 'fhDE'
+			, 'mes_emision'  => 'fhME'
+			, 'anio_emision' => 'fhAE'			
+			, 'total_horas'            => 'tHM'
+			, 'total_horas_acumuladas' => 'tHA'
+			, 'total_horas_final'      => 'tHF'
+			, 'fechas_dias'  => ''
+			, 'hora_entrada' => ''
+			, 'hora_salida'  => ''
+			, 'horas_dia'    => ''
+		);
+		// correo
+		// telefono
+	}
+
 	private function crea_archivo_reporte (){
+		switch ( $this->configuracion_plantilla[ 'tipo_plantilla' ] ){
+			case 'excel' : self::reporte_excel(); break;
+			case 'word'  : self::reporte_word(); break;
+		}
+	}
+
+	private function reporte_excel (){
+		require_once( '../lib/PHPExcel/Classes/PHPExcel/IOFactory.php' );
+		
 		$this->log->registrar( LOG_MENSAJE_PRUEBA, '--- crea_archivo_reporte ---');
 		$objPHPExcel = self::leer_plantilla_reporte();
 		self::rellena_plantilla_reporte( $objPHPExcel );
 		self::envia_archivo( $objPHPExcel );
 	}
 
+	private function reporte_word (){
+		require_once( '../lib/tbs/tbs_class.php' );
+		require_once( '../lib/tbs/tbs_plugin_opentbs.php' );
+
+		self::prepara_tbs();
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, '--- crea_archivo_reporte ---');
+		self::vacia_informacion_variables_reporte();
+		self::envia_archivo_tbs();
+	}
+
+	private function vacia_informacion_variables_reporte (){
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- informacion reporte escom --- %s', json_encode( $_POST ) ) );
+
+		self::inicializa_variables_plantilla();
+		$dias_fechas = json_decode( $_POST['dias'] );
+		$numero_fechas = count( $dias_fechas );
+
+		foreach ( $this->configuracion_plantilla as $seccion => $variable_destino){
+			switch ( $seccion ){
+
+				case 'semestre'               :
+				case 'grupo'                  :
+				case 'nombre_alumno'          :
+				case 'responsable_nombre'     :
+				// case 'dia_emision'            :
+				// case 'mes_emision'            :
+				// case 'anio_emision'           :
+
+				case 'mes'                    :
+				case 'total_horas'            : 
+				case 'numero_reporte'         : 
+				case 'carrera'                : 
+				case 'boleta'                 : 
+				case 'dependencia'            : 
+				case 'nombre_alumno'          : 
+				case 'responsable_nombre'     : 
+				case 'responsable_puesto'     : self::vacia_valor_variable( $seccion, $variable_destino ); break; 
+				// case 'periodo_inicio'         : 
+				// case 'periodo_cierre'         : self::vacia_valor_variable( $seccion, $variable ); break; 
+				case 'total_horas_acumuladas' : self::vacia_total_horas_acumuladas(); break;
+				case 'total_horas_final'      : self::vacia_total_horas_final();
+				case 'fecha_emision'          : self::vacia_fecha_emision(); break;
+				case 'actividades'            : self::vacia_actividades(); break;
+				case 'egresado'               : self::vacia_egresado(); break;
+				case 'fechas_dias'            : self::vacia_fechas_dias_variables( $numero_fechas, $dias_fechas ); break;
+				case 'hora_entrada'           : self::vacia_hora_entrada_variables( $numero_fechas, $dias_fechas ); break;
+				case 'hora_salida'            : self::vacia_hora_salida_variables( $numero_fechas, $dias_fechas ); break;
+				case 'horas_dia'              : self::vacia_horas_dia_variables( $numero_fechas, $dias_fechas ); break;
+				default                       : self::informacion_extra( $seccion ); break;
+			}
+		}
+	}
+
+	private function inicializa_variables_plantilla (){
+		
+		$GLOBALS[ 'nuR' ]  = '';
+		$GLOBALS[ 'nuB' ]  = '';
+		$GLOBALS[ 'nuS' ]  = '';
+		$GLOBALS[ 'nuG' ]  = '';
+		$GLOBALS[ 'tHM' ]  = '';
+		$GLOBALS[ 'tHA' ]  = '';
+		$GLOBALS[ 'tHF' ]  = '';
+		$GLOBALS[ 'ckEN' ] = '';
+		$GLOBALS[ 'ckEY' ] = '';
+		$GLOBALS[ 'txJe' ] = '';
+		$GLOBALS[ 'fhDE' ] = '';
+		$GLOBALS[ 'fhME' ] = '';
+		$GLOBALS[ 'fhAE' ] = '';
+		$GLOBALS[ 'fhMR' ] = '';
+		$GLOBALS[ 'txRep' ] = '';
+		$GLOBALS[ 'txCar' ] = '';		
+		$GLOBALS[ 'nombreAlumno' ] = '';
+
+		for ( $contador = 1; $contador <= $this->LIMITE_VARIABLES_ACTIVIDADES; $contador++ ){
+			$GLOBALS[ 'txA' . $contador ]  = '';	
+		}
+		
+		for ( $contador = 1; $contador <= $this->LIMITE_VARIABLES; $contador++ ){
+			$GLOBALS[ 'fhRp' . $contador ]  = '';	
+			$GLOBALS[ 'hERp' . $contador ]  = '';	
+			$GLOBALS[ 'hSRp' . $contador ]  = '';	
+			$GLOBALS[ 'hDRp' . $contador ]  = '';	
+		}
+		
+	}
+
+	private function informacion_extra ( $seccion ){
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- informacion_extra [ %s ] ', $seccion ) );
+	}
+
+	private function vacia_valor_variable ( $seccion, $variable_destino ){
+		$GLOBALS[ $variable_destino ] = $_POST[ $seccion ];
+	}
+
+	private function vacia_total_horas_acumuladas (){
+		$GLOBALS[ $this->configuracion_plantilla[ 'total_horas_acumuladas' ] ]  = $_POST[ 'total_horas_acumuladas_anterior' ];
+	}
+
+	private function vacia_total_horas_final (){
+		$GLOBALS[ $this->configuracion_plantilla[ 'total_horas_final' ] ]  = $_POST[ 'total_horas_acumuladas_anterior' ] + $_POST[ 'total_horas' ];
+	}
+
+	private function vacia_fecha_emision (){
+
+		$fecha_emision_desglozada = explode( ' ', $_POST['fecha_emision'] );
+		list( $dia, $mes, $anio ) = $fecha_emision_desglozada;
+
+		$GLOBALS[ $this->configuracion_plantilla[ 'dia_emision' ]  ] = $dia;
+		$GLOBALS[ $this->configuracion_plantilla[ 'mes_emision' ]  ] = $mes;
+		$GLOBALS[ $this->configuracion_plantilla[ 'anio_emision' ] ] = $anio;
+	}
+
+	private function vacia_actividades (){
+		$contador = 1;
+		foreach ( $_POST[ 'actividad' ] as $valor ){
+			$GLOBALS[ $this->configuracion_plantilla[ 'actividad_' . $contador ] ] = $valor;
+			$contador++;
+		}
+		// while ( $contador < 6 ){
+		// 	$GLOBALS[ $this->configuracion_plantilla[ 'activdad_' . $contador ] ] = '';
+		// 	$contador++;
+		// }
+	}
+
+	private function vacia_egresado (){
+		$valor_egresado = $_POST[ 'egresado' ];
+		if ( $valor_egresado == 'y' ){
+			// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- posicion egresado si [ %s ] ', $this->configuracion_plantilla[ 'egresado_si' ] ) );
+			// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- posicion egresado no [ %s ] ', $this->configuracion_plantilla[ 'egresado_no' ] ) );
+
+			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_si' ] ] = 'Si';
+			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_no' ] ] = '';
+		} else {
+			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_si' ] ] = '';
+			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_no' ] ] = 'No';
+		}
+	}
+
+	private function vacia_fechas_dias_variables ( $numero_fechas, $dias_fechas ){
+
+		// $ultimo_valor_i;
+		$variable = 'fhRp';
+		for ( $i = 0; $i < $this->LIMITE_VARIABLES && $i < $numero_fechas; $i++ ){
+			$GLOBALS[ $variable . ( $i + 1 ) ] = $dias_fechas[ $i ]->fecha;
+
+			// $ultimo_valor_i = $i;
+		}
+
+		// for ( $i = $ultimo_valor_i; $i < $this->LIMITE_VARIABLES; $i++ ){
+		// 	$GLOBALS[ $variable . ( $i + 1 ) ] = '';
+		// }
+	}
+
+	private function vacia_hora_entrada_variables ( $numero_fechas, $dias_fechas ){
+		self::vacia_hora_entrada_salida_variables( $numero_fechas, $dias_fechas, 'hora_entrada', 'DIA', 'hERp' );
+	}
+
+	private function vacia_hora_entrada_salida_variables ( $numero_fechas, $dias_fechas, $seccion, $valor_alterno, $variable_destino ){
+		// $ultimo_valor_i;
+
+		$variable = $variable_destino;
+		for ( $i = 0; $i < $this->LIMITE_VARIABLES && $i < $numero_fechas; $i++ ){
+			$tiempo = $_POST[ $seccion ];
+			if ( $dias_fechas[ $i ]->festivo ){
+				$tiempo = $valor_alterno;
+			}
+
+			$GLOBALS[ $variable . ( $i + 1 ) ] = $tiempo;
+
+			// $ultimo_valor_i = $i;
+		}
+
+		// for ( $i = $ultimo_valor_i; $i < $this->LIMITE_VARIABLES; $i++ ){
+		// 	$GLOBALS[ $variable . ( $i + 1 ) ] = '';
+		// }
+	}
+
+	private function vacia_hora_salida_variables ( $numero_fechas, $dias_fechas ){
+		self::vacia_hora_entrada_salida_variables( $numero_fechas, $dias_fechas, 'hora_salida', 'FESTIVO', 'hSRp');
+	}
+
+	private function vacia_horas_dia_variables ( $numero_fechas, $dias_fechas ){
+
+		$variable = 'hDRp';
+		for ( $i = 0; $i < $this->LIMITE_VARIABLES && $i < $numero_fechas; $i++ ){
+			$horas_dia = $_POST['horas_dia'];
+			if ( $dias_fechas[ $i ]->festivo ){
+				$horas_dia = '';
+			}
+
+			$GLOBALS[ $variable . ( $i + 1 ) ] = $horas_dia;
+
+			// $ultimo_valor_i = $i;
+		}
+
+		// for ( $i = $ultimo_valor_i; $i < $this->LIMITE_VARIABLES; $i++ ){
+		// 	$GLOBALS[ $variable . ( $i + 1 ) ] = '';
+		// }
+	}
+
+	private function envia_archivo_tbs (){
+		$plantilla = $this->configuracion_plantilla[ 'nombre_archivo' ];
+		$this->TBS->LoadTemplate( self::get_ruta_archivo_plantilla(), OPENTBS_ALREADY_UTF8 );
+		$this->TBS->Show( OPENTBS_DOWNLOAD, self::get_nombre_archivo_tbs( $plantilla ) );
+	}
+
+	private function get_nombre_archivo_tbs ( $plantilla ){
+		return str_replace( '.', '_'.date('Y-m-d').'.', $plantilla );
+	}
+
+	private function prepara_tbs (){
+		if ( version_compare( PHP_VERSION , '5.1.0' ) >= 0 ){
+			if ( ini_get('date.timezone') == '' ) {
+				date_default_timezone_set( 'UTC' );
+			}
+		}
+
+		$this->TBS = new clsTinyButStrong;
+		$this->TBS->Plugin( TBS_INSTALL, OPENTBS_PLUGIN );
+	}
+
 	private function leer_plantilla_reporte (){
 		$this->log->registrar( LOG_MENSAJE_PRUEBA, '--- leer_plantilla_reporte ---');
 		$ruta_archivo = self::get_ruta_archivo_plantilla();
 		if ( file_exists( $ruta_archivo ) ){
+			$this->log->registrar( LOG_MENSAJE_PRUEBA, '--- archivo encontrado ---');
+			
 			return PHPExcel_IOFactory::load( $ruta_archivo );
 		} else {
 			throw new Exception( $ruta_archivo, ERROR_ARCHIVO );
@@ -136,25 +416,63 @@ class reporte {
 
 	private function rellena_plantilla_reporte ( &$objPHPExcel ){
 		$this->objetoPHPExcel = $objPHPExcel;
-        self::agrega_mes_reporte();
-        self::agrega_periodos_reporte();
-        self::agrega_hora_entrada_reporte();
-        self::agrega_hora_salida_reporte();
-        self::agrega_fechas_dias_reporte();
-        self::agrega_horas_dia_reporte();
-		self::agrega_total_horas_reporte();
-		self::agrega_numero_reporte_reporte();
-		self::agrega_carrera_reporte();
-		self::agrega_nombre_alumno_reporte();
-		self::agrega_boleta_reporte();
-		self::agrega_correo_reporte();
-		self::agrega_telefono_reporte();
-		self::agrega_dependencia_reporte();
-		self::agrega_responsable_nombre_reporte();
-		self::agrega_responsable_puesto_reporte();
-		self::agrega_fecha_emision_reporte();
-		self::agrega_total_horas_acumuladas_reporte();
-		self::agrega_actividades_reporte();
+		self::aplica_configuracion_plantilla();
+	}
+
+	private function aplica_configuracion_plantilla (){
+		
+		foreach ( $this->configuracion_plantilla as $seccion => $valor ){
+			switch ( $seccion ){
+
+				case 'mes'                    : 
+				case 'total_horas'            : 
+				case 'numero_reporte'         : 
+				case 'carrera'                : 
+				case 'boleta'                 : 
+				case 'correo'                 : 
+				case 'telefono'               : 
+				case 'dependencia'            : self::agrega_valor_celda_seccion( $seccion, $valor[ 'celda' ] ); break;
+				case 'hora_entrada'           : self::agrega_hora_entrada_reporte(); break;
+				case 'hora_salida'            : self::agrega_hora_salida_reporte(); break;
+				case 'fechas_dias'            : self::agrega_fechas_dias_reporte(); break;
+				case 'horas_dia'              : self::agrega_horas_dia_reporte(); break;
+				case 'actividades'            : self::agrega_actividades_reporte(); break;
+				case 'fecha_emision'          : self::agrega_fecha_emision_reporte(); break;
+				case 'total_horas_acumuladas' : self::agrega_total_horas_acumuladas_reporte(); break; 
+				case 'periodo_inicio'         : self::agrega_periodo_inicio_reporte(); break;
+				case 'periodo_cierre'         : self::agrega_periodo_cierre_reporte(); break;
+				case 'nombre_alumno'          : self::agrega_nombre_alumno_reporte(); break;
+				case 'responsable_nombre'     : self::agrega_responsable_nombre_reporte(); break;
+				case 'responsable_puesto'     : self::agrega_responsable_puesto_reporte(); break;
+
+
+				// case 'mes'                    : self::agrega_mes_reporte(); break;
+				// case 'total_horas'            : self::agrega_total_horas_reporte(); break;
+				// case 'numero_reporte'         : self::agrega_numero_reporte_reporte(); break;
+				// case 'carrera'                : self::agrega_carrera_reporte(); break;
+				// case 'boleta'                 : self::agrega_boleta_reporte(); break;
+				// case 'correo'                 : self::agrega_correo_reporte(); break;
+				// case 'telefono'               : self::agrega_telefono_reporte(); break;
+				// case 'dependencia'            : self::agrega_dependencia_reporte(); break;
+				// case 'hora_entrada'           : self::agrega_hora_entrada_reporte(); break;
+				// case 'hora_salida'            : self::agrega_hora_salida_reporte(); break;
+				// case 'fechas_dias'            : self::agrega_fechas_dias_reporte(); break;
+				// case 'horas_dia'              : self::agrega_horas_dia_reporte(); break;
+				// case 'actividades'            : self::agrega_actividades_reporte(); break;
+				// case 'fecha_emision'          : self::agrega_fecha_emision_reporte(); break;
+				// case 'nombre_alumno'          : self::agrega_nombre_alumno_reporte(); break;
+				// case 'responsable_nombre'     : self::agrega_responsable_nombre_reporte(); break;
+				// case 'responsable_puesto'     : self::agrega_responsable_puesto_reporte(); break;
+				// case 'total_horas_acumuladas' : self::agrega_total_horas_acumuladas_reporte(); break;
+				// case 'periodo_inicio'         : self::agrega_periodo_inicio_reporte(); break;
+				// case 'periodo_cierre'         : self::agrega_periodo_cierre_reporte(); break;
+			}
+		}
+	}
+
+	private function agrega_valor_celda_seccion ( $seccion, $celda ){
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- seccion [ %s ] = %s ', $seccion, $celda ) );
+		self::agrega_valor_celda( $celda, $_POST[ $seccion ] );
 	}
 
 	private function agrega_mes_reporte (){
@@ -163,11 +481,6 @@ class reporte {
 
 	private function get_celda_mes (){
 		return $this->configuracion_plantilla['mes']['celda'];
-	}
-
-	private function agrega_periodos_reporte (){
-		self::agrega_periodo_inicio_reporte();
-		self::agrega_periodo_cierre_reporte();
 	}
 
 	private function agrega_periodo_inicio_reporte (){
@@ -288,6 +601,7 @@ class reporte {
 	}
 
 	private function agrega_valor_celda ( $celda, $valor ){
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- [ %s ] = %s ', $celda, $valor ) );
 		$this->objetoPHPExcel->getActiveSheet()->setCellValue( $celda, $valor );
 	}
 
@@ -308,9 +622,13 @@ class reporte {
 	}
 
 	private function agrega_nombre_alumno_reporte (){
-		$celdas_nombre_alumno = self::get_celdas_nombre_alumno();
-		self::agrega_valor_celda( $celdas_nombre_alumno[ 0 ], $_POST['nombre_alumno'] );
-		self::agrega_valor_celda( $celdas_nombre_alumno[ 1 ], $_POST['nombre_alumno'] );
+		self::vacia_celdas_valor( self::get_celdas_nombre_alumno(), $_POST['nombre_alumno'] );
+	}
+
+	private function vacia_celdas_valor ( $celdas, $valor ){
+		foreach ( $celdas as $celda ){
+			self::agrega_valor_celda( $celda, $valor );
+		}
 	}
 
 	private function get_celdas_nombre_alumno (){
@@ -350,10 +668,7 @@ class reporte {
 	}
 
 	private function agrega_responsable_nombre_reporte (){
-		$celdas_responsable_nombre = self::get_celdas_responsable_nombre();
-		self::agrega_valor_celda( $celdas_responsable_nombre[ 0 ], $_POST['responsable_nombre'] );
-		self::agrega_valor_celda( $celdas_responsable_nombre[ 1 ], $_POST['responsable_nombre'] );
-		self::agrega_valor_celda( $celdas_responsable_nombre[ 2 ], $_POST['responsable_nombre'] );
+		self::vacia_celdas_valor( self::get_celdas_responsable_nombre(), $_POST['responsable_nombre'] );
 	}
 
 	private function get_celdas_responsable_nombre (){
@@ -361,10 +676,7 @@ class reporte {
 	}
 
 	private function agrega_responsable_puesto_reporte (){
-		$celdas_responsable_puesto = self::get_celdas_responsable_puesto();
-		self::agrega_valor_celda( $celdas_responsable_puesto[ 0 ], $_POST['responsable_puesto'] );
-		self::agrega_valor_celda( $celdas_responsable_puesto[ 1 ], $_POST['responsable_puesto'] );
-		self::agrega_valor_celda( $celdas_responsable_puesto[ 2 ], $_POST['responsable_puesto'] );
+		self::vacia_celdas_valor( self::get_celdas_responsable_puesto(), $_POST['responsable_puesto'] );
 	}
 
 	private function get_celdas_responsable_puesto (){
