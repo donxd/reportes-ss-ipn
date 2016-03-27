@@ -49,6 +49,7 @@ function inicializa_variables_control (){
 	window.reporte = {};
 	window.tiempo;
 	window.seleccion_plantilla_anterior = '';
+	window.autorizacion_peticion = false;
 }
 
 function comportamiento_dia_inicio_reporte (){
@@ -90,6 +91,11 @@ function comportamiento_controles_fechas (){
 	agrega_comportamiento_controles_periodo_fecha();
 	agrega_comportamiento_fecha_inicio();
 	agrega_comportamiento_fecha_cierre();
+	agrega_comportamiento_mes_actual();
+	agrega_comportamiento_mes_pasado();
+	agrega_comportamiento_mes_pasado_actual();
+	agrega_comportamiento_cerrar_mes();
+	agrega_comportamiento_cerrar_quincena();
 }
 
 function crea_controles_fecha (){
@@ -108,26 +114,49 @@ function get_opciones_control_fecha (){
 
 function agrega_comportamiento_controles_periodo_fecha (){
 	$('.control_periodo_fecha').focus( function (){
-		$('input.tipo_reporte[value=pp]').prop('checked', true);
+		$('input.tipo_reporte[value=pp]').prop( 'checked', true );
 	});
 	$('.control_periodo_fecha').change( function (){
-		if ( fechas_validas_controles_fecha() ){
-			inicializa_fechas_peticion();
+		if ( valida_fechas_no_vacias() ){
+			if ( valida_fechas_orden() ){
+				agrega_mensaje_periodos_horas( '' );
+				window.autorizacion_peticion = true;
+				inicializa_fechas_peticion();
+			} else {
+				agrega_mensaje_periodos_horas( 'El orden de las fechas no es valido, verifiquelo e intenta nuevamente.' );
+				muestra_mensajes_periodos();
+				window.autorizacion_peticion = false;
+			}
 		}
 	});
 }
 
-function fechas_validas_controles_fecha (){
+function valida_fechas_no_vacias (){
 	return ( $('.fecha_inicio').val().length > 0 && $('.fecha_cierre').val().length > 0 );
 }
 
+function valida_fechas_orden (){
+	var tiempo_inicio = get_tiempo_fecha_texto( $('.fecha_inicio').val() );
+	var tiempo_cierre = get_tiempo_fecha_texto( $('.fecha_cierre').val() );
+
+	return tiempo_inicio.isBefore( tiempo_cierre );
+}
+
+function get_tiempo_fecha_texto ( tiempo_texto ){
+	return moment( tiempo_texto, 'DD-MM-YYYY' );
+}
+
 function agrega_comportamiento_fecha_inicio (){
-	$('.fecha_inicio').change( function(){
+	$( '.fecha_inicio' ).change( function(){
 		inicializa_fecha_minima_cierre( $(this) );
 		// obtener_entero_fecha( $(this).val() );
-	});
-	$('.fecha_inicio').change( function(){
+	// });
+	// $('.fecha_inicio').change( function(){
 		determina_tipo_reporte( $(this) );
+	});
+
+	$( '.fecha_inicio' ).focus( function(){
+		$( '.fecha_cierre' ).val( '' );
 	});
 }
 
@@ -174,13 +203,141 @@ function get_selector_tipo_reporte ( tipo_reporte ){
 }
 
 function agrega_comportamiento_fecha_cierre (){
-	$('.fecha_cierre').change( function(){
+	$( '.fecha_cierre' ).change( function(){
 		inicializa_fecha_maxima_inicio( $(this) );
 		// obtener_entero_fecha( $(this).val() );
-	});
-	$('.fecha_cierre').change( function(){
+	// });
+	// $('.fecha_cierre').change( function(){
 		inicializa_fecha_cierre_peticion( $(this) );
 	});
+}
+
+function agrega_comportamiento_mes_actual (){
+	$( '.mes_actual' ).click( function (){
+		var tiempo_inicio_mes = get_tiempo_inicio_mes_actual();
+		cerrar_mes_completo( tiempo_inicio_mes );
+	});
+}
+
+function agrega_comportamiento_mes_pasado (){
+	$( '.mes_pasado' ).click( function (){
+		var tiempo_inicio_mes = get_tiempo_inicio_mes_anterior();
+		cerrar_mes_completo( tiempo_inicio_mes );
+	});
+}
+
+function agrega_comportamiento_mes_pasado_actual (){
+	$( '.mes_pasado_actual' ).click( function (){
+		var tiempo_inicio_mes = get_tiempo_inicio_quincena_mes_anterior_actual();
+		cerrar_mes_quincena_actual( tiempo_inicio_mes );
+	});
+}
+
+function cerrar_mes_completo ( tiempo_inicio ){
+	var tiempo_cierre_mes = get_tiempo_cierre_mes( tiempo_inicio );
+	$('.fecha_inicio').val( get_fecha_tiempo( tiempo_inicio ) );
+	$('.fecha_cierre').val( get_fecha_tiempo( tiempo_cierre_mes ) );
+
+	verifica_periodo_tiempo();
+}
+
+function cerrar_mes_quincena_actual ( tiempo_inicio ){
+	var tiempo_inicio_mes_actual = get_tiempo_inicio_mes_actual();
+	var tiempo_cierre_mes = get_tiempo_cierre_quincena_mes( tiempo_inicio_mes_actual );
+	$('.fecha_inicio').val( get_fecha_tiempo( tiempo_inicio ) );
+	$('.fecha_cierre').val( get_fecha_tiempo( tiempo_cierre_mes ) );
+
+	verifica_periodo_tiempo();
+}
+
+function cerrar_mes_quincena ( tiempo_inicio ){
+	var tiempo_cierre = get_tiempo_cierre_quincena_mes( tiempo_inicio );
+	$('.fecha_inicio').val( get_fecha_tiempo( tiempo_inicio ) );
+	$('.fecha_cierre').val( get_fecha_tiempo( tiempo_cierre ) );
+
+	verifica_periodo_tiempo();
+}
+
+function cerrar_mes_quincena_siguiente ( tiempo_inicio ){
+	var tiempo_cierre = get_tiempo_cierre_siguiente_quincena( tiempo_inicio );
+	$('.fecha_inicio').val( get_fecha_tiempo( tiempo_inicio ) );
+	$('.fecha_cierre').val( get_fecha_tiempo( tiempo_cierre ) );
+
+	verifica_periodo_tiempo();
+}
+
+function get_tiempo_cierre_siguiente_quincena ( tiempo ){
+	return get_tiempo_cierre_quincena_mes(
+		get_tiempo_cierre_mes( tiempo )
+			.add( 1, 'd' )
+	);
+}
+
+function verifica_periodo_tiempo (){
+	$('.fecha_cierre').trigger( 'change' );
+}
+
+function agrega_comportamiento_cerrar_mes (){
+	$( '.cerrar_mes' ).click( function(){
+		var fecha_inicio = $('.fecha_inicio').val();
+		var tiempo_inicio_mes;
+		if ( fecha_inicio.length > 0 ){
+			tiempo_inicio_mes = get_tiempo_fecha_texto( fecha_inicio );
+		} else {
+			tiempo_inicio_mes = get_tiempo_inicio_mes_actual();
+		}
+
+		cerrar_mes_completo( tiempo_inicio_mes );
+	});
+}
+
+function agrega_comportamiento_cerrar_quincena (){
+	$( '.cerrar_quincena' ).click( function(){
+		var fecha_inicio = $('.fecha_inicio').val();
+		if ( fecha_inicio.length > 0 ){
+			var tiempo_inicio_mes = get_tiempo_fecha_texto( fecha_inicio );
+			if ( tiempo_inicio_mes.date() < 15 ){
+				cerrar_mes_quincena( tiempo_inicio_mes );
+			} else {
+				cerrar_mes_quincena_siguiente( tiempo_inicio_mes );
+			}
+		}
+	});
+}
+
+function get_tiempo_inicio_mes_actual (){
+	return moment().date( 1 );
+}
+
+function get_tiempo_inicio_mes_anterior (){
+	return moment().subtract( 1, 'M' ).date( 1 );
+}
+
+function get_tiempo_inicio_quincena_mes_anterior_actual (){
+	return moment().subtract( 1, 'M' ).date( 16 );
+}
+
+function get_fecha_tiempo ( tiempo ){
+	return tiempo.format( 'DD-MM-YYYY' );
+}
+
+function get_tiempo_cierre_mes ( tiempo ){
+	var mes = tiempo.month();
+	var anio = tiempo.year();
+	if ( mes != 11 ){
+		mes++;
+	} else {
+		mes = 0;
+		anio++;
+	}
+
+	return moment( { year : anio, month : mes, date: 1 } ).subtract( 1, 'd' );
+
+	// return tiempo.clone().add( 1, 'M' ).subtract( 1, 'd' );
+}
+
+function get_tiempo_cierre_quincena_mes ( tiempo ){
+	return tiempo.clone().date( 15 );
 }
 
 function inicializa_fecha_maxima_inicio( control_fecha_cierre ){
@@ -193,7 +350,9 @@ function inicializa_fecha_cierre_peticion ( control_fecha_cierre ){
 
 function comportamiento_peticion_calculo_dias (){
 	$('.control_periodo_fecha, input.tipo_reporte, input.tipo_dias').change( function(){
-		prepara_peticion_dias_reporte();
+		if ( window.autorizacion_peticion ){
+			prepara_peticion_dias_reporte();
+		}
 	});
 }
 
@@ -226,6 +385,20 @@ function enviar_peticion_dias_reporte (){
 	});
 }
 
+function agrega_mensaje_periodos_horas ( mensaje ){
+	$( '.mensajes_periodos_horas' ).html( mensaje );
+}
+
+function muestra_mensajes_periodos (){
+	muestra_elemento( '.mensajes_periodos_horas' );
+}
+
+function oculta_mensajes_periodos (){
+	if ( $( '.mensajes_periodos_horas' ).html().length == 0 ){
+		oculta_elemento( '.mensajes_periodos_horas' );
+	}
+}
+
 function procesa_respuesta_peticion_dias_reporte ( respuesta ){
 	// console.log(' --- procesa_respuesta_peticion_dias_reporte --- ');
 
@@ -233,8 +406,10 @@ function procesa_respuesta_peticion_dias_reporte ( respuesta ){
 	if ( window.respuesta_peticion_dias_reporte.consulta ){
 		respalda_repuesta_peticion_dias_reporte();
 		genera_reporte();
+		oculta_mensajes_periodos();
 	} else {
-		alert('El periodo que ha seleccionado no puede ser procesado, verifiquelo e intenta nuevamente.');
+		agrega_mensaje_periodos_horas( 'El período que ha seleccionado no pudo ser procesado, verifiquelo e intenta nuevamente.' );
+		muestra_mensajes_periodos();
 	}
 
 	// console.log('---------------------');
@@ -329,6 +504,7 @@ function comportamiento_hora_entrada (){
 	$('.entrada_rango').on( 'input', function (){
 		calcula_hora_entrada( $(this) );
 	});
+	$('.entrada_rango').trigger( 'input' );
 }
 
 function calcula_hora_entrada ( control_hora_entrada ){
@@ -363,7 +539,7 @@ function obtener_entero_fecha(tFecha){
 function genera_hora_entrada (rango){
 	// console.log('genera_hora_entrada : '+rango);
 	var entrada = agregaCeros( parseInt(rango/2).toString() );
-	if (rango%2	!= 0){
+	if ( ( rango % 2 ) != 0 ){
 		entrada += ':30';
 	} else {
 		entrada += ':00';
@@ -375,8 +551,7 @@ function genera_hora_entrada (rango){
 function genera_reporte (){
 	asigna_datos_cabecera_reporte();
 	crea_tabla_reporte();
-	muestra_reporte();
-	muestra_opcion_descargar_reporte();
+	// muestra_opcion_descargar_reporte();
 }
 
 function asigna_datos_cabecera_reporte (){
@@ -389,6 +564,7 @@ function asigna_datos_cabecera_reporte (){
 			$('.periodo_mes').val( aplica_formato_mes_reporte( window.respuesta_peticion_dias_reporte.mes ) );
 			$('.periodo_horas').val( window.reporte.total_horas_reporte );
 		}
+		muestra_reporte();
 	}
 }
 
@@ -503,7 +679,7 @@ function set_horas_reporte (){
 	var hora_entrada = $('.entrada').val();
 	var horas_dia = $('.horas_dia').val();
 
-	if (hora_entrada.length > 0 && horas_dia.length > 0){
+	if ( hora_entrada.length > 0 && horas_dia.length > 0 ){
 		horas_dia = parseInt( $('.horas_dia').val() );
 
 		hora_salida = hora_entrada.split(':');
@@ -1175,10 +1351,11 @@ function muestra_informacion_reporte ( formulario ){
 }
 
 function enfoca_seccion ( elemento ){
-	console.log( 'posicion : ', window.posiciones_secciones[ elemento ] );
-	$( '.segmentacion' ).animate( {
-		scrollLeft : window.posiciones_secciones[ elemento ]
-	}, 300 );
+	// console.log( 'posicion : ', window.posiciones_secciones[ elemento ] );
+	$( '.segmentacion' ).animate( 
+		{ scrollLeft : window.posiciones_secciones[ elemento ] }
+		, 300 
+	);
 }
 
 function comportamiento_presentacion (){
@@ -1207,32 +1384,54 @@ function comportamiento_desplazamiento_secciones (){
 	$('.ver_periodos').click( function (){
 		enfoca_seccion( 'controles_datos_reporte' );
 	});
+
 	$('.ver_fechas_horas').click( function (){
 		enfoca_seccion( 'contenedor_fechas_horas_reporte' );
 	});
+
 	$('.ver_datos_formato').click( function (){
 		enfoca_seccion( 'controles_formato_reporte' );
 	});
+
 	$('.ver_datos_complementarios').click( function (){
 		enfoca_seccion( 'contenedor_datos_complementarios_reporte' );
 	});
+
+	$('.controles_contenido').mousewheel( function( event ){
+		controla_desplazamiento( event );
+	});
+}
+
+function controla_desplazamiento ( event ){
+	var cambio_desplazamiento = 0;
+	if ( event.deltaY != 0 ){
+		cambio_desplazamiento = event.deltaY;
+	}
+
+	if ( event.deltaX != 0 ){
+		cambio_desplazamiento = event.deltaX * -1;
+	}
+
+	$('.segmentacion').scrollLeft( $('.segmentacion').scrollLeft() - ( cambio_desplazamiento * 2 ) );
+    event.preventDefault();
 }
 
 function comportamiento_almacenamiento_datos (){
     if ( verificacion_almacenamiento() ){
+		agrega_comportamiento_preservar_informacion();
 		agrega_eventos_almacenamiento();
 		verifica_datos_almacenados();
-    }
+	}
 }
 
 function verificacion_almacenamiento (){
 	var test = 'test';
     try {
-        localStorage.setItem(test, test);
-        localStorage.removeItem(test);
+        localStorage.setItem( test, test );
+        localStorage.removeItem( test );
         
         return true;
-    } catch(e) {
+    } catch ( error ) {
         
         return false;
     }
@@ -1271,6 +1470,8 @@ function get_lista_elementos_almacenamiento () {
 		, 'tipo_plantilla'
 		, 'semestre'
 		, 'grupo'
+		, 'horas_dia'
+		, 'entrada_rango'
 	];
 }
 
@@ -1280,7 +1481,9 @@ function get_selector ( clase ){
 
 function crea_evento_almacenamiento_datos ( selector, clase ){
 	$( selector ).change( function (){
-		almacena_dato( clase, $( selector ).val() );
+		if ( $('.preservar_informacion').prop( 'checked' ) ){
+			almacena_dato( clase, $( selector ).val() );
+		}
 	});
 }
 
@@ -1292,9 +1495,45 @@ function almacena_dato ( nombre, valor ){
 	}
 }
 
+function agrega_comportamiento_preservar_informacion (){
+	$( '.preservar_informacion' ).change( function(){
+		if ( !$( this ).prop( 'checked' ) && confirmar_no_almacenar() ){
+			eliminar_informacion_almacenada();
+			almacena_olivido_informacion();
+		} else {
+			eliminar_informacion_almacenada();
+			$( this ).prop( 'checked', true );
+		}
+	});
+}
+
+function confirmar_no_almacenar (){
+	return confirm( 'Se eliminará la información almacenada y no se respaldarán los datos actuales, ¿Está seguro?' );
+}
+
+function eliminar_informacion_almacenada (){
+	localStorage.clear();
+}
+
+function almacena_olivido_informacion (){
+	if ( verificacion_almacenamiento() ){
+		almacena_dato( 'preservar_informacion', 'false' );
+    }
+}
+
 function verifica_datos_almacenados (){
 	for ( var elemento in localStorage ){
-		$( get_selector( elemento ) ).val( localStorage[ elemento ] );
+		switch ( elemento ){
+			case 'preservar_informacion':
+				$( get_selector( elemento ) ).prop( 
+					  'checked'
+					, ( localStorage[ elemento ] === "true" )
+				);
+				break;
+			default:
+				$( get_selector( elemento ) ).val( localStorage[ elemento ] );
+				break;	
+		}
 	}
 }
 
@@ -1308,7 +1547,7 @@ function comportamiento_numero_reporte (){
 }
 
 function comportamiento_lista_plantillas (){
-	$('.tipo_plantilla').change( function (){
+	$( '.tipo_plantilla' ).change( function (){
 		cambia_plantilla();
 	});
 	cambia_plantilla();
@@ -1389,14 +1628,18 @@ function desactiva_campos_plantilla_escom (){
 
 function activa_campos_plantilla_upiicsa_generica (){
 	agrega_dependencia_campo( '.telefono' );
+	agrega_dependencia_campo( '.correo' );
 
 	muestra_elemento( '.control_telefono' );
+	muestra_elemento( '.control_correo' );
 }
 
 function desactiva_campos_plantilla_upiicsa_generica (){
 	remueve_dependencia_campo( '.telefono' );
+	remueve_dependencia_campo( '.correo' );
 
 	oculta_elemento( '.control_telefono' );
+	oculta_elemento( '.control_correo' );
 }
 
 function activa_campos_plantilla_generica (){
