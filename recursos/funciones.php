@@ -73,6 +73,7 @@ class funciones {
 			}
 		}
 		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf("---> %s ", json_encode( $datos ) ) );
+		
 		return $datos;
 	}
 
@@ -85,20 +86,24 @@ class funciones {
 		$dias_periodo = array();
 		$dia_inicio = self::get_numero_dia_semana( $periodo_tiempo['inicio'] );
 		$numero_dias_periodo = self::get_distancia_dias( $periodo_tiempo['cierre'], $periodo_tiempo['inicio'] ) + 1;
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- dias_periodo : # rango : %d ', $numero_dias_periodo ) );
 		if ( $numero_dias_periodo < LIMITE_DIAS_REPORTE ){
 
 			$tiempo_dia = $periodo_tiempo[ 'inicio' ];
+			$tiempo_fin = $periodo_tiempo[ 'cierre' ];
 			
-			for ( $contador = 0; $contador < $numero_dias_periodo; $contador++ ){
+			for ( $contador = 0; $contador < $numero_dias_periodo && $tiempo_dia <= $tiempo_fin; $contador++ ){
 
 				$numero_dia_semana = date( 'N', $tiempo_dia );
 				if ( self::valida_dia_semana_reporte( $tipo_dias, $numero_dia_semana ) ){
 					array_push( $dias_periodo, date( 'd-m-Y', $tiempo_dia ) );
 				}
 				$tiempo_dia = strtotime( '+1 day', $tiempo_dia );
+				$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- --- fecha comparacion : %s ', date( 'Y-m-d H:i:s', $tiempo_dia ) ) );
 			}
 
-			$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- dias_periodo : # dias : %d ', count( $dias_periodo ) ) );
+			$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- dias_periodo : # dias obtenidos : %d ', count( $dias_periodo ) ) );
+
 			return $dias_periodo;
 		} else {
 			throw new Exception( NULL, ERROR_PERIODO_DIAS );
@@ -110,19 +115,22 @@ class funciones {
 	}
 
 	private function get_distancia_dias ( $tiempo_cierre, $tiempo_inicio ){
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : tiempo_cierre : %d ', $tiempo_cierre ) );
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : tiempo_inicio : %d ', $tiempo_inicio ) );
 		$diferencia_tiempo = $tiempo_cierre - $tiempo_inicio;
+		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : %d / ( 60 * 60 * 24 ) ', $diferencia_tiempo ) );
+		
 		return intval( $diferencia_tiempo / ( 60 * 60 * 24 ) );
 	}
 
 	private function valida_dia_semana_reporte ( $tipo_dias, $numero_dia_semana ){
 		switch ( $tipo_dias ){
-			case 'es': //entre semana
+			case ENTRE_SEMANA:
 				return ( $numero_dia_semana < NUMERO_DIA_SABADO );
-			case 'fs': //fines de semana
+			case FIN_DE_SEMANA:
 				return ( $numero_dia_semana > NUMERO_DIA_VIERNES );
 			default :
 				throw new Exception( NULL, ERROR_PARAMETROS );
-				break;
 		}
 	}
 
@@ -138,6 +146,7 @@ class funciones {
 				) 
 			);
 		}
+
 		return $dias_reporte;
 	}
 
@@ -147,9 +156,11 @@ class funciones {
 				$this->log->registrar( LOG_MENSAJE_PRUEBA, ' --- verifica_dia_festivo ---');
 				$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- dia : %s ', $dia ) );
 				$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- dia_festivo : %s ', $dia_festivo[ 'fecha' ] ) );
+				
 				return TRUE;
 			}
 		}
+		
 		return FALSE;
 	}
 
@@ -215,7 +226,7 @@ class funciones {
 				, '%s'
 			)"
 			, BD_TABLA_INFORMACION
-			, $datos['tipo_reporte']
+			, ''
 			, $datos['tipo_dias']
 			, self::get_fecha( $datos['fecha_inicio_estandar'] )
 			, self::get_fecha( $datos['fecha_cierre_estandar'] )

@@ -8,17 +8,19 @@ body {
 	margin : 0px;
 	background-color : #74101E;
 	width      : 100%;
-	min-height : 60px;
+	/*min-height : 60px;*/
 	-webkit-box-shadow : 0px 0px 8px 2px #000000;
 	-moz-box-shadow :    0px 0px 8px 2px #000000;
 	box-shadow :         0px 0px 8px 2px #000000;
 }
 
 .cabecera .titulo {
-	padding     : 15px 10px;
+	padding     : 10px;
 	color       : #FFF;
 	width       : 100%;
+	font-size   : 17px;
 	font-weight : bold;
+	text-transform: uppercase;
 }
 
 .configuracion_formato_reporte,
@@ -56,8 +58,13 @@ input {
 	text-align: center;
 }
 
-input[type=text] {
-	border : 1px solid #7B7B7B;
+input[type=text], input[type=number] {
+	border        : none;
+	border-bottom : 1px solid #7B7B7B;
+}
+
+input[type=button], input[type=range], label {
+	cursor : pointer ;
 }
 
 .contenido {
@@ -356,13 +363,13 @@ input[type=text] {
 .contenedor_controles_contenido {
 	border-bottom: 1px solid #000;
 }
-
+  
 .controles_contenido {
 	padding : 15px 30px;
 }
 
 .contenido_secciones {
-	padding: 30px;
+	padding: 15px 30px 0px 30px;
 }
 
 .contenido_secciones > div {
@@ -404,4 +411,24 @@ body {
 
 .instrucciones {
 	padding: 5px;
+}
+
+h4 {
+	color: #D058B4;
+}
+
+.notas {
+	font-size  : 14px;
+	text-align : right;
+	padding    : 10px 0px;
+	cursor     : text;
+}
+
+.actividad_reporte {
+	text-align : left;
+}
+
+.controles_contenido {
+	cursor : url( https://cdn3.iconfinder.com/data/icons/interface/100/scroll_up_down-24.png ), auto;
+	/*cursor : url( https://cdn3.iconfinder.com/data/icons/interface/100/scroll_left_right-24.png ), auto;*/
 }

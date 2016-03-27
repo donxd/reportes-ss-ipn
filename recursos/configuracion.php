@@ -31,9 +31,14 @@ define( 'LOG_MENSAJE_NORMAL' , 2 );
 define( 'NUMERO_DIA_SABADO'  , 6 );
 define( 'NUMERO_DIA_VIERNES' , 5 );
 
+define( 'ENTRE_SEMANA'  , 'es' );
+define( 'FIN_DE_SEMANA' , 'fs' );
+
 define( 'LIMITE_DIAS_REPORTE' , 100 );
 
 define( 'BD_TABLA_DIA_FESTIVO', 'dia_festivo' );
 define( 'BD_TABLA_INFORMACION', 'informacion' );
+
+date_default_timezone_set( 'America/Mexico_City' );
 
 ?>

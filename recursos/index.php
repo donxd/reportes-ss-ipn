@@ -3,7 +3,7 @@
 	require_once('funciones.php');
 
 	global $log;
-	$GLOBALS['log'] = new log();
+	$GLOBALS[ 'log' ] = new log();
 
 	procesa_peticion();
 	
@@ -15,6 +15,22 @@
 
 				$tiempo_inicio = strtotime( $_POST['fecha_inicio'] );
 				$tiempo_cierre = strtotime( $_POST['fecha_cierre'] );
+
+				// $tiempo_inicio = strtotime( $_POST['fecha_inicio'] . '00:00:00' );
+				// $tiempo_cierre = strtotime( $_POST['fecha_cierre'] . '00:00:00' );
+				// $tiempo_inicio = date_timestamp_get( date_create_from_format( 'd-m-Y', $_POST['fecha_inicio'] ) );
+				// $tiempo_cierre = date_timestamp_get( date_create_from_format( 'd-m-Y', $_POST['fecha_cierre'] ) );
+				// $tiempo_inicio = get_tiempo_fecha_texto( $_POST['fecha_inicio'] );
+				// $tiempo_cierre = get_tiempo_fecha_texto( $_POST['fecha_cierre'] );
+
+				// $GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, '--- procesa_peticion ---');
+				// $GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- fecha_inicio : %s ', $_POST['fecha_inicio'] ) );
+				// $GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- fecha_cierre : %s ', $_POST['fecha_cierre'] ) );
+				// $GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- tiempo_inicio : %d ', $tiempo_inicio ) );
+				// $GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- tiempo_cierre : %d ', $tiempo_cierre ) );
+				// $GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- fecha tiempo_inicio : %s ', date( 'Y-m-d H:i:s', $tiempo_inicio ) ) );
+				// $GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- fecha tiempo_cierre : %s ', date( 'Y-m-d H:i:s', $tiempo_cierre ) ) );
+
 
 				$periodo_tiempo = get_periodo_tiempo( $tiempo_inicio, $tiempo_cierre );
 
@@ -29,6 +45,13 @@
 		}
 	}
 
+	function get_tiempo_fecha_texto ( $fecha_texto ){
+		$fecha_desglozada = explode( '-', $fecha_texto );
+		list( $dia, $mes, $anio ) = $fecha_desglozada;
+
+		return mktime( 0, 0, 0, intval( $mes ), intval( $dia ), intval( $anio ) );
+	}
+
 	function valida_parametros (){
 		return ( !empty( $_POST ) && array_key_exists( 'fecha_inicio', $_POST ) > 0 
 					&& array_key_exists( 'fecha_cierre', $_POST ) && array_key_exists( 'tipo_dias', $_POST ) 
@@ -38,10 +61,12 @@
 
 	function get_dias_reporte ( $periodo_tiempo, $tipo_dias ){
 		$funciones = new funciones();
+
 		return $funciones->dias_reporte( $tipo_dias, $periodo_tiempo );
 	}
 
 	function get_periodo_tiempo ( $tiempo_inicio, $tiempo_cierre ){
+		$GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, '--- get_periodo_tiempo ---' );
 		return array(
 			  'inicio' => $tiempo_inicio
 			, 'cierre' => $tiempo_cierre
@@ -68,6 +93,7 @@
 	function get_periodo_fechas ( $periodo ){
 		unset( $periodo['inicio'] );
 		unset( $periodo['cierre'] );
+		
 		return json_encode( $periodo );
 	}
 
@@ -104,9 +130,9 @@
 	function get_mensaje_error ( $error ){
 		switch ( $error->getCode() ){
 			case ERROR_PARAMETROS:
-				return 'Hay un error en los parametros';
+				return 'Hay un error en los parametros : '.$error->getMessage();
 			case ERROR_PERIODO_DIAS:
-				return 'Hay un error en el periodo de los días';
+				return 'Hay un error en el periodo de los días : '.$error->getMessage();
 			default:
 				return $error->getMessage();
 		}
@@ -121,7 +147,7 @@
 
 	function imprime_salida ( $salida ){
 		header( 'Content-Type: application/json' );
-		$GLOBALS['log']->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- salida : %s ', json_encode( json_decode( $salida ) ) ) );
+		$GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- salida : %s ', json_encode( json_decode( $salida ) ) ) );
 		echo json_encode( json_decode( $salida ) );
 	}
 ?>
