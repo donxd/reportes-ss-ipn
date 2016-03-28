@@ -149,7 +149,7 @@
 									<td class="celda_hora_entrada" colspan="2">
 										<div>
 											<div>
-												<input type="text" class="entrada" pattern="\d{2}:\d{2}" required></span>
+												<input type="text" class="entrada" pattern="\d{2}:\d{2}" required>
 											</div>
 											<div>
 												<input type="range" class="entrada_rango" min="0" max="47" step="1" list="horas"/>
@@ -162,6 +162,21 @@
 												</datalist>
 											</div>
 										</div>
+									</td>
+								</tr>
+								<tr>
+									<td> &nbsp; </td>
+								</tr>
+								<tr>
+									<td class="una_linea"> Tipo de servicio : </td>
+									<td class="celda_hora_entrada" colspan="2">
+										<label>
+											<input type="radio" name="tipo_servicio" value="externo" checked /> Externo
+										</label>
+										<br/>
+										<label>
+											<input type="radio" name="tipo_servicio" value="interno" /> Interno ( IPN )
+										</label>
 									</td>
 								</tr>
 							</table>
@@ -384,7 +399,7 @@
 														<input type="text" class="telefono" />
 													</td>
 												</tr>
-												<tr class="oculto control_alumno_egresado">
+												<!-- <tr class="oculto control_alumno_egresado">
 													<td class="una_linea"> Egresado : </td>
 													<td>
 														<label>
@@ -397,7 +412,7 @@
 															No
 														</label>
 													</td>
-												</tr>
+												</tr> -->
 												<tr class="oculto control_alumno_semestre">
 													<td class="una_linea"> Semestre : </td>
 													<td>

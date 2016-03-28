@@ -37,7 +37,9 @@ class funciones {
 		$dias_festivos = self::get_registros( $consulta, $conexion );
 
 		$baseDeDatos->cerrar( $conexion );
-		return $dias_festivos;
+		
+		return self::organiza_dias_festivos( $dias_festivos );
+		// return $dias_festivos;
 	}
 
 	private function get_query_dias_festivos ( $periodo_tiempo ){
@@ -46,10 +48,13 @@ class funciones {
 				  dias_ausueto.id_dia_festivo 
 				, dias_ausueto.fecha 
 				, dias_ausueto.descripcion 
+				, dias_ausueto.tipo_dia
 			FROM 
 				%s AS dias_ausueto 
 			WHERE 
-				dias_ausueto.fecha BETWEEN '%s' AND '%s' "
+				dias_ausueto.fecha BETWEEN '%s' AND '%s' 
+			ORDER BY 
+				fecha ASC "
 			, BD_TABLA_DIA_FESTIVO
 			, date( 'Y-m-d', $periodo_tiempo['inicio'] )
 			, date( 'Y-m-d', $periodo_tiempo['cierre'] )
@@ -67,7 +72,7 @@ class funciones {
 			$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf("--- # registros :  %d ", $numero_registros ) );
 
 			if ( $numero_registros != 0 ){
-				while( $registros = mysqli_fetch_array( $resultado ) ){
+				while ( $registros = mysqli_fetch_assoc( $resultado ) ){
 					array_push( $datos, $registros );
 				}
 			}
@@ -77,16 +82,58 @@ class funciones {
 		return $datos;
 	}
 
+	private function organiza_dias_festivos ( $dias_festivos ){
+		$dias_festivos_agrupados = array();
+		$dia_festivo_anterior = null;
+		
+		foreach ( $dias_festivos as $dia_festivo ){
+			if ( $dia_festivo_anterior != null ){
+
+				// if ( $dia_festivo_anterior[ 'fecha' ] != $dia_festivo->fecha ){
+				if ( $dia_festivo_anterior->fecha != $dia_festivo[ 'fecha' ] ){
+					array_push( $dias_festivos_agrupados, $dia_festivo_anterior );
+					$dia_festivo_anterior = self::copia_elemento( $dia_festivo );
+				} else {
+					// $dia_festivo_anterior[ 'tipo_dia' ] .= $dia_festivo->tipo_dia;
+					$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- organiza_dias_festivos - anterior : %s ', $dia_festivo_anterior->tipo_dia ) );
+					$dia_festivo_anterior->tipo_dia .= $dia_festivo[ 'tipo_dia' ];
+					$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- organiza_dias_festivos - anteriorN : %s ', $dia_festivo_anterior->tipo_dia ) );
+				}
+
+			} else {
+				$dia_festivo_anterior = self::copia_elemento( $dia_festivo );
+			}
+		}
+
+		if ( $dia_festivo_anterior != null ){
+			array_push( $dias_festivos_agrupados, $dia_festivo_anterior );
+		}
+
+		return $dias_festivos_agrupados;
+	}
+
+	private function copia_elemento ( $elemento ){
+		// ini_set( 'display_errors', 0 );
+		$elemento_clonado = json_decode( json_encode( $elemento ) );
+		// ini_set( 'display_errors', 1 );
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- #copia_elemento : %s ', json_encode( $elemento_clonado ) ) );
+
+		return $elemento_clonado;
+
+		// return clone( $elemento );
+	}
+
 	private function get_dias_periodo ( $tipo_dias, $periodo_tiempo ){
-		$this->log->registrar( LOG_MENSAJE_PRUEBA, '--- dias_periodo ---');
-		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- tipo_dias : %s ', $tipo_dias ) );
-		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- fecha_inicio : %s ', $periodo_tiempo['fecha_inicio'] ) );
-		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- fecha_cierre : %s ', $periodo_tiempo['fecha_cierre'] ) );
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, '--- dias_periodo ---');
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- tipo_dias : %s ', $tipo_dias ) );
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- fecha_inicio : %s ', $periodo_tiempo['fecha_inicio'] ) );
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- fecha_cierre : %s ', $periodo_tiempo['fecha_cierre'] ) );
 
 		$dias_periodo = array();
 		$dia_inicio = self::get_numero_dia_semana( $periodo_tiempo['inicio'] );
 		$numero_dias_periodo = self::get_distancia_dias( $periodo_tiempo['cierre'], $periodo_tiempo['inicio'] ) + 1;
-		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- dias_periodo : # rango : %d ', $numero_dias_periodo ) );
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- dias_periodo : # rango : %d ', $numero_dias_periodo ) );
+		
 		if ( $numero_dias_periodo < LIMITE_DIAS_REPORTE ){
 
 			$tiempo_dia = $periodo_tiempo[ 'inicio' ];
@@ -99,10 +146,10 @@ class funciones {
 					array_push( $dias_periodo, date( 'd-m-Y', $tiempo_dia ) );
 				}
 				$tiempo_dia = strtotime( '+1 day', $tiempo_dia );
-				$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- --- fecha comparacion : %s ', date( 'Y-m-d H:i:s', $tiempo_dia ) ) );
+				// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- --- fecha comparacion : %s ', date( 'Y-m-d H:i:s', $tiempo_dia ) ) );
 			}
 
-			$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- dias_periodo : # dias obtenidos : %d ', count( $dias_periodo ) ) );
+			// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- dias_periodo : # dias obtenidos : %d ', count( $dias_periodo ) ) );
 
 			return $dias_periodo;
 		} else {
@@ -115,10 +162,10 @@ class funciones {
 	}
 
 	private function get_distancia_dias ( $tiempo_cierre, $tiempo_inicio ){
-		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : tiempo_cierre : %d ', $tiempo_cierre ) );
-		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : tiempo_inicio : %d ', $tiempo_inicio ) );
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : tiempo_cierre : %d ', $tiempo_cierre ) );
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : tiempo_inicio : %d ', $tiempo_inicio ) );
 		$diferencia_tiempo = $tiempo_cierre - $tiempo_inicio;
-		$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : %d / ( 60 * 60 * 24 ) ', $diferencia_tiempo ) );
+		// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- get_distancia_dias : %d / ( 60 * 60 * 24 ) ', $diferencia_tiempo ) );
 		
 		return intval( $diferencia_tiempo / ( 60 * 60 * 24 ) );
 	}
@@ -152,12 +199,12 @@ class funciones {
 
 	function verifica_dia_festivo ( $dia ){
 		foreach ( $this->dias_festivos as $dia_festivo ){
-			if ( strtotime( $dia ) == strtotime( $dia_festivo[ 'fecha' ] ) ){
-				$this->log->registrar( LOG_MENSAJE_PRUEBA, ' --- verifica_dia_festivo ---');
-				$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- dia : %s ', $dia ) );
-				$this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- dia_festivo : %s ', $dia_festivo[ 'fecha' ] ) );
+			if ( strtotime( $dia ) == strtotime( $dia_festivo->fecha ) ){
+				// $this->log->registrar( LOG_MENSAJE_PRUEBA, ' --- verifica_dia_festivo ---');
+				// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- dia : %s ', $dia ) );
+				// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- dia_festivo : %s ', $dia_festivo[ 'fecha' ] ) );
 				
-				return TRUE;
+				return $dia_festivo->tipo_dia;
 			}
 		}
 		
