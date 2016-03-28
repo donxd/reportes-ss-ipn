@@ -147,7 +147,9 @@
 
 	function imprime_salida ( $salida ){
 		header( 'Content-Type: application/json' );
+		// ini_set( 'display_errors', 0 );
 		$GLOBALS[ 'log' ]->registrar( LOG_MENSAJE_PRUEBA, sprintf('--- salida : %s ', json_encode( json_decode( $salida ) ) ) );
 		echo json_encode( json_decode( $salida ) );
+		// ini_set( 'display_errors', 1 );
 	}
 ?>

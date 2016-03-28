@@ -130,9 +130,9 @@ class reporte {
 			, 'numero_reporte' => 'nuR'
 			, 'boleta'         => 'nuB'
 			, 'carrera'        => 'txCar'
-			, 'egresado'       => ''
-			, 'egresado_si'    => 'ckEY'
-			, 'egresado_no'    => 'ckEN'
+			// , 'egresado'       => ''
+			// , 'egresado_si'    => 'ckEY'
+			// , 'egresado_no'    => 'ckEN'
 			, 'semestre'       => 'nuS'
 			, 'grupo'          => 'nuG'
 			, 'dependencia'    => 'txRep'
@@ -201,10 +201,6 @@ class reporte {
 				case 'grupo'                  :
 				case 'nombre_alumno'          :
 				case 'responsable_nombre'     :
-				// case 'dia_emision'            :
-				// case 'mes_emision'            :
-				// case 'anio_emision'           :
-
 				case 'mes'                    :
 				case 'total_horas'            : 
 				case 'numero_reporte'         : 
@@ -214,13 +210,11 @@ class reporte {
 				case 'nombre_alumno'          : 
 				case 'responsable_nombre'     : 
 				case 'responsable_puesto'     : self::vacia_valor_variable( $seccion, $variable_destino ); break; 
-				// case 'periodo_inicio'         : 
-				// case 'periodo_cierre'         : self::vacia_valor_variable( $seccion, $variable ); break; 
 				case 'total_horas_acumuladas' : self::vacia_total_horas_acumuladas(); break;
 				case 'total_horas_final'      : self::vacia_total_horas_final();
 				case 'fecha_emision'          : self::vacia_fecha_emision(); break;
 				case 'actividades'            : self::vacia_actividades(); break;
-				case 'egresado'               : self::vacia_egresado(); break;
+				// case 'egresado'               : self::vacia_egresado(); break;
 				case 'fechas_dias'            : self::vacia_fechas_dias_variables( $numero_fechas, $dias_fechas ); break;
 				case 'hora_entrada'           : self::vacia_hora_entrada_variables( $numero_fechas, $dias_fechas ); break;
 				case 'hora_salida'            : self::vacia_hora_salida_variables( $numero_fechas, $dias_fechas ); break;
@@ -307,74 +301,81 @@ class reporte {
 			// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- posicion egresado si [ %s ] ', $this->configuracion_plantilla[ 'egresado_si' ] ) );
 			// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- posicion egresado no [ %s ] ', $this->configuracion_plantilla[ 'egresado_no' ] ) );
 
-			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_si' ] ] = 'Si';
+			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_si' ] ] = 'X';
 			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_no' ] ] = '';
 		} else {
 			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_si' ] ] = '';
-			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_no' ] ] = 'No';
+			$GLOBALS[ $this->configuracion_plantilla[ 'egresado_no' ] ] = 'X';
 		}
 	}
 
 	private function vacia_fechas_dias_variables ( $numero_fechas, $dias_fechas ){
 
-		// $ultimo_valor_i;
 		$variable = 'fhRp';
 		for ( $i = 0; $i < $this->LIMITE_VARIABLES && $i < $numero_fechas; $i++ ){
 			$GLOBALS[ $variable . ( $i + 1 ) ] = $dias_fechas[ $i ]->fecha;
-
-			// $ultimo_valor_i = $i;
 		}
 
-		// for ( $i = $ultimo_valor_i; $i < $this->LIMITE_VARIABLES; $i++ ){
-		// 	$GLOBALS[ $variable . ( $i + 1 ) ] = '';
-		// }
 	}
 
 	private function vacia_hora_entrada_variables ( $numero_fechas, $dias_fechas ){
-		self::vacia_hora_entrada_salida_variables( $numero_fechas, $dias_fechas, 'hora_entrada', 'DIA', 'hERp' );
+		self::vacia_hora_entrada_salida_variables( $numero_fechas, $dias_fechas, 'hora_entrada', 'hERp' );
 	}
 
-	private function vacia_hora_entrada_salida_variables ( $numero_fechas, $dias_fechas, $seccion, $valor_alterno, $variable_destino ){
-		// $ultimo_valor_i;
+	private function vacia_hora_entrada_salida_variables ( $numero_fechas, $dias_fechas, $seccion, $variable_destino ){
 
 		$variable = $variable_destino;
 		for ( $i = 0; $i < $this->LIMITE_VARIABLES && $i < $numero_fechas; $i++ ){
+			
 			$tiempo = $_POST[ $seccion ];
-			if ( $dias_fechas[ $i ]->festivo ){
-				$tiempo = $valor_alterno;
+			if ( $dias_fechas[ $i ]->festivo != false ){
+				$tiempo = self::determina_valor_hora_entrada_salida( $seccion, $dias_fechas[ $i ]->festivo );
 			}
 
 			$GLOBALS[ $variable . ( $i + 1 ) ] = $tiempo;
-
-			// $ultimo_valor_i = $i;
 		}
 
-		// for ( $i = $ultimo_valor_i; $i < $this->LIMITE_VARIABLES; $i++ ){
-		// 	$GLOBALS[ $variable . ( $i + 1 ) ] = '';
-		// }
+	}
+
+	private function determina_valor_hora_entrada_salida ( $seccion, $valor_dia_festivo ){
+		switch ( $seccion ){
+			case 'hora_entrada' : return self::determina_valor_hora_entrada( $valor_dia_festivo );
+			case 'hora_salida'  : return self::determina_valor_hora_salida( $valor_dia_festivo );
+		}
+	}
+
+	private function determina_valor_hora_entrada ( $valor_dia_festivo ){
+		switch ( $valor_dia_festivo ){
+			case 'DIA FESTIVO'           : return 'DIA';
+			case 'SUSPENCION DE LABORES' : return 'SUSPENCION';
+		}
+	}
+
+	private function determina_valor_hora_salida ( $valor_dia_festivo ){
+		switch ( $valor_dia_festivo ){
+			case 'DIA FESTIVO'           : return 'FESTIVO';
+			case 'SUSPENCION DE LABORES' : return 'DE LABORES';
+		}
 	}
 
 	private function vacia_hora_salida_variables ( $numero_fechas, $dias_fechas ){
-		self::vacia_hora_entrada_salida_variables( $numero_fechas, $dias_fechas, 'hora_salida', 'FESTIVO', 'hSRp');
+		self::vacia_hora_entrada_salida_variables( $numero_fechas, $dias_fechas, 'hora_salida', 'hSRp');
 	}
 
 	private function vacia_horas_dia_variables ( $numero_fechas, $dias_fechas ){
 
 		$variable = 'hDRp';
 		for ( $i = 0; $i < $this->LIMITE_VARIABLES && $i < $numero_fechas; $i++ ){
+			
 			$horas_dia = $_POST['horas_dia'];
-			if ( $dias_fechas[ $i ]->festivo ){
+			if ( $dias_fechas[ $i ]->festivo != false ){
 				$horas_dia = '';
 			}
 
 			$GLOBALS[ $variable . ( $i + 1 ) ] = $horas_dia;
 
-			// $ultimo_valor_i = $i;
 		}
 
-		// for ( $i = $ultimo_valor_i; $i < $this->LIMITE_VARIABLES; $i++ ){
-		// 	$GLOBALS[ $variable . ( $i + 1 ) ] = '';
-		// }
 	}
 
 	private function envia_archivo_tbs (){
@@ -523,16 +524,28 @@ class reporte {
 	}
 
 	private function agrega_hora_entrada_reporte (){
-		$hora_entrada = $this->configuracion_plantilla['hora_entrada'];
-		$columna = $hora_entrada['columna'];
+		
+		$hora_entrada    = $this->configuracion_plantilla['hora_entrada'];
+		$columna         = $hora_entrada['columna'];
 		$posicion_inicio = $hora_entrada['posicion'];
+		
 		$dias = json_decode( $_POST['dias'] );
 
 		foreach ( $dias as $dia ){
+			
 			$contenido_celda = $_POST['hora_entrada'];
-			if ( $dia->festivo ){
-				$contenido_celda = 'DIA';
+			// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- agrega_hora_entrada_reporte : %s ', $dia->festivo ) );
+			
+			if ( $dia->festivo != false ){
+				if ( $dia->festivo == 'DIA FESTIVO' ){
+					$contenido_celda = 'DIA';
+				}
+
+				if ( $dia->festivo == 'SUSPENCION DE LABORES' ){
+					$contenido_celda = 'SUSPENCION';
+				}
 			}
+
 			$this->objetoPHPExcel->getActiveSheet()->setCellValue( 
 				sprintf( '%s%d', $columna, $posicion_inicio )
 				, $contenido_celda
@@ -542,16 +555,28 @@ class reporte {
 	}
 
 	private function agrega_hora_salida_reporte (){
-		$hora_salida = $this->configuracion_plantilla['hora_salida'];
-		$columna = $hora_salida['columna'];
+		
+		$hora_salida     = $this->configuracion_plantilla['hora_salida'];
+		$columna         = $hora_salida['columna'];
 		$posicion_inicio = $hora_salida['posicion'];
+		
 		$dias = json_decode( $_POST['dias'] );
 
 		foreach ( $dias as $dia ){
+
 			$contenido_celda = $_POST['hora_salida'];
-			if ( $dia->festivo ){
-				$contenido_celda = 'FESTIVO';
+			// $this->log->registrar( LOG_MENSAJE_PRUEBA, sprintf( '--- agrega_hora_salida_reporte : %s ', $dia->festivo ) );
+
+			if ( $dia->festivo != false ){
+				if ( $dia->festivo == 'DIA FESTIVO' ){
+					$contenido_celda = 'FESTIVO';
+				}
+
+				if ( $dia->festivo == 'SUSPENCION DE LABORES' ){
+					$contenido_celda = 'DE LABORES';
+				}
 			}
+
 			$this->objetoPHPExcel->getActiveSheet()->setCellValue( 
 				sprintf( '%s%d', $columna, $posicion_inicio )
 				, $contenido_celda

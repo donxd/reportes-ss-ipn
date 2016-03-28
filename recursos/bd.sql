@@ -6,28 +6,41 @@ CREATE TABLE `reportess`.`dia_festivo` (
   `id_dia_festivo` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL,
   `descripcion` TEXT NOT NULL,
+  `tipo_dia` varchar(1) NOT NULL COMMENT 'o - oficial, n - no oficial, v - vacaciones, e - escolares',
   PRIMARY KEY (`id_dia_festivo`));
 
 INSERT INTO 
 	dia_festivo
 VALUES
-   ( NULL, '2015-02-02', 'Día de la constitución')
-,  ( NULL, '2015-03-16', 'Natalicio de Benito Juárez')
-,  ( NULL, '2015-05-01', 'Día del trabajo')
-,  ( NULL, '2015-09-16', 'Día de la independencia')
-,  ( NULL, '2015-11-16', 'Conmemoración del inicio de la revolución mexicana')
-,  ( NULL, '2015-12-25', 'Navidad');
+   ( NULL, '2015-02-02', 'Día de la constitución', 'o')
+,  ( NULL, '2015-03-16', 'Natalicio de Benito Juárez', 'o')
+,  ( NULL, '2015-05-01', 'Día del trabajo', 'o')
+,  ( NULL, '2015-09-16', 'Día de la independencia', 'o')
+,  ( NULL, '2015-11-16', 'Conmemoración del inicio de la revolución mexicana', 'o')
+,  ( NULL, '2015-12-25', 'Navidad'), 'o';
 
 INSERT INTO 
   dia_festivo
 VALUES
-   ( NULL, '2016-01-01', 'Año nuevo')
-,  ( NULL, '2016-02-01', 'Día de la Constitución')
-,  ( NULL, '2016-03-21', 'Natalicio de Benito Juárez')
-,  ( NULL, '2016-05-01', 'Día del trabajo')
-,  ( NULL, '2016-09-16', 'Día de la Independencia de México')
-,  ( NULL, '2016-11-21', 'Día de la Revolución Mexicana')
-,  ( NULL, '2016-12-25', 'Navidad');
+   ( NULL, '2016-01-01', 'Año nuevo', 'o')
+,  ( NULL, '2016-02-01', 'Día de la Constitución', 'o')
+,  ( NULL, '2016-03-21', 'Natalicio de Benito Juárez', 'o')
+,  ( NULL, '2016-05-01', 'Día del trabajo', 'o')
+,  ( NULL, '2016-09-16', 'Día de la Independencia de México', 'o')
+,  ( NULL, '2016-11-21', 'Día de la Revolución Mexicana', 'o')
+,  ( NULL, '2016-12-25', 'Navidad', 'o');
+
+INSERT INTO 
+  dia_festivo 
+VALUES 
+   ( NULL, '2016-03-24', 'Semana santa', 'n' )
+,  ( NULL, '2016-03-25', 'Semana santa', 'n' )
+,  ( NULL, '2016-03-22', 'Semana santa', 'v' )
+,  ( NULL, '2016-03-23', 'Semana santa', 'v' )
+,  ( NULL, '2016-03-24', 'Semana santa', 'v' )
+,  ( NULL, '2016-03-25', 'Semana santa', 'v' )
+,  ( NULL, '2016-05-05', 'Semana santa', 'e' )
+,  ( NULL, '2016-11-02', 'Día de muertos', 'e' );
 
 
 CREATE TABLE `reportess`.`informacion` (

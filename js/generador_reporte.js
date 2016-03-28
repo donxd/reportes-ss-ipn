@@ -2,12 +2,11 @@
 $( document ).ready( function(){
 	inicializa_valores_tiempo();
 	inicializa_variables_control();
-	comportamiento_dia_inicio_reporte();
+	// comportamiento_dia_inicio_reporte();
 	comportamiento_controles_fechas();
 	comportamiento_peticion_calculo_dias();
 	comportamiento_tipo_dias();
 	comportamiento_horas_x_dia();
-	comportamiento_hora_entrada();
 	comportamiento_descripcion_reporte();
 	comportamiento_genera_reporte();
 	comportamiento_descargar_reporte();
@@ -20,11 +19,13 @@ $( document ).ready( function(){
 	comportamiento_almacenamiento_datos();
 	comportamiento_lista_plantillas();
 	comportamiento_numero_reporte();
+	comportamiento_hora_entrada();
+	comportamiento_tipo_servicio();
 });
 
 function inicializa_valores_tiempo (){
 	moment.locale('es');
-	var tiempo_mes_anterior = moment().startOf('month').subtract(1, 'days');
+	var tiempo_mes_anterior = moment().startOf( 'month' ).subtract( 1, 'days' );
 	window.tiempo = {
 		  periodo_actual : get_periodo( tiempo_mes_anterior )
 		, dias_mes_actual : get_dias_mes( tiempo_mes_anterior )
@@ -191,7 +192,7 @@ function determina_tipo_reporte ( control_fecha_inicio ){
 		window.peticion.tipo_reporte = $('input.tipo_reporte:checked').val();
 	} else {
 		var indice_tipo_reporte_manual = 2;
-		$( get_selector_tipo_reporte( indice_tipo_reporte_manual ) ).attr('checked', true);		
+		$( get_selector_tipo_reporte( indice_tipo_reporte_manual ) ).attr('checked', true);
 	}
 }
 
@@ -400,7 +401,6 @@ function oculta_mensajes_periodos (){
 }
 
 function procesa_respuesta_peticion_dias_reporte ( respuesta ){
-	// console.log(' --- procesa_respuesta_peticion_dias_reporte --- ');
 
 	almacena_respuesta( respuesta );
 	if ( window.respuesta_peticion_dias_reporte.consulta ){
@@ -412,23 +412,6 @@ function procesa_respuesta_peticion_dias_reporte ( respuesta ){
 		muestra_mensajes_periodos();
 	}
 
-	// console.log('---------------------');
-	// console.log( sprintf( 
-	// 		'%s : %s '
-	// 		, window.peticion.fecha_cierre
-	// 		, window.reporte.periodo.fecha_cierre 
-	// 	) 
-	// );
-	// console.log('---------------------');
-	/*
-	// if (parametros.fecha_cierre == ' || parametros.fecha_cierre.length < 1){
-	if ( typeof window.peticion.fecha_cierre == 'undefined' ){
-		//revisar el formato que acepta el input[date]
-		// console.log('---> no habia fecha cierre')
-		// console.log('e ok : '+window.reporte.periodo[1]+' -> '+ cambiaFormatoFecha('Y-m-d', window.reporte.periodo[1] ) );
-		// $('.fecha_cierre').val( cambiaFormatoFecha('Y-m-d', window.reporte.fecha_cierre ) );
-		$('.fecha_cierre').val( window.reporte.fecha_cierre );
-	}*/
 }
 
 function almacena_respuesta ( respuesta ){
@@ -505,6 +488,12 @@ function comportamiento_hora_entrada (){
 		calcula_hora_entrada( $(this) );
 	});
 	$('.entrada_rango').trigger( 'input' );
+}
+
+function comportamiento_tipo_servicio (){
+	$( '[name=tipo_servicio]' ).change( function(){
+		genera_reporte();
+	});
 }
 
 function calcula_hora_entrada ( control_hora_entrada ){
@@ -774,32 +763,111 @@ function get_registros_tabla_reporte ( columnas_reporte ){
 function get_contenido_celda_reporte ( tipo_columna_reporte, dia_reporte ){
 	var columnas_reporte = constantes_columnas();
 	var contenido = '';
+
 	switch ( tipo_columna_reporte ){
-		case columnas_reporte.NUMERO:
-			contenido = window.contador_registro_reporte;
-			break;
-		case columnas_reporte.FECHA:
-			contenido = aplica_formato_fecha_horas( dia_reporte.fecha );
-			break;
-		case columnas_reporte.HORA_ENTRADA:
-			if ( !dia_reporte.festivo )
-				contenido = get_reporte_hora_entrada();
-			break;
-		case columnas_reporte.HORA_SALIDA:
-			if ( !dia_reporte.festivo )
-				contenido = get_reporte_hora_salida();
-			else 
-				contenido = 'DIA FESTIVO';
-			break;
-		case columnas_reporte.HORAS_DIA:
-			if ( !dia_reporte.festivo )
-				contenido = get_reporte_horas_dia();
-			break;
+		case columnas_reporte.NUMERO       : contenido = window.contador_registro_reporte; break;
+		case columnas_reporte.FECHA        : contenido = aplica_formato_fecha_horas( dia_reporte.fecha ); break;
+		case columnas_reporte.HORA_ENTRADA : contenido = determina_hora_entrada( dia_reporte ); break;
+		case columnas_reporte.HORA_SALIDA  : contenido = determina_hora_salida( dia_reporte ); break;
+		case columnas_reporte.HORAS_DIA    : contenido = determina_horas_dia( dia_reporte ); break;
 	}
+
 	return sprintf(
 		'<td> %s </td>'
 		, contenido
 	);
+}
+
+function determina_hora_entrada ( dia_reporte ){
+	var hora_entrada = get_reporte_hora_entrada();
+	var dia_festivo_suspencion = '';
+
+	if ( dia_reporte.festivo == false ){
+		
+		return hora_entrada;
+	} else {
+		
+		return determina_valor_x_dia_festivo( 
+			  dia_reporte
+			, dia_festivo_suspencion
+			, dia_festivo_suspencion
+			, hora_entrada
+			, dia_festivo_suspencion
+		);
+	}
+}
+
+function determina_valor_x_dia_festivo ( dia_reporte, valor_dia_festivo_oficial, valor_dia_festivo_no_oficial, 
+		valor_dia_no_festivo, valor_dia_suspencion_escuela ){
+
+	if ( dia_reporte.festivo == 'o' ){
+		
+		return valor_dia_festivo_oficial;
+	} else {
+		var tipo_servicio = $('[name=tipo_servicio]:checked').val();
+		switch ( tipo_servicio ){
+			case 'externo':
+				if ( texto_contiene( dia_reporte.festivo, 'n' ) ){
+					
+					return valor_dia_festivo_no_oficial;	
+				} else {
+
+					return valor_dia_no_festivo;
+				}
+				break;
+			case 'interno':
+				if ( texto_contiene( dia_reporte.festivo, 'v' ) || 
+						texto_contiene( dia_reporte.festivo, 'e' ) ){
+					
+					return valor_dia_suspencion_escuela;
+				} else {
+
+					return valor_dia_no_festivo;
+				}
+				break;
+		}
+	}
+}
+
+function determina_hora_salida ( dia_reporte ){
+	var hora_salida = get_reporte_hora_salida();
+	var dia_festivo_suspencion = '';
+
+	if ( dia_reporte.festivo == false ){
+		
+		return hora_salida;
+	} else {
+		
+		return determina_valor_x_dia_festivo( 
+			  dia_reporte
+			, dia_festivo_suspencion
+			, dia_festivo_suspencion
+			, hora_salida
+			, dia_festivo_suspencion
+		);
+	}
+}
+
+function determina_horas_dia ( dia_reporte ){
+	var horas_dia = get_reporte_horas_dia();
+
+	if ( dia_reporte.festivo == false ){
+		
+		return horas_dia;
+	} else {
+		
+		return determina_valor_x_dia_festivo( 
+			  dia_reporte
+			, 'DIA FESTIVO'
+			, 'SUSPENCION DE LABORES'
+			, horas_dia
+			, 'SUSPENCION DE LABORES'
+		);
+	}
+}
+
+function texto_contiene ( texto, segmento ){
+	return ( texto.indexOf( segmento ) != -1 );
 }
 
 function aplica_formato_fecha_horas ( fecha ){
@@ -878,7 +946,8 @@ function cambiaFormatoFecha (formato_salida, fecha){
 
 	switch (formato_salida){
 		case 'Y-m-d':
-			return get_fecha_anio_mes_dia(  )
+			
+			return get_fecha_anio_mes_dia()
 			break;
 		case 'd-m-Y':
 			//constructor yyyy, mm, dd, hh , MM, ss, ms
@@ -918,8 +987,9 @@ function comportamiento_descargar_reporte (){
 			valida_hora_entrada();
 			verifica_validacion_datos_reporte();
 			agrega_datos_reporte();
-			muestra_informacion_reporte( $(this) );
-		} catch( error ){
+			// muestra_informacion_reporte( $(this) );
+		} catch ( error ){
+			console.log( 'Error :', error );
 			return false;
 		}
 	});
@@ -928,16 +998,18 @@ function comportamiento_descargar_reporte (){
 function valida_hora_entrada (){
 	if ( $('.entrada').val().length == 0 ){
 		$('.entrada_rango').focus();
+		
 		throw true;
 	}
 }
 
 function verifica_validacion_datos_reporte (){
-	var dependencia = $('.numero_reporte').prop('required');
+	var dependencia = $('.numero_reporte').prop( 'required' );
 	// console.log( 'dependencia : ', dependencia );
 	if ( !dependencia ){
 		agrega_dependencia_campos_datos_reporte( get_campos_datos_reporte() );
 		setTimeout( revalida_datos_reporte, 250 );
+		
 		throw true;
 	}
 }
@@ -1014,6 +1086,7 @@ function remueve_dependencia_campo ( selector ){
 function agrega_datos_reporte (){
 	var formulario = $('.formulario_reporte');
 	var carrera = $('.tipo_plantilla').val() != 'generica' ? $('.lista_carreras').val() : $('.carrera').val();
+	
 	formulario.append( campo_dato_reporte( 'fecha_inicio', $('.periodo_inicio').val() ) );
 	formulario.append( campo_dato_reporte( 'fecha_cierre', $('.periodo_cierre').val() ) );
 	formulario.append( campo_dato_reporte( 'mes', $('.periodo_mes').val() ) );
@@ -1038,7 +1111,7 @@ function agrega_datos_reporte (){
 	formulario.append( campo_dato_reporte( 'fecha_cierre_estandar', $('.fecha_cierre').val() ) );
 	formulario.append( campo_dato_reporte( 'fecha_emision_estandar', $('.fecha_emision').val() ) );
 
-	formulario.append( campo_dato_reporte( 'egresado', $('[name=alumno_egresado]:checked').val() ) );
+	// formulario.append( campo_dato_reporte( 'egresado', $('[name=alumno_egresado]:checked').val() ) );
 	formulario.append( campo_dato_reporte( 'semestre', $('.semestre').val() ) );
 	formulario.append( campo_dato_reporte( 'grupo'   , $('.grupo').val() ) );
 
@@ -1048,13 +1121,36 @@ function agrega_datos_reporte (){
 
 function aplica_formato_fecha_horas_dias (){
 	// console.log( 'dias : ', JSON.stringify( window.respuesta_peticion_dias_reporte.dias ) );
+	
+	var valor_dia_festivo;
+	var contador_registros = 0;
+	var columnas_reporte = constantes_columnas();
+	var dias_reporte = $('.reporte > table tr:gt(0)');
+
 	var dias = JSON.parse( JSON.stringify( window.respuesta_peticion_dias_reporte.dias ) );
+
 	for ( var dia in dias ){
 		// console.log( 'dia : ', JSON.stringify( window.respuesta_peticion_dias_reporte.dias[ dia ].fecha ) );
-		dias[ dia ].fecha = aplica_formato_fecha_horas( dias[ dia ].fecha );
+		// dias[ dia ].fecha = aplica_formato_fecha_horas( dias[ dia ].fecha );
 		// console.log( 'dia : ', JSON.stringify( window.respuesta_peticion_dias_reporte.dias[ dia ].fecha ) );
+		
+		valor_dia_festivo   = $( dias_reporte[ contador_registros ] ).find( 'td:eq( '+ columnas_reporte.HORAS_DIA  +' )' ).html();
+		dias[ dia ].fecha   = $( dias_reporte[ contador_registros ] ).find( 'td:eq( '+ columnas_reporte.FECHA  +' )' ).html();
+		dias[ dia ].festivo = get_tipo_dia_festivo( valor_dia_festivo.trim() );
+		
+		contador_registros++;
 	}
+
 	return dias;
+}
+
+function get_tipo_dia_festivo ( valor_dia_festivo ){
+	if ( valor_dia_festivo == 'DIA FESTIVO' || valor_dia_festivo == 'SUSPENCION DE LABORES' ){
+
+		return valor_dia_festivo;
+	}
+
+	return false;
 }
 
 function agrega_actividades_reporte (){
@@ -1083,7 +1179,7 @@ function campo_dato_reporte ( nombre, valor ){
 
 function limpiar_formulario (){
 	$('.formulario_reporte input[type=hidden]').remove();
-	console.log( '--- formulario limpio ');
+	// console.log( '--- formulario limpio ');
 }
 
 function comportamiento_redimension_pagina (){
@@ -1092,7 +1188,7 @@ function comportamiento_redimension_pagina (){
 	});
 }
 
-function comportamiento_ejemplos_formato_datos (){	
+function comportamiento_ejemplos_formato_datos (){
 	comportamiento_ejemplos_formato_mes_reporte();
 	comportamiento_ejemplos_formato_fechas_horas();
 	comportamiento_ejemplos_formato_horas_reporte();
@@ -1590,7 +1686,7 @@ function get_lista_carreras_upiicsa (){
 
 function get_lista_carreras_escom (){
 	return [
-		  'INGENIERIA EN SISTEMAS COMPUTACIONALES'
+		  'ING EN SISTEMAS COMPUTACIONALES'
 	];
 }
 
@@ -1599,11 +1695,11 @@ function agrega_opciones_carreras_lista ( carreras ){
 }
 
 function activa_campos_plantilla_escom (){
-	agrega_dependencia_campo( '[name=alumno_egresado]:first' );
+	// agrega_dependencia_campo( '[name=alumno_egresado]:first' );
 	agrega_dependencia_campo( '.semestre' );
 	agrega_dependencia_campo( '.grupo' );
 
-	muestra_elemento( '.control_alumno_egresado' );
+	// muestra_elemento( '.control_alumno_egresado' );
 	muestra_elemento( '.control_alumno_semestre' );
 	muestra_elemento( '.control_alumno_grupo' );
 }
@@ -1617,11 +1713,11 @@ function oculta_elemento ( selector ){
 }
 
 function desactiva_campos_plantilla_escom (){
-	remueve_dependencia_campo( '[name=alumno_egresado]:first' );
+	// remueve_dependencia_campo( '[name=alumno_egresado]:first' );
 	remueve_dependencia_campo( '.semestre' );
 	remueve_dependencia_campo( '.grupo' );
 
-	oculta_elemento( '.control_alumno_egresado' );
+	// oculta_elemento( '.control_alumno_egresado' );
 	oculta_elemento( '.control_alumno_semestre' );
 	oculta_elemento( '.control_alumno_grupo' );
 }
