@@ -105,11 +105,11 @@ function crea_controles_fecha (){
 
 function get_opciones_control_fecha (){
 	return {
- 		  timepicker : false
- 		, allowBlank : true
- 		, validateOnBlur : false
- 		, format : 'd-m-Y' 
- 		, lang : 'es'
+		  timepicker : false
+		, allowBlank : true
+		, validateOnBlur : false
+		, format : 'd-m-Y' 
+		, lang : 'es'
 	};
 }
 
@@ -589,63 +589,37 @@ function aplica_formato_periodo_reporte ( fecha ){
 
 function get_formato_fecha ( fecha, formato ){
 	switch ( formato ){
-		case 'dMESaaaa':
-			return formato_fecha( fecha, 'D MMM YYYY' ).toUpperCase().replace( '.', '', 'g');
-		case 'dMESaaaa*':
-			return formato_fecha( fecha, 'D MMMM YYYY' ).toUpperCase();
-		case 'dMesaaaa':
-			return formato_fecha( fecha, 'D MMM YYYY' ).replace( '.', '', 'g');
-		case 'dMesaaaa*':
-			return formato_fecha( fecha, 'D MMMM YYYY' );
-		case 'ddMESaaaa':
-			return formato_fecha( fecha, 'DD MMM YYYY' ).toUpperCase().replace( '.', '', 'g');
-		case 'ddMESaaaa*':
-			return formato_fecha( fecha, 'DD MMMM YYYY' ).toUpperCase();
-		case 'ddMesaaaa':
-			return formato_fecha( fecha, 'DD MMM YYYY' ).replace( '.', '', 'g');
-		case 'ddMesaaaa*':
-			return formato_fecha( fecha, 'DD MMMM YYYY' );
-		case 'dMESaa':
-			return formato_fecha( fecha, 'D MMM YY' ).toUpperCase().replace( '.', '', 'g');
-		case 'dMESaa*':
-			return formato_fecha( fecha, 'D MMMM YY' ).toUpperCase();
-		case 'dMesaa':
-			return formato_fecha( fecha, 'D MMM YY' ).replace( '.', '', 'g');
-		case 'dMesaa*':
-			return formato_fecha( fecha, 'D MMMM YY' );
-		case 'ddMESaa':
-			return formato_fecha( fecha, 'DD MMM YY' ).toUpperCase().replace( '.', '', 'g');
-		case 'ddMESaa*':
-			return formato_fecha( fecha, 'DD MMMM YY' ).toUpperCase();
-		case 'ddMesaa':
-			return formato_fecha( fecha, 'DD MMM YY' ).replace( '.', '', 'g');
-		case 'ddMesaa*':
-			return formato_fecha( fecha, 'DD MMMM YY' );
-		case 'dmaaaa':
-			return formato_fecha( fecha, 'D M YYYY' );
-		case 'dmmaaaa':
-			return formato_fecha( fecha, 'D MM YYYY' );
-		case 'ddmaaaa':
-			return formato_fecha( fecha, 'DD M YYYY' );
-		case 'ddmmaaaa':
-			return formato_fecha( fecha, 'DD MM YYYY' );
-		case 'dmaa':
-			return formato_fecha( fecha, 'D M YY' );
-		case 'dmmaa':
-			return formato_fecha( fecha, 'D MM YY' );
-		case 'ddmaa':
-			return formato_fecha( fecha, 'DD M YY' );
-		case 'ddmmaa':
-			return formato_fecha( fecha, 'DD MM YY' );
+		case 'dMESaaaa'   : return formato_fecha( fecha, 'D MMM YYYY' ).toUpperCase().replace( '.', '', 'g');
+		case 'dMESaaaa*'  : return formato_fecha( fecha, 'D MMMM YYYY' ).toUpperCase();
+		case 'dMesaaaa'   : return formato_fecha( fecha, 'D MMM YYYY' ).replace( '.', '', 'g');
+		case 'dMesaaaa*'  : return formato_fecha( fecha, 'D MMMM YYYY' );
+		case 'ddMESaaaa'  : return formato_fecha( fecha, 'DD MMM YYYY' ).toUpperCase().replace( '.', '', 'g');
+		case 'ddMESaaaa*' : return formato_fecha( fecha, 'DD MMMM YYYY' ).toUpperCase();
+		case 'ddMesaaaa'  : return formato_fecha( fecha, 'DD MMM YYYY' ).replace( '.', '', 'g');
+		case 'ddMesaaaa*' : return formato_fecha( fecha, 'DD MMMM YYYY' );
+		case 'dMESaa'     : return formato_fecha( fecha, 'D MMM YY' ).toUpperCase().replace( '.', '', 'g');
+		case 'dMESaa*'    : return formato_fecha( fecha, 'D MMMM YY' ).toUpperCase();
+		case 'dMesaa'     : return formato_fecha( fecha, 'D MMM YY' ).replace( '.', '', 'g');
+		case 'dMesaa*'    : return formato_fecha( fecha, 'D MMMM YY' );
+		case 'ddMESaa'    : return formato_fecha( fecha, 'DD MMM YY' ).toUpperCase().replace( '.', '', 'g');
+		case 'ddMESaa*'   : return formato_fecha( fecha, 'DD MMMM YY' ).toUpperCase();
+		case 'ddMesaa'    : return formato_fecha( fecha, 'DD MMM YY' ).replace( '.', '', 'g');
+		case 'ddMesaa*'   : return formato_fecha( fecha, 'DD MMMM YY' );
+		case 'dmaaaa'     : return formato_fecha( fecha, 'D M YYYY' );
+		case 'dmmaaaa'    : return formato_fecha( fecha, 'D MM YYYY' );
+		case 'ddmaaaa'    : return formato_fecha( fecha, 'DD M YYYY' );
+		case 'ddmmaaaa'   : return formato_fecha( fecha, 'DD MM YYYY' );
+		case 'dmaa'       : return formato_fecha( fecha, 'D M YY' );
+		case 'dmmaa'      : return formato_fecha( fecha, 'D MM YY' );
+		case 'ddmaa'      : return formato_fecha( fecha, 'DD M YY' );
+		case 'ddmmaa'     : return formato_fecha( fecha, 'DD MM YY' );
 	}
 }
 
 function aplica_formato_mes_reporte ( mes_reporte ){	
 	switch ( $('.formato_mes_reporte').val() ){
-		case 'mes_mayusculas':
-			return mes_reporte.toUpperCase();
-		case 'mes_normal':
-			return mes_reporte;
+		case 'mes_mayusculas' : return mes_reporte.toUpperCase();
+		case 'mes_normal'     : return mes_reporte;
 	}
 }
 
@@ -656,6 +630,7 @@ function aplica_formato_fecha_emision ( fecha ){
 function crea_tabla_reporte (){
 	fija_horas_reporte();
 	$('.reporte').html( construye_tabla_reporte() );
+	agrega_comportamiento_cambio_tipo_dia_asueto();
 }
 
 function fija_horas_reporte (){
@@ -664,17 +639,17 @@ function fija_horas_reporte (){
 }
 
 function set_horas_reporte (){
-	var hora_salida = '';
+	var hora_salida  = '';
 	var hora_entrada = $('.entrada').val();
-	var horas_dia = $('.horas_dia').val();
+	var horas_dia    = $('.horas_dia').val();
 
 	if ( hora_entrada.length > 0 && horas_dia.length > 0 ){
 		horas_dia = parseInt( $('.horas_dia').val() );
 
 		hora_salida = hora_entrada.split(':');
-		horas_dia = parseInt(hora_salida[0])+horas_dia;
-		horas_dia = horas_dia.toString();
-		hora_salida = agregaCeros(horas_dia)+':'+hora_salida[1];
+		horas_dia   = parseInt( hora_salida[ 0 ] ) + horas_dia;
+		horas_dia   = horas_dia.toString();
+		hora_salida = agregaCeros( horas_dia ) +' : '+ hora_salida[1];
 		
 		horas_dia = $('.horas_dia').val();
 	}
@@ -685,16 +660,14 @@ function set_horas_reporte (){
 
 function aplica_formato_datos_horas_reporte (){
 	window.reporte.hora_entrada = aplica_formato_horas_reporte( window.reporte.hora_entrada );
-	window.reporte.hora_salida = aplica_formato_horas_reporte( window.reporte.hora_salida );
+	window.reporte.hora_salida  = aplica_formato_horas_reporte( window.reporte.hora_salida );
 }
 
 function aplica_formato_horas_reporte ( hora_sin_formato ){
 	if ( hora_sin_formato != null && hora_sin_formato != '' ){
 		switch ( $('.formato_horas_reporte').val() ){
-			case 'horas_simple':
-				return formato_horas_moment( hora_sin_formato, 'H:mm' );
-			case 'horas_formato':
-				return formato_horas_moment( hora_sin_formato, 'HH:mm' );
+			case 'horas_simple'  : return formato_horas_moment( hora_sin_formato, 'H:mm' );
+			case 'horas_formato' : return formato_horas_moment( hora_sin_formato, 'HH:mm' );
 		}
 	}
 }
@@ -872,18 +845,12 @@ function texto_contiene ( texto, segmento ){
 
 function aplica_formato_fecha_horas ( fecha ){
 	switch ( $('.formato_fechas_horas').val() ){
-		case 'dd/mm/aa':
-			return formato_fecha( fecha, 'DD/MM/YY' );
-		case 'dd/mm/aaaa':
-			return formato_fecha( fecha, 'DD/MM/YYYY' );
-		case 'dd-mm-aa':
-			return formato_fecha( fecha, 'DD-MM-YY' );
-		case 'dd-mm-aaaa':
-			return formato_fecha( fecha, 'DD-MM-YYYY' );
-		case 'aaaa-mm-dd':
-			return formato_fecha( fecha, 'YYYY-MM-DD' );
-		case 'aa-mm-dd':
-			return formato_fecha( fecha, 'YY-MM-DD' );
+		case 'dd/mm/aa'   : return formato_fecha( fecha, 'DD/MM/YY' );
+		case 'dd/mm/aaaa' : return formato_fecha( fecha, 'DD/MM/YYYY' );
+		case 'dd-mm-aa'   : return formato_fecha( fecha, 'DD-MM-YY' );
+		case 'dd-mm-aaaa' : return formato_fecha( fecha, 'DD-MM-YYYY' );
+		case 'aaaa-mm-dd' : return formato_fecha( fecha, 'YYYY-MM-DD' );
+		case 'aa-mm-dd'   : return formato_fecha( fecha, 'YY-MM-DD' );
 	}
 }
 
@@ -1134,8 +1101,8 @@ function aplica_formato_fecha_horas_dias (){
 		// dias[ dia ].fecha = aplica_formato_fecha_horas( dias[ dia ].fecha );
 		// console.log( 'dia : ', JSON.stringify( window.respuesta_peticion_dias_reporte.dias[ dia ].fecha ) );
 		
-		valor_dia_festivo   = $( dias_reporte[ contador_registros ] ).find( 'td:eq( '+ columnas_reporte.HORAS_DIA  +' )' ).html();
-		dias[ dia ].fecha   = $( dias_reporte[ contador_registros ] ).find( 'td:eq( '+ columnas_reporte.FECHA  +' )' ).html();
+		valor_dia_festivo   = $( dias_reporte[ contador_registros ] ).find( 'td:eq( '+ columnas_reporte.HORAS_DIA +' )' ).text();
+		dias[ dia ].fecha   = $( dias_reporte[ contador_registros ] ).find( 'td:eq( '+ columnas_reporte.FECHA +' )' ).text();
 		dias[ dia ].festivo = get_tipo_dia_festivo( valor_dia_festivo.trim() );
 		
 		contador_registros++;
@@ -1239,16 +1206,11 @@ function get_selector_ejemplo_formato ( clase_elemento ){
 function get_ejemplo_formato ( clase_elemento ){
 	var selector_elemento = get_selector_clase_elemento( clase_elemento );
 	switch ( clase_elemento ){
-		case 'formato_mes_reporte':
-			return get_ejemplo_formato_mes_reporte( selector_elemento );
-		case 'formato_fechas_horas':
-			return get_ejemplo_formato_fechas_horas( selector_elemento );
-		case 'formato_horas_reporte':
-			return get_ejemplo_formato_horas_reporte( selector_elemento );
-		case 'formato_periodo_reporte':
-			return get_ejemplo_formato_periodo_reporte( selector_elemento );
-		case 'formato_fecha_emision':
-			return get_ejemplo_formato_fecha_emision( selector_elemento );
+		case 'formato_mes_reporte'     : return get_ejemplo_formato_mes_reporte( selector_elemento );
+		case 'formato_fechas_horas'    : return get_ejemplo_formato_fechas_horas( selector_elemento );
+		case 'formato_horas_reporte'   : return get_ejemplo_formato_horas_reporte( selector_elemento );
+		case 'formato_periodo_reporte' : return get_ejemplo_formato_periodo_reporte( selector_elemento );
+		case 'formato_fecha_emision'   : return get_ejemplo_formato_fecha_emision( selector_elemento );
 	}
 }
 
@@ -1258,142 +1220,92 @@ function get_selector_clase_elemento ( clase_elemento ){
 
 function get_ejemplo_formato_mes_reporte ( selector_elemento ){
 	switch ( $( selector_elemento ).val() ){
-		case 'mes_mayusculas':
-			return 'ENERO / ENERO-FEBRERO';
-		case 'mes_normal':
-			return 'Enero / Enero-Febrero';
+		case 'mes_mayusculas' : return 'ENERO / ENERO-FEBRERO';
+		case 'mes_normal'     : return 'Enero / Enero-Febrero';
 	}
 }
 
 function get_ejemplo_formato_fechas_horas ( selector_elemento ){
 	switch ( $( selector_elemento ).val() ){
-		case 'dd/mm/aa':
-			return '01/01/15';
-		case 'dd/mm/aaaa':
-			return '01/01/2015';
-		case 'dd-mm-aa':
-			return '01-01-15';
-		case 'dd-mm-aaaa':
-			return '01-01-2015';
-		case 'aaaa-mm-dd':
-			return '2015-01-01';
-		case 'aa-mm-dd':
-			return '15-01-01';
+		case 'dd/mm/aa'   : return '01/01/15';
+		case 'dd/mm/aaaa' : return '01/01/2015';
+		case 'dd-mm-aa'   : return '01-01-15';
+		case 'dd-mm-aaaa' : return '01-01-2015';
+		case 'aaaa-mm-dd' : return '2015-01-01';
+		case 'aa-mm-dd'   : return '15-01-01';
 	}
 }
 
 function get_ejemplo_formato_horas_reporte ( selector_elemento ){
 	switch ( $( selector_elemento ).val() ){
-		case 'horas_simple':
-			return '8:00';
-		case 'horas_formato':
-			return '08:00';
+		case 'horas_simple'  : return '8:00';
+		case 'horas_formato' : return '08:00';
 	}
 }
 
 function get_ejemplo_formato_periodo_reporte ( selector_elemento ){
 	switch ( $( selector_elemento ).val() ){
-		case 'dMESaaaa':
-			return '1 ENE 2015';
-		case 'dMESaaaa*':
-			return '1 ENERO 2015';
+		case 'dMESaaaa'   : return '1 ENE 2015';
+		case 'dMESaaaa*'  : return '1 ENERO 2015';
 
-		case 'dMesaaaa':
-			return '1 Ene 2015';
-		case 'dMesaaaa*':
-			return '1 Enero 2015';
+		case 'dMesaaaa'   : return '1 Ene 2015';
+		case 'dMesaaaa*'  : return '1 Enero 2015';
 
-		case 'ddMESaaaa':
-			return '01 ENE 2015';
-		case 'ddMESaaaa*':
-			return '01 ENERO 2015';
+		case 'ddMESaaaa'  : return '01 ENE 2015';
+		case 'ddMESaaaa*' : return '01 ENERO 2015';
 
-		case 'ddMesaaaa':
-			return '01 Ene 2015';
-		case 'ddMesaaaa*':
-			return '01 Enero 2015';
+		case 'ddMesaaaa'  : return '01 Ene 2015';
+		case 'ddMesaaaa*' : return '01 Enero 2015';
 
-		case 'dMESaa':
-			return '1 ENE 15';
-		case 'dMESaa*':
-			return '1 ENERO 15';
+		case 'dMESaa'     : return '1 ENE 15';
+		case 'dMESaa*'    : return '1 ENERO 15';
 
-		case 'dMesaa':
-			return '1 Ene 15';
-		case 'dMesaa*':
-			return '1 Enero 15';
+		case 'dMesaa'     : return '1 Ene 15';
+		case 'dMesaa*'    : return '1 Enero 15';
 
-		case 'ddMESaa':
-			return '01 ENE 15';
-		case 'ddMESaa*':
-			return '01 ENERO 15';
+		case 'ddMESaa'    : return '01 ENE 15';
+		case 'ddMESaa*'   : return '01 ENERO 15';
 
-		case 'ddMesaa':
-			return '01 Ene 15';
-		case 'ddMesaa*':
-			return '01 Enero 15';
+		case 'ddMesaa'    : return '01 Ene 15';
+		case 'ddMesaa*'   : return '01 Enero 15';
 
-		case 'dmaaaa':
-			return '1 1 2015';
-		case 'dmmaaaa':
-			return '1 01 2015';
-		case 'ddmaaaa':
-			return '01 1 2015';
-		case 'ddmmaaaa':
-			return '01 01 2015';
+		case 'dmaaaa'     : return '1 1 2015';
+		case 'dmmaaaa'    : return '1 01 2015';
+		case 'ddmaaaa'    : return '01 1 2015';
+		case 'ddmmaaaa'   : return '01 01 2015';
 
-		case 'dmaa':
-			return '1 1 15';
-		case 'dmmaa':
-			return '1 01 15';
-		case 'ddmaa':
-			return '01 1 15';
-		case 'ddmmaa':
-			return '01 01 15';
+		case 'dmaa'       : return '1 1 15';
+		case 'dmmaa'      : return '1 01 15';
+		case 'ddmaa'      : return '01 1 15';
+		case 'ddmmaa'     : return '01 01 15';
 	}
 }
 
 function get_ejemplo_formato_fecha_emision ( selector_elemento ){
 	switch ( $( selector_elemento ).val() ){
-		case 'dMESaaaa*':
-			return '1 ENERO 2015';
-		case 'ddMESaaaa*':
-			return '01 ENERO 2015';
-
-		case 'dMesaaaa*':
-			return '1 Enero 2015';
-		case 'ddMesaaaa*':
-			return '01 Enero 2015';
-
-		case 'dMESaaaa':
-			return '1 ENE 2015';
-		case 'ddMESaaaa':
-			return '01 ENE 2015';
-
-		case 'dMesaaaa':
-			return '1 Ene 2015';
-		case 'ddMesaaaa':
-			return '01 Ene 2015';
-
-		case 'ddmmaaaa':
-			return '01 01 2015';
-		case 'ddmmaa':
-			return '01 01 15';
-
-		case 'ddmaaaa':
-			return '01 1 2015';
-		case 'ddmaa':
-			return '01 1 15';
-
-		case 'dmmaaaa':
-			return '1 01 2015';
-		case 'dmmaa':
-			return '1 01 15';
-
-		case 'dmaaaa':
-			return '1 1 2015';
-		case 'dmaa':
-			return '1 1 15';
+		case 'dMESaaaa*'  : return '1 ENERO 2015';
+		case 'ddMESaaaa*' : return '01 ENERO 2015';
+		
+		case 'dMesaaaa*'  : return '1 Enero 2015';
+		case 'ddMesaaaa*' : return '01 Enero 2015';
+		
+		case 'dMESaaaa'   : return '1 ENE 2015';
+		case 'ddMESaaaa'  : return '01 ENE 2015';
+		
+		case 'dMesaaaa'   : return '1 Ene 2015';
+		case 'ddMesaaaa'  : return '01 Ene 2015';
+		
+		case 'ddmmaaaa'   : return '01 01 2015';
+		case 'ddmmaa'     : return '01 01 15';
+		
+		case 'ddmaaaa'    : return '01 1 2015';
+		case 'ddmaa'      : return '01 1 15';
+		
+		case 'dmmaaaa'    : return '1 01 2015';
+		case 'dmmaa'      : return '1 01 15';
+		
+		case 'dmaaaa'     : return '1 1 2015';
+		case 'dmaa'       : return '1 1 15';
 	}
 }
 
@@ -1509,11 +1421,11 @@ function controla_desplazamiento ( event ){
 	}
 
 	$('.segmentacion').scrollLeft( $('.segmentacion').scrollLeft() - ( cambio_desplazamiento * 2 ) );
-    event.preventDefault();
+	event.preventDefault();
 }
 
 function comportamiento_almacenamiento_datos (){
-    if ( verificacion_almacenamiento() ){
+	if ( verificacion_almacenamiento() ){
 		agrega_comportamiento_preservar_informacion();
 		agrega_eventos_almacenamiento();
 		verifica_datos_almacenados();
@@ -1522,15 +1434,15 @@ function comportamiento_almacenamiento_datos (){
 
 function verificacion_almacenamiento (){
 	var test = 'test';
-    try {
-        localStorage.setItem( test, test );
-        localStorage.removeItem( test );
-        
-        return true;
-    } catch ( error ) {
-        
-        return false;
-    }
+	try {
+		localStorage.setItem( test, test );
+		localStorage.removeItem( test );
+		
+		return true;
+	} catch ( error ) {
+		
+		return false;
+	}
 }
 
 function agrega_eventos_almacenamiento (){
@@ -1614,7 +1526,7 @@ function eliminar_informacion_almacenada (){
 function almacena_olivido_informacion (){
 	if ( verificacion_almacenamiento() ){
 		almacena_dato( 'preservar_informacion', 'false' );
-    }
+	}
 }
 
 function verifica_datos_almacenados (){
@@ -1628,7 +1540,7 @@ function verifica_datos_almacenados (){
 				break;
 			default:
 				$( get_selector( elemento ) ).val( localStorage[ elemento ] );
-				break;	
+				break;
 		}
 	}
 }
@@ -1795,4 +1707,64 @@ function agrega_dependencia_carrera_manual (){
 
 function mostrar_control_carrera_manual (){
 	muestra_elemento( '.carrera' );
+}
+
+function agrega_comportamiento_cambio_tipo_dia_asueto (){
+
+	var columnas_reporte = constantes_columnas();
+	var dias_reporte = $( '.reporte > table tr:gt(0)' );
+	var horas_dia = $( '.horas_dia' ).val();
+	var valor_horas_dia_registro;
+	var dia_registro;
+
+	dias_reporte.each( function( indice ){
+		dia_registro = $( this ).find( 'td:eq( '+ columnas_reporte.HORAS_DIA +' )' );
+		
+		valor_horas_dia_registro = dia_registro.text().trim();
+
+		if ( horas_dia != valor_horas_dia_registro ){
+			dia_registro.addClass( 'dia_fecha_asueto' );
+		}
+
+	});
+
+	$( '.dia_fecha_asueto' ).click( function(){
+		cambia_tipo_dia_asueto( $(this) );
+	});
+
+}
+
+function cambia_tipo_dia_asueto ( celda_registro_tipo_dia ){
+
+	var horas_dia = $( '.horas_dia' ).val();
+	var valor_tipo_dia = celda_registro_tipo_dia.text().trim();
+
+	if ( valor_tipo_dia == 'DIA FESTIVO' ){
+		celda_registro_tipo_dia.text( 'SUSPENCION DE LABORES' );
+	}
+
+	if ( valor_tipo_dia == 'SUSPENCION DE LABORES' ){
+		celda_registro_tipo_dia.text( horas_dia );
+		agrega_hora_entrada_salida_registro( 
+			  celda_registro_tipo_dia.parent()
+			, get_reporte_hora_entrada()
+			, get_reporte_hora_salida()
+		);
+	}
+
+	if ( valor_tipo_dia == horas_dia ){
+		celda_registro_tipo_dia.text( 'DIA FESTIVO' );
+		agrega_hora_entrada_salida_registro( 
+			  celda_registro_tipo_dia.parent()
+			, ''
+			, ''
+		);
+	}
+}
+
+function agrega_hora_entrada_salida_registro ( registro, hora_entrada, hora_salida ){
+	var columnas_reporte = constantes_columnas();
+
+	registro.find( 'td:eq( '+ columnas_reporte.HORA_ENTRADA +' )' ).text( sprintf( ' %s ', hora_entrada ) );
+	registro.find( 'td:eq( '+ columnas_reporte.HORA_SALIDA +' )' ).text( sprintf( ' %s ', hora_salida ) );
 }
