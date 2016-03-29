@@ -17,7 +17,7 @@ VALUES
 ,  ( NULL, '2015-05-01', 'Día del trabajo', 'o')
 ,  ( NULL, '2015-09-16', 'Día de la independencia', 'o')
 ,  ( NULL, '2015-11-16', 'Conmemoración del inicio de la revolución mexicana', 'o')
-,  ( NULL, '2015-12-25', 'Navidad'), 'o';
+,  ( NULL, '2015-12-25', 'Navidad', 'o');
 
 INSERT INTO 
   dia_festivo
