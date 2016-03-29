@@ -174,8 +174,8 @@ function determina_tipo_reporte ( control_fecha_inicio ){
 		//constructor yyyy, mm, dd, hh , MM, ss, ms
 		// console.log("fecha-texto : "+JSON.stringify(fecha));
 		fecha = new Date( fecha[0], fecha[1]-1, fecha[2]);
-		console.log( sprintf(' --- cuadro : %s ', control_fecha_inicio.val() ) );
-		console.log( sprintf(' --- fecha : %s ', fecha.toString() ) );
+		// console.log( sprintf(' --- cuadro : %s ', control_fecha_inicio.val() ) );
+		// console.log( sprintf(' --- fecha : %s ', fecha.toString() ) );
 
 		var tipo = (fecha.getDate() > 15) ? 1 : 0;
 		// console.log("cuadro : "+control_fecha_inicio.val()+" dia : "+fecha.getDate()+" tipo : "+tipo);
@@ -433,6 +433,7 @@ function calcula_maximo_horas_dia (){
 	switch ( $('.tipo_dias:checked').val() ){
 		case 'es':
 			horas_dia.attr( 'max', 4 );
+			calcula_hora_maxima_entrada( horas_dia );
 			verifica_restriccion_maximo_horas_dia( horas_dia );
 			break;
 		case 'fs':
@@ -458,26 +459,38 @@ function comportamiento_horas_x_dia (){
 }
 
 function calcula_hora_maxima_entrada ( control_horas_dia ){
-	var tiempo_maximo_entrada = 47;
+	var tiempo_maximo_entrada;
 	var tiempo_maximo_salida = 48;
 	var horas_dia = control_horas_dia.val();
+
 	if ( horas_dia.length > 0 ){
-		tiempo_maximo_entrada = tiempo_maximo_salida - (horas_dia * 2);
+		tiempo_maximo_entrada = tiempo_maximo_salida - ( horas_dia * 2 );
 	}
-	$('.entrada_rango').attr('max', tiempo_maximo_entrada);
+	$('.entrada_rango').attr( 'max', tiempo_maximo_entrada );
 }
 
 function verifica_hora_entrada ( control_horas_dia ){
 	// console.log( '--- verifica_hora_entrada ---' );
 	var control_hora_entrada = $('.entrada_rango');
+	
+	// console.log( '--- horas_dia tx: ', control_horas_dia.val() );
 	var horas_dia = parseInt( control_horas_dia.val() );
+	// console.log( '--- horas_dia : ', horas_dia );
+	
+	// console.log( '--- hora_entrada tx : ', control_hora_entrada.val() );
 	var hora_entrada = parseInt( control_hora_entrada.val() );
-	var tiempo_entrada = hora_entrada + ( horas_dia * 2 );
+	// console.log( '--- hora_entrada : ', hora_entrada );
+
+	var tiempo_salida = hora_entrada + ( horas_dia * 2 );
 	var tiempo_maximo_salida = 48;
-	// console.log( '--- entrada : ', tiempo_entrada );
-	if ( tiempo_entrada >= tiempo_maximo_salida ){
-		var diferencia_tiempo = tiempo_entrada - tiempo_maximo_salida;
-		var ajuste_tiempo = hora_entrada - diferencia_tiempo;
+
+	// console.log( '--- salida : ', tiempo_salida );
+
+	if ( tiempo_salida > tiempo_maximo_salida ){
+		
+		var diferencia_tiempo = tiempo_salida - tiempo_maximo_salida;
+		var ajuste_tiempo     = hora_entrada - diferencia_tiempo;
+		
 		control_hora_entrada.val( ajuste_tiempo );
 		calcula_hora_entrada( control_hora_entrada );
 	}
@@ -485,7 +498,9 @@ function verifica_hora_entrada ( control_horas_dia ){
 
 function comportamiento_hora_entrada (){
 	$('.entrada_rango').on( 'input', function (){
+		verifica_hora_entrada( $('.horas_dia') );
 		calcula_hora_entrada( $(this) );
+		genera_reporte();
 	});
 	$('.entrada_rango').trigger( 'input' );
 }
@@ -508,33 +523,40 @@ function comportamiento_descripcion_reporte (){
 }
 
 function comportamiento_genera_reporte (){
-	$('.entrada_rango, .horas_dia').on('input', function(){
+	$('.horas_dia').on('input', function(){
 		genera_reporte();
 	});
+
 	$('.horas_dia').change( function(){
 		genera_reporte();
 	});
-	$('.configuracion_formato_reporte select').on('change', function (){
+
+	$('.configuracion_formato_reporte select').change( function (){
 		genera_reporte();
 	})
 }
 
-function obtener_entero_fecha(tFecha){
+function obtener_entero_fecha ( tFecha ){
 	var numero_fecha = parseInt( tFecha.replace(/\-/g,'') );
 	// console.log("fecha ",numero_fecha);
 	return numero_fecha;
 }
 
-function genera_hora_entrada (rango){
-	// console.log('genera_hora_entrada : '+rango);
-	var entrada = agregaCeros( parseInt(rango/2).toString() );
-	if ( ( rango % 2 ) != 0 ){
-		entrada += ':30';
-	} else {
-		entrada += ':00';
-	}
-	// console.log('hora_entrada ('+rango+')->'+entrada);
+function genera_hora_entrada ( rango ){
+	var entrada = get_hora_rango( rango );
 	$('.entrada').val( entrada );
+}
+
+function get_hora_rango ( rango ){
+	// console.log('genera_hora_entrada : '+rango);
+	var hora = agrega_ceros( parseInt( rango / 2 ).toString() );
+	if ( ( rango % 2 ) != 0 ){
+		hora += ':30';
+	} else {
+		hora += ':00';
+	}
+
+	return hora;
 }
 
 function genera_reporte (){
@@ -639,22 +661,21 @@ function fija_horas_reporte (){
 }
 
 function set_horas_reporte (){
-	var hora_salida  = '';
-	var hora_entrada = $('.entrada').val();
-	var horas_dia    = $('.horas_dia').val();
+	var horas_dia = $('.horas_dia').val();
+	
+	var rango_hora_salida;
+	var rango_hora_entrada = $('.entrada_rango').val();
 
-	if ( hora_entrada.length > 0 && horas_dia.length > 0 ){
-		horas_dia = parseInt( $('.horas_dia').val() );
-
-		hora_salida = hora_entrada.split(':');
-		horas_dia   = parseInt( hora_salida[ 0 ] ) + horas_dia;
-		horas_dia   = horas_dia.toString();
-		hora_salida = agregaCeros( horas_dia ) +' : '+ hora_salida[1];
-		
-		horas_dia = $('.horas_dia').val();
+	if ( rango_hora_entrada.length > 0 && horas_dia.length > 0 ){
+		horas_dia          = parseInt( horas_dia );
+		rango_hora_entrada = parseInt( rango_hora_entrada );
+		rango_hora_salida  = rango_hora_entrada + ( horas_dia * 2 );
+		// console.log( 'rango hora salida :', rango_hora_salida );
 	}
-	window.reporte.hora_entrada = hora_entrada;
-	window.reporte.hora_salida  = hora_salida;
+
+	window.reporte.hora_entrada = get_hora_rango( rango_hora_entrada );
+	window.reporte.hora_salida  = get_hora_rango( rango_hora_salida );
+	// console.log( 'hora salida :', window.reporte.hora_salida );
 	window.reporte.horas_dia    = horas_dia;
 }
 
@@ -664,11 +685,15 @@ function aplica_formato_datos_horas_reporte (){
 }
 
 function aplica_formato_horas_reporte ( hora_sin_formato ){
-	if ( hora_sin_formato != null && hora_sin_formato != '' ){
-		switch ( $('.formato_horas_reporte').val() ){
-			case 'horas_simple'  : return formato_horas_moment( hora_sin_formato, 'H:mm' );
-			case 'horas_formato' : return formato_horas_moment( hora_sin_formato, 'HH:mm' );
+	if ( hora_sin_formato != null && hora_sin_formato != '' && hora_sin_formato.length > 0 ){
+		if ( hora_sin_formato != '24:00' ){
+			switch ( $('.formato_horas_reporte').val() ){
+				case 'horas_simple'  : return formato_horas_moment( hora_sin_formato, 'H:mm' );
+				case 'horas_formato' : return formato_horas_moment( hora_sin_formato, 'HH:mm' );
+			}
 		}
+
+		return hora_sin_formato;
 	}
 }
 
@@ -920,8 +945,8 @@ function cambiaFormatoFecha (formato_salida, fecha){
 			//constructor yyyy, mm, dd, hh , MM, ss, ms
 			// console.log('y :'+fecha_salida[0]+' m : '+fecha_salida[1]+' d: '+fecha_salida[2])
 			fecha_salida = new Date( fecha_salida[0], fecha_salida[1]-1, fecha_salida[2]);
-			fecha_salida = agregaCeros( fecha_salida.getDate() )+'-'+agregaCeros( fecha_salida.getMonth()+1 )+'-'+fecha_salida.getFullYear();
-			// fecha_salida = fecha_salida.getFullYear()+'-'+agregaCeros( fecha_salida.getMonth()+1 )+'-'+agregaCeros( fecha_salida.getDate() );
+			fecha_salida = agrega_ceros( fecha_salida.getDate() )+'-'+agrega_ceros( fecha_salida.getMonth()+1 )+'-'+fecha_salida.getFullYear();
+			// fecha_salida = fecha_salida.getFullYear()+'-'+agrega_ceros( fecha_salida.getMonth()+1 )+'-'+agrega_ceros( fecha_salida.getDate() );
 			break;
 	}
 	// console.log('entrada : '+fecha+'\nsalida : '+fecha_salida);
@@ -934,12 +959,12 @@ function get_fecha_anio_mes_dia (){
 	return sprintf(
 		'%s-%s-%s'
 		, fecha_salida.getFullYear()
-		, agregaCeros( fecha_salida.getMonth()+1 )
-		, agregaCeros( fecha_salida.getDate() )
+		, agrega_ceros( fecha_salida.getMonth()+1 )
+		, agrega_ceros( fecha_salida.getDate() )
 	);
 }
 
-function agregaCeros ( numero_parametro ){
+function agrega_ceros ( numero_parametro ){
 	var numero = parseInt( numero_parametro );
 	
 	return sprintf( '%02d', numero );
@@ -1082,7 +1107,7 @@ function agrega_datos_reporte (){
 	formulario.append( campo_dato_reporte( 'semestre', $('.semestre').val() ) );
 	formulario.append( campo_dato_reporte( 'grupo'   , $('.grupo').val() ) );
 
-	agrega_actividades_reporte();	
+	agrega_actividades_reporte();
 	setTimeout( limpiar_formulario, 2000 );
 }
 
@@ -1137,6 +1162,11 @@ function agrega_actividad_reporte ( formulario, selector_actividad ){
 }
 
 function campo_dato_reporte ( nombre, valor ){
+
+	if ( typeof valor === 'string' ){
+		valor = valor.replace(/'/g,'&#39;').replace(/"/g,'&quot;')
+	}
+
 	return sprintf( 
 		"<input type='hidden' name='%s' value='%s'/>"
 		, nombre

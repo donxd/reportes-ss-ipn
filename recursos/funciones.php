@@ -192,7 +192,7 @@ class funciones {
 					, 'festivo'           => self::verifica_dia_festivo( $dia_periodo )
 				) 
 			);
-		}
+		}	
 
 		return $dias_reporte;
 	}
@@ -215,13 +215,15 @@ class funciones {
 		$baseDeDatos = new conexion();	
 		$conexion    = $baseDeDatos->conectar( CONEXION_EDICION );
 
-		$consulta = self::get_query_guardar_informacion( $datos );
+		$consulta = self::get_query_guardar_informacion( $datos, $conexion );
 		self::ejecuta_consulta( $consulta, $conexion );
 
 		$baseDeDatos->cerrar( $conexion );
 	}
 
-	private function get_query_guardar_informacion ( $datos ){
+	private function get_query_guardar_informacion ( $datos, &$conexion ){
+		self::estandariza_informacion( $datos, $conexion );
+
 		return sprintf(
 			"INSERT INTO 
 				%s
@@ -293,8 +295,24 @@ class funciones {
 			, self::get_fecha( $datos['fecha_emision_estandar'] )
 			, $datos['total_horas_acumuladas_anterior']
 			, $datos['plantilla']
-			, join( ',', $datos['actividad'] )
+			, self::estandariza_informacion( join( ',', $datos['actividad'] ), $conexion )
 		);
+	}
+
+	private function estandariza_informacion ( &$informacion, &$conexion ){
+		if ( gettype( $informacion ) == 'array' ){
+			foreach ( $informacion as &$valor ){
+				switch ( gettype( $valor ) ){
+					case 'string' : $valor = mysqli_real_escape_string( $conexion, $valor ); break;
+					case 'array' : self::estandariza_informacion( $valor, $conexion ); break;
+				}
+			}
+			unset( $valor );
+		}
+		
+		if ( gettype( $informacion ) == 'string' ){
+			$informacion = mysqli_real_escape_string( $conexion, $informacion );
+		}
 	}
 
 	function get_fecha ( $fecha_formulario ){

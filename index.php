@@ -138,7 +138,7 @@
 								<tr>
 									<td class="una_linea"> Horas x día : </td>
 									<td>
-										<input type="number" min="1" max="4" class="horas_dia" placeholder="#" pattern="\d{1,4}" required />
+										<input type="number" min="1" max="4" class="horas_dia" placeholder="#" pattern="\d{1,4}" value="4" required />
 									</td>
 								</tr>
 								<tr>
@@ -152,7 +152,7 @@
 												<input type="text" class="entrada" pattern="\d{2}:\d{2}" required>
 											</div>
 											<div>
-												<input type="range" class="entrada_rango" min="0" max="47" step="1" list="horas"/>
+												<input type="range" class="entrada_rango" min="0" max="44" step="1" list="horas" value="12" />
 												<datalist id="horas">
 													<option>0</option>
 													<option>12</option>
