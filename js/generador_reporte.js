@@ -778,7 +778,7 @@ function get_contenido_celda_reporte ( tipo_columna_reporte, dia_reporte ){
 
 function determina_hora_entrada ( dia_reporte ){
 	var hora_entrada = get_reporte_hora_entrada();
-	var dia_festivo_suspencion = '';
+	var dia_festivo_suspension = '';
 
 	if ( dia_reporte.festivo == false ){
 		
@@ -787,16 +787,16 @@ function determina_hora_entrada ( dia_reporte ){
 		
 		return determina_valor_x_dia_festivo( 
 			  dia_reporte
-			, dia_festivo_suspencion
-			, dia_festivo_suspencion
+			, dia_festivo_suspension
+			, dia_festivo_suspension
 			, hora_entrada
-			, dia_festivo_suspencion
+			, dia_festivo_suspension
 		);
 	}
 }
 
 function determina_valor_x_dia_festivo ( dia_reporte, valor_dia_festivo_oficial, valor_dia_festivo_no_oficial, 
-		valor_dia_no_festivo, valor_dia_suspencion_escuela ){
+		valor_dia_no_festivo, valor_dia_suspension_escuela ){
 
 	if ( dia_reporte.festivo == 'o' ){
 		
@@ -817,7 +817,7 @@ function determina_valor_x_dia_festivo ( dia_reporte, valor_dia_festivo_oficial,
 				if ( texto_contiene( dia_reporte.festivo, 'v' ) || 
 						texto_contiene( dia_reporte.festivo, 'e' ) ){
 					
-					return valor_dia_suspencion_escuela;
+					return valor_dia_suspension_escuela;
 				} else {
 
 					return valor_dia_no_festivo;
@@ -829,7 +829,7 @@ function determina_valor_x_dia_festivo ( dia_reporte, valor_dia_festivo_oficial,
 
 function determina_hora_salida ( dia_reporte ){
 	var hora_salida = get_reporte_hora_salida();
-	var dia_festivo_suspencion = '';
+	var dia_festivo_suspension = '';
 
 	if ( dia_reporte.festivo == false ){
 		
@@ -838,10 +838,10 @@ function determina_hora_salida ( dia_reporte ){
 		
 		return determina_valor_x_dia_festivo( 
 			  dia_reporte
-			, dia_festivo_suspencion
-			, dia_festivo_suspencion
+			, dia_festivo_suspension
+			, dia_festivo_suspension
 			, hora_salida
-			, dia_festivo_suspencion
+			, dia_festivo_suspension
 		);
 	}
 }
@@ -857,9 +857,9 @@ function determina_horas_dia ( dia_reporte ){
 		return determina_valor_x_dia_festivo( 
 			  dia_reporte
 			, 'DIA FESTIVO'
-			, 'SUSPENCION DE LABORES'
+			, 'SUSPENSION DE LABORES'
 			, horas_dia
-			, 'SUSPENCION DE LABORES'
+			, 'SUSPENSION DE LABORES'
 		);
 	}
 }
@@ -1137,7 +1137,7 @@ function aplica_formato_fecha_horas_dias (){
 }
 
 function get_tipo_dia_festivo ( valor_dia_festivo ){
-	if ( valor_dia_festivo == 'DIA FESTIVO' || valor_dia_festivo == 'SUSPENCION DE LABORES' ){
+	if ( valor_dia_festivo == 'DIA FESTIVO' || valor_dia_festivo == 'SUSPENSION DE LABORES' ){
 
 		return valor_dia_festivo;
 	}
@@ -1770,10 +1770,10 @@ function cambia_tipo_dia_asueto ( celda_registro_tipo_dia ){
 	var valor_tipo_dia = celda_registro_tipo_dia.text().trim();
 
 	if ( valor_tipo_dia == 'DIA FESTIVO' ){
-		celda_registro_tipo_dia.text( 'SUSPENCION DE LABORES' );
+		celda_registro_tipo_dia.text( 'SUSPENSION DE LABORES' );
 	}
 
-	if ( valor_tipo_dia == 'SUSPENCION DE LABORES' ){
+	if ( valor_tipo_dia == 'SUSPENSION DE LABORES' ){
 		celda_registro_tipo_dia.text( horas_dia );
 		agrega_hora_entrada_salida_registro( 
 			  celda_registro_tipo_dia.parent()
