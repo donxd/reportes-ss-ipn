@@ -347,14 +347,14 @@ class reporte {
 	private function determina_valor_hora_entrada ( $valor_dia_festivo ){
 		switch ( $valor_dia_festivo ){
 			case 'DIA FESTIVO'           : return 'DIA';
-			case 'SUSPENCION DE LABORES' : return 'SUSPENCION';
+			case 'SUSPENSION DE LABORES' : return 'SUSPENSION';
 		}
 	}
 
 	private function determina_valor_hora_salida ( $valor_dia_festivo ){
 		switch ( $valor_dia_festivo ){
 			case 'DIA FESTIVO'           : return 'FESTIVO';
-			case 'SUSPENCION DE LABORES' : return 'DE LABORES';
+			case 'SUSPENSION DE LABORES' : return 'DE LABORES';
 		}
 	}
 
@@ -541,8 +541,8 @@ class reporte {
 					$contenido_celda = 'DIA';
 				}
 
-				if ( $dia->festivo == 'SUSPENCION DE LABORES' ){
-					$contenido_celda = 'SUSPENCION';
+				if ( $dia->festivo == 'SUSPENSION DE LABORES' ){
+					$contenido_celda = 'SUSPENSION';
 				}
 			}
 
@@ -572,7 +572,7 @@ class reporte {
 					$contenido_celda = 'FESTIVO';
 				}
 
-				if ( $dia->festivo == 'SUSPENCION DE LABORES' ){
+				if ( $dia->festivo == 'SUSPENSION DE LABORES' ){
 					$contenido_celda = 'DE LABORES';
 				}
 			}
