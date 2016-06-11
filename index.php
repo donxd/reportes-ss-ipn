@@ -36,7 +36,7 @@
 					<input type="button" class="boton_accion ver_datos_complementarios" value="4. Datos del reporte"/>
 					<input type="submit" class="descargar" value="Descargar"/>
 					<div class="derecha notas">
-						<strong>NOTA : </strong> <span title="Rueda del ratón">scroll vertical , shift + scroll </span>
+						<strong>NOTA : </strong> <span title="Rueda del ratón">scroll vertical = shift + scroll </span>
 						<br/>
 						<label title="Información del reporte"> 
 							<input type="checkbox" class="preservar_informacion" checked /> Preservar información 
