@@ -888,7 +888,19 @@ function get_reporte_hora_entrada (){
 }
 
 function get_reporte_hora ( hora ){
-	return ( hora != null && hora.length > 0 ) ? hora : '';
+
+	if ( hora != null ){
+
+		switch ( typeof hora ){
+			case 'string':
+				return ( hora != null && hora.length > 0 ) ? hora : '';
+
+			case 'number':
+				return hora;
+		}
+	}
+
+	return '';
 }
 
 function get_reporte_hora_salida (){
